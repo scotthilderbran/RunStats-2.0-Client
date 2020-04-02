@@ -1,13 +1,19 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 class Navbar extends Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
+    console.log("adfasdfaf");
+    console.log(this.props.isAuth);
     return (
       <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
         <div className="container">
           <Link className="navbar-brand" to="/">
-            RunStats
+            {this.props.user}
           </Link>
           <button
             className="navbar-toggler"
@@ -39,6 +45,11 @@ class Navbar extends Component {
                   Profile
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/login">
+                  {this.props.isAuth ? "Logout" : "Login"}
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
@@ -47,4 +58,11 @@ class Navbar extends Component {
   }
 }
 
-export default Navbar;
+function mapStateToProps(state) {
+  return {
+    user: state.todos,
+    isAuth: state.auth.isAuthenticated
+  };
+}
+
+export default connect(mapStateToProps)(Navbar);

@@ -1,13 +1,14 @@
 import React, { Component } from "react";
-import {deleteRun} from '../../../redux/action';
+import { deleteRun } from "../../../redux/actions/runActions";
 import { connect } from "react-redux";
+import { ListGroup, Button } from "react-bootstrap/";
 
 class RunLineItem extends Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handleSubmit(event){
+  handleSubmit(event) {
     event.preventDefault();
     this.props.deleteRun(this.props.run.runid);
   }
@@ -15,25 +16,27 @@ class RunLineItem extends Component {
     console.log(this.props.run.runid);
     console.log("tester");
     return (
-      <div>
-        <ul className="list-group list-group-horizontal">
-          <li className="list-group-item">ID: {this.props.run.runid}</li>
-          <li className="list-group-item">
-            Distance: {this.props.run.distance}
-          </li>
-          <li className="list-group-item">Time: {this.props.run.time}</li>
-          <button type="button" class="btn btn-danger" onClick={this.handleSubmit}>
-            Delete
-          </button>
-        </ul>
-      </div>
+      <ListGroup horizontal className="mt-2 mb-2 d-flex justify-content-center">
+        <ListGroup.Item className="w-100">
+          ID: {this.props.run.runid}
+        </ListGroup.Item>
+        <ListGroup.Item className="w-100">
+          Distance: {this.props.run.distance}
+        </ListGroup.Item>
+        <ListGroup.Item className="w-100">
+          Time: {this.props.run.time}
+        </ListGroup.Item>
+        <Button className="w-50" onClick={this.handleSubmit} variant="danger">
+          Delete Run
+        </Button>
+      </ListGroup>
     );
   }
 }
 
 const mapActionsToProps = dispatch => {
   return {
-    deleteRun: (id) => {
+    deleteRun: id => {
       console.log("Arone");
       dispatch(deleteRun(id));
     }

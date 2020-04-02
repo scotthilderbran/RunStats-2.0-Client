@@ -5,7 +5,7 @@ export default class Runs extends Component {
     render() {
         return (
             <div>
-                <h1>Welcome to Runs</h1>
+                <h1>Test</h1>
                 <RunContainer/>
             </div>
         )

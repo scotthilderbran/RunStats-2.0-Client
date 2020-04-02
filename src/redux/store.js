@@ -1,20 +1,11 @@
-import { createStore } from 'redux';
-import {reducer} from './reducer';
+import { createStore, applyMiddleware } from "redux";
+import rootReducer from "./reducers/rootReducer";
+import thunk from "redux-thunk";
+import { composeWithDevTools } from "redux-devtools-extension";
 
-const initialState = {
-    user: {
-      id: 'test',
-      is_authenticated: false
-    },
-    runs: [
-        {runid: 1, distance: 3.1, time: 30.1, userid: 991},
-        {runid: 2, distance: 4.1, time: 35.1, userid: 991},
-        {runid: 3, distance: 8, time: 45.1, userid: 991}
-    ]
-  };
-  
-
-const store = createStore(reducer, initialState,
-    window.devToolsExtension && window.devToolsExtension());
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(thunk))
+);
 
 export default store;
