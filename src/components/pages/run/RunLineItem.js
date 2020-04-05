@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { deleteRun } from "../../../redux/actions/runActions";
+//import { deleteRun } from "../../../redux/actions/runActions";
 import { connect } from "react-redux";
 import { ListGroup, Button } from "react-bootstrap/";
 
@@ -10,7 +10,7 @@ class RunLineItem extends Component {
   }
   handleSubmit(event) {
     event.preventDefault();
-    this.props.deleteRun(this.props.run.runid);
+    //this.props.deleteRun(this.props.run.runid);
   }
   render() {
     console.log(this.props.run.runid);
@@ -18,7 +18,7 @@ class RunLineItem extends Component {
     return (
       <ListGroup horizontal className="mt-2 mb-2 d-flex justify-content-center">
         <ListGroup.Item className="w-100">
-          ID: {this.props.run.runid}
+          ID: {this.props.run.id}
         </ListGroup.Item>
         <ListGroup.Item className="w-100">
           Distance: {this.props.run.distance}
@@ -34,13 +34,7 @@ class RunLineItem extends Component {
   }
 }
 
-const mapActionsToProps = dispatch => {
-  return {
-    deleteRun: id => {
-      console.log("Arone");
-      dispatch(deleteRun(id));
-    }
-  };
+const mapActionsToProps = (dispatch) => {
+  return {};
 };
-
 export default connect(null, mapActionsToProps)(RunLineItem);

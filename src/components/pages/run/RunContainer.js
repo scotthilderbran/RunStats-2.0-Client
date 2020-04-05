@@ -10,25 +10,17 @@ class RunContainer extends Component {
     super(props);
   }
   render() {
-    const runs = this.props.runs.map(function(run) {
-      return <RunLineItem run={run} />;
-    });
-    return (
-      <Container fluid>
-        <Row className="justify-content-md-center">
-          <Col md="6" className="text-center">
-            <h1>Saved Runs</h1>
-            {runs}
-            <AddRun />
-          </Col>
-        </Row>
-      </Container>
-    );
+    console.log("Aroneeeee");
+    console.log(this.props.run);
+    const runs = this.props.run.map((run) => (
+      <RunLineItem key={run.id} run={run} />
+    ));
+    return <div>{runs}</div>;
   }
 }
-const mapStateToProps = state => ({
-  user: state.user,
-  runs: state.runs
+
+const mapStateToProps = (state) => ({
+  run: state.run.runs,
 });
 
 export default connect(mapStateToProps)(RunContainer);

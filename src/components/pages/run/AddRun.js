@@ -1,3 +1,4 @@
+/*
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { addRun } from "../../../redux/actions/runActions";
@@ -63,3 +64,4 @@ const mapActionsToProps = dispatch => {
 };
 
 export default connect(null, mapActionsToProps)(AddRun);
+*/

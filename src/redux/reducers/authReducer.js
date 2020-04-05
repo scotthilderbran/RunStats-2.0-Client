@@ -6,34 +6,40 @@ import {
   LOGIN_FAIL,
   LOGOUT_SUCCESS,
   REGISTER_SUCCESS,
-  REGISTER_FAIL
+  REGISTER_FAIL,
 } from "../actions/constants";
 
 const initialState = {
-  token: localStorage.getItem("token"),
-  isAuthenticated: null,
-  user: null
+  isAuthenticated: false,
+  isLoaded: false,
+  user: {
+    email: null,
+    userFName: "user",
+    userLName: null,
+  },
 };
 
-export default function(state = initialState, action) {
+export default function (state = initialState, action) {
   switch (action.type) {
+    case USER_LOADING:
+      return {
+        ...state,
+        isLoading: false,
+      };
+    case USER_LOADED:
     case LOGIN_SUCCESS:
     case REGISTER_SUCCESS:
       return {
-        ...state,
-        ...action.payload,
+        user: action.payload,
         isAuthenticated: true,
-        isLoading: false
+        isLoaded: false,
       };
     case AUTH_ERROR:
     case LOGIN_FAIL:
     case LOGOUT_SUCCESS:
     case REGISTER_FAIL:
       return {
-        ...state,
-        token: action.payload,
-        user: null,
-        isAuthenticated: false
+        initialState,
       };
     default:
       return state;

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Router, Switch, Route, Link, Redirect } from "react-router-dom";
-import { Provider } from "react-redux";
-import store from "./redux/store";
-import NavBar from "./components/layout/Navbar";
+import { connect } from "react-redux";
+
+import Navigation from "./components/layout/Navbar";
 import history from "./components/helpers/history";
 
 import Analytics from "./components/pages/analytics/Analytics";
@@ -11,41 +11,47 @@ import Profile from "./components/pages/profile/Profile";
 import Home from "./components/pages/home/Home";
 import Login from "./components/pages/login/Login";
 import { loadUser } from "./redux/actions/authActions";
-import { PrivateRoute } from "./components/helpers/PrivateRoute";
+import { loadRuns } from "./redux/actions/runActions";
+import PrivateRoute from "./components/helpers/PrivateRoute";
 
 import "./App.css";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import PublicRoute from "./components/helpers/PublicRoute";
+import store from "./redux/store";
 
 class App extends Component {
   componentDidMount() {
-    //store.dispatch(loadUser());
+    console.log("adfaksdnfkjadsfan");
+    //console.log(this.props.auth);
+    if (localStorage.getItem("token")) {
+      store.dispatch(loadUser());
+      store.dispatch(loadRuns());
+    }
   }
 
   render() {
+    let authed = this.props.auth;
     return (
-      <Provider store={store}>
-        <Router history={history}>
-          <div className="App">
-            <NavBar />
-            <Switch>
-              <PrivateRoute exact path="/runs" component={Runs} />
-              <Route path="/analytics">
-                <Analytics />
-              </Route>
-              <Route path="/Profile">
-                <Profile />
-              </Route>
-              <Route path="/login">
-                <Login />
-              </Route>
-              <Route path="/">
-                <Home />
-              </Route>
-            </Switch>
-          </div>
-        </Router>
-      </Provider>
+      <Router history={history}>
+        <div className="App">
+          <Navigation />
+          <Switch>
+            <PrivateRoute exact path="/runs" component={Runs} />
+            <PrivateRoute exact path="/analytics" component={Analytics} />
+            <PrivateRoute exact path="/profile" component={Profile} />
+            <PublicRoute exact path="/login" component={Login} />
+            <PublicRoute exact path="/" component={Home} />
+          </Switch>
+        </div>
+      </Router>
     );
   }
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {
+    auth: state.auth.isAuthenticated,
+  };
+}
+
+export default connect(mapStateToProps, { pure: false })(App);
