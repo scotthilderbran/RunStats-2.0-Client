@@ -16,6 +16,7 @@ import PrivateRoute from "./components/helpers/PrivateRoute";
 
 import "./App.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 import PublicRoute from "./components/helpers/PublicRoute";
 import store from "./redux/store";
 

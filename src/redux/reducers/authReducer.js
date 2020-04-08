@@ -7,6 +7,7 @@ import {
   LOGOUT_SUCCESS,
   REGISTER_SUCCESS,
   REGISTER_FAIL,
+  USER_UPDATED,
 } from "../actions/constants";
 
 const initialState = {
@@ -16,6 +17,8 @@ const initialState = {
     email: null,
     userFName: "user",
     userLName: null,
+    sex: null,
+    age: null,
   },
 };
 
@@ -24,7 +27,7 @@ export default function (state = initialState, action) {
     case USER_LOADING:
       return {
         ...state,
-        isLoading: false,
+        isLoaded: false,
       };
     case USER_LOADED:
     case LOGIN_SUCCESS:
@@ -32,7 +35,7 @@ export default function (state = initialState, action) {
       return {
         user: action.payload,
         isAuthenticated: true,
-        isLoaded: false,
+        isLoaded: true,
       };
     case AUTH_ERROR:
     case LOGIN_FAIL:
@@ -40,6 +43,11 @@ export default function (state = initialState, action) {
     case REGISTER_FAIL:
       return {
         initialState,
+      };
+    case USER_UPDATED:
+      return {
+        ...state,
+        user: action.payload,
       };
     default:
       return state;

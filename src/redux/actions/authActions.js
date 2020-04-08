@@ -7,6 +7,7 @@ import {
   LOGOUT_SUCCESS,
   REGISTER_SUCCESS,
   REGISTER_FAIL,
+  USER_UPDATED,
 } from "./constants";
 import { returnErrors } from "./errorActions";
 import axios from "axios";
@@ -77,6 +78,43 @@ export const register = ({ email, password, fName, lName, sex }) => {
       })
       .catch((err) => {
         dispatch(registerFailure(err)); //dispatch user not logged in
+      });
+  };
+};
+
+export const updateUser = ({ email, fName, lName, sex, age }) => {
+  return (dispatch) => {
+    const token = localStorage.getItem("token");
+    const config = {
+      headers: { Authorization: `${token}` },
+    };
+    console.log(email, fName, lName, sex, age);
+    axios
+      .post(
+        "http://localhost:4000/user/update",
+        {
+          email: email,
+          fName: fName,
+          lName: lName,
+          sex: sex,
+          age: age,
+        },
+        config
+      )
+      .then((res) => {
+        dispatch({
+          type: USER_UPDATED,
+          payload: {
+            email: email,
+            userFName: fName,
+            userLName: lName,
+            sex: sex,
+            age: age,
+          },
+        }); //dispatch user logged in
+      })
+      .catch((err) => {
+        console.log(err); //dispatch user not logged in
       });
   };
 };

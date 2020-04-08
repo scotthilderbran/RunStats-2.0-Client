@@ -16,7 +16,7 @@ class Runs extends Component {
     ) : (
       <Container fluid>
         <Row className="justify-content-md-center">
-          <Col md="6" className="text-center">
+          <Col md="10" className="text-center">
             <h1 className="mt-3 mb-3">{this.props.name}'s Runs</h1>
             <RunContainer />
           </Col>

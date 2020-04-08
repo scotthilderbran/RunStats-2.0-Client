@@ -8,6 +8,8 @@ export const DELETE_RUN_ERROR = "DELETE_RUN_ERROR";
 export const LOAD_RUNS = "ADD_RUN";
 export const LOAD_RUNS_SUCCESS = "DELETE_RUN_SUCCESS";
 export const LOAD_RUNS_ERROR = "DELETE_RUN_ERROR";
+export const EDIT_RUN = "EDIT_RUN";
+export const EDIT_RUN_COMPLETE = "EDIT_RUN_COMPLETE";
 
 //Auth and user constants
 export const USER_LOADING = "USER_LOADING";
@@ -18,6 +20,7 @@ export const LOGIN_FAIL = "LOGIN_FAIL";
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAIL = "REGISTER_FAIL";
+export const USER_UPDATED = "USER_UPDATED";
 
 //Error handling
 export const GET_ERRORS = "GET_ERRORS";

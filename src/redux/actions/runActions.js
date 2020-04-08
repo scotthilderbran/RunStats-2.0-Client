@@ -1,4 +1,10 @@
-import { LOAD_RUNS, LOAD_RUNS_SUCCESS, LOAD_RUNS_ERROR } from "./constants";
+import {
+  LOAD_RUNS,
+  LOAD_RUNS_SUCCESS,
+  LOAD_RUNS_ERROR,
+  EDIT_RUN,
+  EDIT_RUN_COMPLETE,
+} from "./constants";
 import axios from "axios";
 
 export const loadRuns = () => {
@@ -44,7 +50,7 @@ export const deleteRun = (id) => {
       )
       .then((res) => {
         console.log(res.data);
-        loadRuns();
+        dispatch(loadRuns());
       })
       .catch((err) => {
         console.log(err); //dispatch user not logged in
@@ -52,29 +58,69 @@ export const deleteRun = (id) => {
   };
 };
 
-/*
-export const addRun = (id) => {
+export const updateRun = ({ id, note, distance, time, date }) => {
   return (dispatch) => {
-    console.log("deleting runs");
     const token = localStorage.getItem("token");
     const config = {
       headers: { Authorization: `${token}` },
     };
     axios
       .post(
-        "http://localhost:4000/run/deleteRun",
+        "http://localhost:4000/run/updateRun",
         {
           id: id,
+          note: note,
+          distance: distance,
+          time: time,
+          date: date,
         },
         config
       )
       .then((res) => {
-        console.log(res.data);
-        loadRuns();
+        dispatch(loadRuns()); //dispatch user logged in
       })
       .catch((err) => {
         console.log(err); //dispatch user not logged in
       });
   };
 };
-*/
+
+export const addRun = ({ note, distance, time, date }) => {
+  return (dispatch) => {
+    const token = localStorage.getItem("token");
+    const config = {
+      headers: { Authorization: `${token}` },
+    };
+    axios
+      .post(
+        "http://localhost:4000/run/addRun",
+        {
+          note: note,
+          distance: distance,
+          time: time,
+          date: date,
+        },
+        config
+      )
+      .then((res) => {
+        console.log(res.data);
+        dispatch(loadRuns());
+      })
+      .catch((err) => {
+        console.log(err); //dispatch user not logged in
+      });
+  };
+};
+
+export function editRun(data) {
+  return {
+    type: EDIT_RUN,
+    payload: data,
+  };
+}
+export function editRunComplete(data) {
+  return {
+    type: EDIT_RUN_COMPLETE,
+    payload: data,
+  };
+}
