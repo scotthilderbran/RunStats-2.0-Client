@@ -14,7 +14,9 @@ class Profile extends Component {
     this.setState({ isEditing: !this.state.isEditing });
   }
   render() {
-    return this.props.isLoaded ? (
+    console.log("ISLOADED:");
+    console.log(this.props.isLoaded);
+    return true ? (
       !this.state.isEditing ? (
         <Container fluid>
           <Row className="justify-content-md-center">

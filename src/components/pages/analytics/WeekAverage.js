@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Line } from "react-chartjs-2";
 import { getWeekData } from "../../helpers/analytics";
 import { connect } from "react-redux";
+import { Card } from "react-bootstrap/";
 
 class WeekAverage extends Component {
   render() {
@@ -29,9 +30,14 @@ class WeekAverage extends Component {
             },
           }}
         />
-        <h3>
-          Weekly Average pace is {Math.round(weekAVG[1] * 100) / 100} min/mile
-        </h3>
+        <Card className="mt-3">
+          <Card.Body>
+            <Card.Title>
+              Weekly Average pace is {Math.round(weekAVG[1] * 100) / 100}{" "}
+              min/mile
+            </Card.Title>
+          </Card.Body>
+        </Card>
       </div>
     );
   }

@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import Navigation from "./components/layout/Navbar";
 import history from "./components/helpers/history";
 
-import Analytics from "./components/pages/analytics/Analytics";
+import AnalyticsRoute from "./components/pages/analytics/AnalyticsRoute";
 import Runs from "./components/pages/run/Runs";
 import Profile from "./components/pages/profile/Profile";
 import Home from "./components/pages/home/Home";
@@ -31,14 +31,13 @@ class App extends Component {
   }
 
   render() {
-    let authed = this.props.auth;
     return (
       <Router history={history}>
         <div className="App">
           <Navigation />
           <Switch>
             <PrivateRoute exact path="/runs" component={Runs} />
-            <PrivateRoute exact path="/analytics" component={Analytics} />
+            <Route path="/analytics" component={AnalyticsRoute} />
             <PrivateRoute exact path="/profile" component={Profile} />
             <PublicRoute exact path="/login" component={Login} />
             <PublicRoute exact path="/" component={Home} />
