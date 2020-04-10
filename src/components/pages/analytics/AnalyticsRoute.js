@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Switch, Route, Redirect, Link } from "react-router-dom";
 import Benchmarks from "./Benchmarks";
 import Average from "./Average";
+import Prediction from "./Prediction";
 import AnalyticsNav from "./AnalyticsNav";
 import PrivateRoute from "../../helpers/PrivateRoute";
 
@@ -14,6 +15,10 @@ export default class Home extends Component {
         <PrivateRoute
           path={`${this.props.match.path}/benchmarks`}
           component={Benchmarks}
+        />
+        <PrivateRoute
+          path={`${this.props.match.path}/predictions`}
+          component={Prediction}
         />
       </div>
     );

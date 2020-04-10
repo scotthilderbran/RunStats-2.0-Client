@@ -7,34 +7,30 @@ class DefaultProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      fName: this.props.fName,
-      lName: this.props.lName,
-      email: this.props.email,
-      sex: this.props.sex,
-      age: this.props.age,
+      fName: this.props.user.userFName,
+      lName: this.props.user.userLName,
+      email: this.props.user.email,
+      sex: this.props.user.sex,
+      age: this.props.user.age,
     };
   }
 
-  componentDidMount() {
-    this.props.loadUser();
-  }
-
   render() {
-    const sex = this.props.sex ? "Male" : "Female";
+    const sex = this.props.user.sex ? "Male" : "Female";
     return (
       <Card>
         <ListGroup variant="flush">
           <ListGroup.Item>
             <b className="float-left">First Name:</b>
-            <p className="float-right">{this.props.fname}</p>
+            <p className="float-right">{this.props.user.userFName}</p>
           </ListGroup.Item>
           <ListGroup.Item>
             <b className="float-left">Last Name:</b>
-            <p className="float-right">{this.props.lname}</p>
+            <p className="float-right">{this.props.user.userLName}</p>
           </ListGroup.Item>
           <ListGroup.Item>
             <b className="float-left">Email:</b>
-            <p className="float-right">{this.props.email}</p>
+            <p className="float-right">{this.props.user.email}</p>
           </ListGroup.Item>
           <ListGroup.Item>
             <b className="float-left">Sex:</b>
@@ -42,14 +38,14 @@ class DefaultProfile extends Component {
           </ListGroup.Item>
           <ListGroup.Item>
             <b className="float-left">Age:</b>
-            <p className="float-right">{this.props.age}</p>
+            <p className="float-right">{this.props.user.age}</p>
           </ListGroup.Item>
         </ListGroup>
       </Card>
     );
   }
 }
-
+/*
 const mapStateToProps = (state) => ({
   fname: state.auth.user.userFName,
   lname: state.auth.user.userLName,
@@ -57,6 +53,8 @@ const mapStateToProps = (state) => ({
   sex: state.auth.user.sex,
   age: state.auth.user.age,
 });
+mapStateToProps, 
+*/
 
 const mapActionsToProps = (dispatch) => {
   return {
@@ -66,4 +64,4 @@ const mapActionsToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapActionsToProps)(DefaultProfile);
+export default connect(mapActionsToProps)(DefaultProfile);

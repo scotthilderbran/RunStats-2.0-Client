@@ -22,15 +22,13 @@ import store from "./redux/store";
 
 class App extends Component {
   componentDidMount() {
-    console.log("adfaksdnfkjadsfan");
     //console.log(this.props.auth);
     if (localStorage.getItem("token")) {
-      store.dispatch(loadUser());
-      store.dispatch(loadRuns());
     }
   }
 
   render() {
+    store.dispatch(loadRuns());
     return (
       <Router history={history}>
         <div className="App">

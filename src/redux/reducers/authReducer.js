@@ -20,6 +20,10 @@ const initialState = {
     sex: null,
     age: null,
   },
+  error: {
+    isError: false,
+    msg: null,
+  },
 };
 
 export default function (state = initialState, action) {
@@ -33,16 +37,38 @@ export default function (state = initialState, action) {
     case LOGIN_SUCCESS:
     case REGISTER_SUCCESS:
       return {
+        ...state,
         user: action.payload,
         isAuthenticated: true,
         isLoaded: true,
+        error: {
+          isError: null,
+          msg: null,
+        },
       };
     case AUTH_ERROR:
-    case LOGIN_FAIL:
-    case LOGOUT_SUCCESS:
-    case REGISTER_FAIL:
       return {
-        initialState,
+        ...state,
+        error: {
+          isError: true,
+          msg: action.payload,
+        },
+      };
+    case LOGOUT_SUCCESS:
+      return {
+        isAuthenticated: false,
+        isLoaded: false,
+        user: {
+          email: null,
+          userFName: "user",
+          userLName: null,
+          sex: null,
+          age: null,
+        },
+        error: {
+          isError: null,
+          msg: null,
+        },
       };
     case USER_UPDATED:
       return {

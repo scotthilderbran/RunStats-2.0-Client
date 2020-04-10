@@ -6,7 +6,9 @@ import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import { loadUser } from "./redux/actions/authActions";
 
+store.dispatch(loadUser());
 ReactDOM.render(
   <Provider store={store}>
     <App />

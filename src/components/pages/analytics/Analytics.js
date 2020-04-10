@@ -15,7 +15,11 @@ export default class Analytics extends Component {
             <h1 className="mt-3 mb-3">Analytics</h1>
             <AnalyticsNav />
             <Switch>
-              <Route exact path="/analytics/averages" component={Average} />
+              <PrivateRoute
+                exact
+                path="/analytics/averages"
+                component={Average}
+              />
               <PrivateRoute
                 exact
                 path="/analytics:averages"

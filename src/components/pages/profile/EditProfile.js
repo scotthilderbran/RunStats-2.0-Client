@@ -1,17 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Card, Button, Form, ListGroup, Radio } from "react-bootstrap/";
-import { updateUser } from "../../../redux/actions/authActions";
+import { updateUser, loadUser } from "../../../redux/actions/authActions";
 
 class EditProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      fName: this.props.fName,
-      lName: this.props.lName,
-      email: this.props.email,
-      sex: this.props.sex,
-      age: this.props.age,
+      fName: this.props.user.userFName,
+      lName: this.props.userFName,
+      email: this.props.user.email,
+      sex: this.props.user.sex,
+      age: this.props.user.age,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSexChange = this.handleSexChange.bind(this);
@@ -63,7 +63,7 @@ class EditProfile extends Component {
                 onChange={this.handleChange}
                 type=""
                 name="fName"
-                defaultValue={this.props.fName}
+                defaultValue={this.props.user.userFName}
               />
             </Form.Group>
           </ListGroup.Item>
@@ -74,7 +74,7 @@ class EditProfile extends Component {
                 onChange={this.handleChange}
                 type=""
                 name="lName"
-                defaultValue={this.props.lName}
+                defaultValue={this.props.user.userLName}
               />
             </Form.Group>
           </ListGroup.Item>
@@ -85,7 +85,7 @@ class EditProfile extends Component {
                 onChange={this.handleChange}
                 type="email"
                 name="email"
-                defaultValue={this.props.email}
+                defaultValue={this.props.user.email}
               />
             </Form.Group>
           </ListGroup.Item>
@@ -98,7 +98,7 @@ class EditProfile extends Component {
                 name="sex"
                 type="radio"
                 label="Male"
-                defaultChecked={this.props.sex}
+                defaultChecked={this.props.user.sex}
               />
               <Form.Check
                 inline
@@ -106,7 +106,7 @@ class EditProfile extends Component {
                 name="sex"
                 type="radio"
                 label="Female"
-                defaultChecked={!this.props.sex}
+                defaultChecked={!this.props.user.sex}
               />
             </Form.Group>
           </ListGroup.Item>
@@ -117,7 +117,7 @@ class EditProfile extends Component {
                 onChange={this.handleChange}
                 type="email"
                 name="age"
-                defaultValue={this.props.age}
+                defaultValue={this.props.user.age}
               />
             </Form.Group>
           </ListGroup.Item>
@@ -135,19 +135,21 @@ class EditProfile extends Component {
 const mapActionsToProps = (dispatch) => {
   return {
     update: (email, fName, lName, sex, age) => {
-      console.log("in action to props");
-      console.log(email, fName, lName, sex, age);
       dispatch(updateUser({ email, fName, lName, sex, age }));
+      dispatch(loadUser());
     },
   };
 };
 
+/*
 const mapStateToProps = (state) => ({
   fName: state.auth.user.userFName,
   lName: state.auth.user.userLName,
   email: state.auth.user.email,
   sex: state.auth.user.sex,
   age: state.auth.user.age,
+  mapStateToProps
 });
+*/
 
-export default connect(mapStateToProps, mapActionsToProps)(EditProfile);
+export default connect(null, mapActionsToProps)(EditProfile);

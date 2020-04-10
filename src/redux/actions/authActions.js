@@ -27,10 +27,13 @@ export const loadUser = () => {
       .then((res) => {
         console.log("This is the response");
         console.log(res.data);
-        dispatch(loginSuccess(res.data)); //dispatch user logged in
+        dispatch({
+          type: USER_LOADED,
+          payload: res.data,
+        }); //dispatch user logged in
       })
       .catch((err) => {
-        console.log("Realshit");
+        console.log(err);
         //dispatch(); //dispatch user not logged in
       });
   };
@@ -47,7 +50,6 @@ export const login = ({ email, password }) => {
       })
       .then((res) => {
         localStorage.setItem("token", res.data.token);
-
         dispatch(loginSuccess(res.data.user)); //dispatch user logged in
         console.log("res.data.user");
         console.log(res);
@@ -55,15 +57,15 @@ export const login = ({ email, password }) => {
         history.push("/runs");
       })
       .catch((err) => {
-        //dispatch(); //dispatch user not logged in
+        console.log("Login ERRR");
+        dispatch({ type: AUTH_ERROR, payload: "Incorrect email/password" }); //dispatch user not logged in
       });
   };
 };
 
-export const register = ({ email, password, fName, lName, sex }) => {
+export const register = ({ email, password, fName, lName, sex, age }) => {
   return (dispatch) => {
     console.log("now here");
-
     axios
       .post("http://localhost:4000/user/register", {
         email: email,
@@ -71,6 +73,7 @@ export const register = ({ email, password, fName, lName, sex }) => {
         fName: fName,
         lName: lName,
         sex: sex,
+        age: age,
       })
       .then((res) => {
         localStorage.setItem("token", res.data.token);

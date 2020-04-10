@@ -1,41 +1,53 @@
+var moment = require("moment");
+moment().format();
+
 //Get data for past week Analytics
-const currday = function (amount) {
-  let today = new Date();
-  var dd = today.getDate();
-  var mm = today.getMonth() + 1; //As January is 0.
-  var yyyy = today.getFullYear();
+function getDates(scale, interval, format) {
+  console.log("in getDates function");
+  var start = moment().subtract(scale, interval);
+  var end = moment();
+  console.log(start);
+  console.log(end);
+  var days = [];
+  var day = start;
 
-  dd -= amount;
-  if (dd < 10) dd = "0" + dd;
-  if (mm < 10) mm = "0" + mm;
-  return yyyy + "-" + mm + "-" + dd;
-};
-
-const getWeekScale = () => {
-  let weekScale = [];
-  var today = new Date();
-  let tracker = 6;
-  for (let i = 0; i < 7; i++) {
-    //populate weekScale array
-    weekScale[i] = today.getMonth() + 1 + "/" + (today.getDate() - tracker);
-    tracker--;
+  while (day <= end) {
+    days.push(day.format(format));
+    day = day.clone().add(1, interval);
   }
-  return weekScale;
-};
+  console.log("This is days return:");
+  console.log(days);
+  return days;
+}
 
-export const getWeekData = (runs) => {
+//Get data for past week Analytics
+
+export const getGraphData = (runs, scale, interval, format) => {
+  //Take in run array, time scale(length) of averages need, interval of averages, and format of averages
   let out = [];
-  console.log("in Analytics rn");
-  console.log(runs);
+  console.log("in getMonthData rn");
   let overallMin = 0;
   let overallDist = 0;
   let runAverages = [];
-  let tracker = 6;
-  for (let i = 0; i < 7; i++) {
-    console.log(currday(tracker));
-    let currRuns = runs.filter((run) => {
-      return run.date === currday(tracker);
-    });
+  let scaleArr = getDates(scale, interval, format);
+  console.log("Scale Arr");
+  console.log(scaleArr);
+  console.log(runs[0].date.substring(5, 11));
+  for (let i = 0; i < scale + 1; i++) {
+    let currRuns;
+    if (scale === 11) {
+      console.log("curr scalearr");
+      console.log(scaleArr[i]);
+      currRuns = runs.filter((run) => {
+        return run.date.substring(0, 7) === scaleArr[i];
+      });
+      console.log("Curr Runs");
+      console.log(currRuns);
+    } else {
+      currRuns = runs.filter((run) => {
+        return run.date.substring(5, 11) === scaleArr[i];
+      });
+    }
     console.log("Curr Runs: ");
     console.log(currRuns);
     let minTotal = 0;
@@ -51,11 +63,10 @@ export const getWeekData = (runs) => {
       average = minTotal / distTotal;
       runAverages[i] = Math.round(average * 100) / 100;
     }
-    tracker--;
   }
   out[1] = overallMin / overallDist;
   out[0] = {
-    labels: getWeekScale(),
+    labels: getDates(scale, interval, format),
     datasets: [
       {
         label: "Average Mile Pace",
@@ -87,5 +98,3 @@ export const getWeekData = (runs) => {
   };
   return out;
 };
-
-//Get data for past week Analytics

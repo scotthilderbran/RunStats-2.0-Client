@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import WeekAverage from "./average/WeekAverage";
-import MonthAverage from "./average/MonthAverage";
-import YearAverage from "./average/YearAverage";
+import WeekPrediction from "./prediction/WeekPrediction";
+import MonthPrediction from "./prediction/MonthPrediction";
+import YearPrediction from "./prediction/YearPrediction";
 import { connect } from "react-redux";
 import {
   Container,
@@ -26,13 +26,11 @@ class Average extends Component {
   }
 
   render() {
-    console.log("this is the choice state");
-    console.log(this.state.choice);
-    let selection = <WeekAverage toggle={this.handleToggle} />;
+    let selection = <WeekPrediction toggle={this.handleToggle} />;
     if (this.state.choice === 2) {
-      selection = <MonthAverage toggle={this.handleToggle} />;
+      selection = <MonthPrediction toggle={this.handleToggle} />;
     } else if (this.state.choice === 3) {
-      selection = <YearAverage toggle={this.handleToggle} />;
+      selection = <YearPrediction toggle={this.handleToggle} />;
     }
     return this.props.loaded ? (
       selection

@@ -13,8 +13,8 @@ import {
 } from "../actions/constants";
 
 const initialState = {
-  isLoaded: null,
-  runs: ["test"],
+  isLoaded: false,
+  runs: [],
   edit: {
     isEdit: false,
     currID: null,

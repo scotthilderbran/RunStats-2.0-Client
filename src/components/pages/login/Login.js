@@ -2,24 +2,25 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { login } from "../../../redux/actions/authActions";
 import { Container, Row, Col, Form, Button } from "react-bootstrap/";
+import { ErrAlert } from "./ErrAlert";
 
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = { email: "", password: "" };
-    this.handleEmailChange = this.handleEmailChange.bind(this);
-    this.handlePassChange = this.handlePassChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handleEmailChange(event) {
-    this.setState({ email: event.target.value });
-  }
-  handlePassChange(event) {
-    this.setState({ password: event.target.value });
+
+  handleChange(event) {
+    const name = event.target.name;
+
+    this.setState({
+      [name]: event.target.value,
+    });
   }
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log("login");
     this.props.login(this.state.email, this.state.password);
   };
 
@@ -32,16 +33,18 @@ class Login extends Component {
               <Form.Group controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
                 <Form.Control
-                  onChange={this.handleEmailChange}
+                  onChange={this.handleChange}
                   type="email"
+                  name="email"
                   placeholder="Enter email"
                 />
               </Form.Group>
               <Form.Group controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
                 <Form.Control
-                  onChange={this.handlePassChange}
+                  onChange={this.handleChange}
                   type="password"
+                  name="password"
                   placeholder="Password"
                 />
               </Form.Group>
@@ -55,6 +58,7 @@ class Login extends Component {
               <Button variant="primary" href="/" className="float-right">
                 Create new account
               </Button>
+              <ErrAlert isErr={this.props.isErr} msg={this.props.errMsg} />
             </Form>
           </Col>
         </Row>
@@ -65,11 +69,15 @@ class Login extends Component {
 
 const mapActionsToProps = (dispatch) => {
   return {
-    login: (currEmail, currPassword) => {
-      console.log("logging in");
-      dispatch(login({ email: currEmail, password: currPassword }));
+    login: (email, password) => {
+      dispatch(login({ email: email, password: password }));
     },
   };
 };
 
-export default connect(null, mapActionsToProps)(Login);
+const mapStateToProps = (state) => ({
+  isErr: state.auth.error.isError,
+  errMsg: state.auth.error.msg,
+});
+
+export default connect(mapStateToProps, mapActionsToProps)(Login);

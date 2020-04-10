@@ -1,92 +1,152 @@
 import React, { Component } from "react";
-import { Form, Button } from "react-bootstrap/";
+import {
+  Container,
+  Row,
+  Col,
+  Form,
+  Button,
+  Card,
+  ListGroup,
+} from "react-bootstrap/";
 import { register } from "../../../redux/actions/authActions";
 import { connect } from "react-redux";
+import { ErrAlert } from "../login/ErrAlert";
 
 class Register extends Component {
   constructor(props) {
     super(props);
-    this.state = { email: "", password: "", fName: "", lName: "", sex: null };
+    this.state = {
+      email: "",
+      password: "",
+      fName: "",
+      lName: "",
+      sex: null,
+      age: "",
+    };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSexChange = this.handleSexChange.bind(this);
   }
   handleChange(event) {
     const name = event.target.name;
-
     this.setState({
       [name]: event.target.value,
     });
   }
-  handleSubmit = (event) => {
+  handleSexChange(event) {
+    this.setState({ sex: !this.state.sex }, () => {
+      console.log(this.state.sex);
+    });
+  }
+  handleSubmit(event) {
     event.preventDefault();
-    console.log("login");
     this.props.register(
       this.state.email,
       this.state.password,
       this.state.fName,
       this.state.lName,
-      this.state.sex
+      this.state.sex,
+      this.state.age
     );
-  };
+  }
   render() {
     return (
-      <Form>
-        <Form.Group controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control
-            onChange={this.handleChange}
-            type="email"
-            name="email"
-            placeholder="Enter email"
-          />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>First name:</Form.Label>
-          <Form.Control
-            onChange={this.handleChange}
-            type="text"
-            name="fName"
-            placeholder="First name"
-          />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Last name:</Form.Label>
-          <Form.Control
-            onChange={this.handleChange}
-            type="text"
-            name="lName"
-            placeholder="First name"
-          />
-        </Form.Group>
-        <Form.Group controlId="formBasicCheckbox">
-          <Form.Check
-            type="checkbox"
-            label="male"
-            onChange={this.handleChange}
-          />
-        </Form.Group>
-        <Form.Group controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            onChange={this.handleChange}
-            type="password"
-            name="password"
-            placeholder="Password"
-          />
-        </Form.Group>
-        <Button variant="primary" href="/" className="">
-          Create new account
-        </Button>
-      </Form>
+      <Container fluid>
+        <Row className="justify-content-md-center">
+          <Col md="12" className="text-center">
+            <Card>
+              <ListGroup variant="flush">
+                <ListGroup.Item>
+                  <b className="float-left">First Name:</b>
+                  <Form.Group>
+                    <Form.Control
+                      required
+                      onChange={this.handleChange}
+                      type=""
+                      name="fName"
+                    />
+                  </Form.Group>
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  <b className="float-left">Last Name:</b>
+                  <Form.Group>
+                    <Form.Control
+                      required
+                      onChange={this.handleChange}
+                      type=""
+                      name="lName"
+                    />
+                  </Form.Group>
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  <b className="float-left">Email:</b>
+                  <Form.Group controlId="formBasicEmail">
+                    <Form.Control
+                      required
+                      onChange={this.handleChange}
+                      type="email"
+                      name="email"
+                    />
+                  </Form.Group>
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  <b className="float-left">Sex:</b>
+                  <Form.Group>
+                    <Form.Check
+                      inline
+                      onChange={this.handleSexChange}
+                      name="sex"
+                      type="radio"
+                      label="Male"
+                      defaultChecked={this.state.sex}
+                    />
+                    <Form.Check
+                      inline
+                      onChange={this.handleSexChange}
+                      name="sex"
+                      type="radio"
+                      label="Female"
+                      defaultChecked={!this.state.sex}
+                    />
+                  </Form.Group>
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  <b className="float-left">Age:</b>
+                  <Form.Group>
+                    <Form.Control
+                      required
+                      onChange={this.handleChange}
+                      type="email"
+                      name="age"
+                    />
+                  </Form.Group>
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  <Button onClick={this.handleSubmit} className="mt-3">
+                    Submit Changes
+                  </Button>
+                </ListGroup.Item>
+              </ListGroup>
+              <ErrAlert isErr={this.props.isErr} msg={this.props.errMsg} />
+            </Card>
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }
 
 const mapActionsToProps = (dispatch) => {
   return {
-    register: (email, password, fName, lName, sex) => {
-      dispatch(register(email, password, fName, lName, sex));
+    register: (email, password, fName, lName, sex, age) => {
+      dispatch(register(email, password, fName, lName, sex, age));
     },
   };
 };
-export default connect(null, mapActionsToProps)(Register);
+
+const mapStateToProps = (state) => ({
+  isErr: state.auth.error.isError,
+  errMsg: state.auth.error.msg,
+});
+
+export default connect(mapStateToProps, mapActionsToProps)(Register);
