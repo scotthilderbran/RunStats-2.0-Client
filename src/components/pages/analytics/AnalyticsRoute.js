@@ -1,14 +1,15 @@
 import React, { Component } from "react";
-import { Switch, Route, Redirect, Link } from "react-router-dom";
 import Benchmarks from "./Benchmarks";
 import Average from "./Average";
 import Prediction from "./Prediction";
 import AnalyticsNav from "./AnalyticsNav";
 import PrivateRoute from "../../helpers/PrivateRoute";
+import { Container, Row, Col } from "react-bootstrap/";
+import { connect } from "react-redux";
 
-export default class Home extends Component {
+class AnalyticsRoute extends Component {
   render() {
-    return (
+    return this.props.run.length !== 0 ? (
       <div>
         <AnalyticsNav />
         <PrivateRoute exact path={this.props.match.path} component={Average} />
@@ -21,6 +22,20 @@ export default class Home extends Component {
           component={Prediction}
         />
       </div>
+    ) : (
+      <Container fluid>
+        <Row className="justify-content-md-center">
+          <Col md="8" className="text-center">
+            <h1 className="mt-3 mb-3">No runs to analyze</h1>
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  run: state.run.runs,
+});
+
+export default connect(mapStateToProps)(AnalyticsRoute);

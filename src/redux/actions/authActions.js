@@ -3,13 +3,11 @@ import {
   USER_LOADED,
   AUTH_ERROR,
   LOGIN_SUCCESS,
-  LOGIN_FAIL,
   LOGOUT_SUCCESS,
   REGISTER_SUCCESS,
-  REGISTER_FAIL,
   USER_UPDATED,
+  USER_EDIT,
 } from "./constants";
-import { returnErrors } from "./errorActions";
 import axios from "axios";
 import history from "../../components/helpers/history";
 import { loadRuns } from "./runActions";
@@ -25,8 +23,6 @@ export const loadUser = () => {
     axios
       .get("http://localhost:4000/user/loadUser", config)
       .then((res) => {
-        console.log("This is the response");
-        console.log(res.data);
         dispatch({
           type: USER_LOADED,
           payload: res.data,
@@ -58,7 +54,7 @@ export const login = ({ email, password }) => {
       })
       .catch((err) => {
         console.log("Login ERRR");
-        dispatch({ type: AUTH_ERROR, payload: "Incorrect email/password" }); //dispatch user not logged in
+        dispatch({ type: AUTH_ERROR, payload: err.response.data.message }); //dispatch user not logged in
       });
   };
 };
@@ -66,6 +62,7 @@ export const login = ({ email, password }) => {
 export const register = ({ email, password, fName, lName, sex, age }) => {
   return (dispatch) => {
     console.log("now here");
+    console.log(email, password, fName, lName, sex, age);
     axios
       .post("http://localhost:4000/user/register", {
         email: email,
@@ -77,10 +74,14 @@ export const register = ({ email, password, fName, lName, sex, age }) => {
       })
       .then((res) => {
         localStorage.setItem("token", res.data.token);
-        dispatch(registerSuccess(res.data.user)); //dispatch user logged in
+        dispatch({
+          type: REGISTER_SUCCESS,
+          payload: res.data.user,
+        }); //dispatch user logged in
       })
       .catch((err) => {
-        dispatch(registerFailure(err)); //dispatch user not logged in
+        console.log("register err response:");
+        dispatch({ type: AUTH_ERROR, payload: err.response.data.message }); //dispatch user not logged in
       });
   };
 };
@@ -91,7 +92,6 @@ export const updateUser = ({ email, fName, lName, sex, age }) => {
     const config = {
       headers: { Authorization: `${token}` },
     };
-    console.log(email, fName, lName, sex, age);
     axios
       .post(
         "http://localhost:4000/user/update",
@@ -114,10 +114,11 @@ export const updateUser = ({ email, fName, lName, sex, age }) => {
             sex: sex,
             age: age,
           },
-        }); //dispatch user logged in
+        });
       })
       .catch((err) => {
-        console.log(err); //dispatch user not logged in
+        console.log("update error caught");
+        dispatch({ type: AUTH_ERROR, payload: err.response.data.message });
       });
   };
 };
@@ -142,22 +143,8 @@ export function loginSuccess(data) {
   };
 }
 
-export function loginFailure(data) {
+export function userEdit() {
   return {
-    type: LOGIN_FAIL,
-    payload: data,
-  };
-}
-export function registerSuccess(data) {
-  return {
-    type: REGISTER_SUCCESS,
-    payload: data,
-  };
-}
-
-export function registerFailure(data) {
-  return {
-    type: REGISTER_FAIL,
-    payload: data,
+    type: USER_EDIT,
   };
 }

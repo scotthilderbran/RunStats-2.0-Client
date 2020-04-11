@@ -1,38 +1,27 @@
-var moment = require("moment");
+let moment = require("moment");
 moment().format();
 
-//Get data for past week Analytics
-function getDates(scale, interval, format) {
-  console.log("in getDates function");
-  var start = moment().subtract(scale, interval);
-  var end = moment();
-  console.log(start);
-  console.log(end);
-  var days = [];
-  var day = start;
+const getDates = (scale, interval, format) => {
+  //Get dates function, returns array of dates between the range (scale), in the selected format (mm/dd) for week and month, yyyy/mm for year
+  let start = moment().subtract(scale, interval);
+  let end = moment();
+  let days = [];
+  let day = start;
 
   while (day <= end) {
     days.push(day.format(format));
     day = day.clone().add(1, interval);
   }
-  console.log("This is days return:");
-  console.log(days);
   return days;
-}
+};
 
-//Get data for past week Analytics
-
+//Take in run array, time scale(length) of averages need, interval of averages, and format of averages
 export const getGraphData = (runs, scale, interval, format) => {
-  //Take in run array, time scale(length) of averages need, interval of averages, and format of averages
-  let out = [];
-  console.log("in getMonthData rn");
+  let out = []; //output array 0 index is data for graph, 1 index is average pace over selected interval
   let overallMin = 0;
   let overallDist = 0;
   let runAverages = [];
   let scaleArr = getDates(scale, interval, format);
-  console.log("Scale Arr");
-  console.log(scaleArr);
-  console.log(runs[0].date.substring(5, 11));
   for (let i = 0; i < scale + 1; i++) {
     let currRuns;
     if (scale === 11) {
@@ -41,15 +30,11 @@ export const getGraphData = (runs, scale, interval, format) => {
       currRuns = runs.filter((run) => {
         return run.date.substring(0, 7) === scaleArr[i];
       });
-      console.log("Curr Runs");
-      console.log(currRuns);
     } else {
       currRuns = runs.filter((run) => {
         return run.date.substring(5, 11) === scaleArr[i];
       });
     }
-    console.log("Curr Runs: ");
-    console.log(currRuns);
     let minTotal = 0;
     let distTotal = 0;
     let average = 0;

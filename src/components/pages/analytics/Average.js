@@ -3,13 +3,7 @@ import WeekAverage from "./average/WeekAverage";
 import MonthAverage from "./average/MonthAverage";
 import YearAverage from "./average/YearAverage";
 import { connect } from "react-redux";
-import {
-  Container,
-  Row,
-  Col,
-  DropdownButton,
-  Dropdown,
-} from "react-bootstrap/";
+import { Container, Row, Col } from "react-bootstrap/";
 
 class Average extends Component {
   constructor(props) {
@@ -19,15 +13,10 @@ class Average extends Component {
   }
 
   handleToggle(val) {
-    console.log("Toggle Val:");
     this.setState({ choice: val });
-    console.log("Toggle Val:");
-    console.log(val);
   }
 
   render() {
-    console.log("this is the choice state");
-    console.log(this.state.choice);
     let selection = <WeekAverage toggle={this.handleToggle} />;
     if (this.state.choice === 2) {
       selection = <MonthAverage toggle={this.handleToggle} />;

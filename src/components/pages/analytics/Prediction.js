@@ -3,13 +3,7 @@ import WeekPrediction from "./prediction/WeekPrediction";
 import MonthPrediction from "./prediction/MonthPrediction";
 import YearPrediction from "./prediction/YearPrediction";
 import { connect } from "react-redux";
-import {
-  Container,
-  Row,
-  Col,
-  DropdownButton,
-  Dropdown,
-} from "react-bootstrap/";
+import { Container, Row, Col } from "react-bootstrap/";
 
 class Average extends Component {
   constructor(props) {

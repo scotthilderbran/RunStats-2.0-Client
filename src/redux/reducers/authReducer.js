@@ -3,10 +3,8 @@ import {
   USER_LOADED,
   AUTH_ERROR,
   LOGIN_SUCCESS,
-  LOGIN_FAIL,
   LOGOUT_SUCCESS,
   REGISTER_SUCCESS,
-  REGISTER_FAIL,
   USER_UPDATED,
 } from "../actions/constants";
 
@@ -34,6 +32,12 @@ export default function (state = initialState, action) {
         isLoaded: false,
       };
     case USER_LOADED:
+      return {
+        ...state,
+        user: action.payload,
+        isAuthenticated: true,
+        isLoaded: true,
+      };
     case LOGIN_SUCCESS:
     case REGISTER_SUCCESS:
       return {

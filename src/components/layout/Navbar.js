@@ -11,11 +11,9 @@ class Navigation extends Component {
   }
   handleLogout = (event) => {
     event.preventDefault();
-    console.log("login");
     this.props.logoutme();
   };
   render() {
-    console.log(this.props.isAuth);
     return (
       <Navbar bg="dark" variant="dark">
         <Navbar.Brand href="/">

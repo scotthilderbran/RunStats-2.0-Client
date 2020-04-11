@@ -7,7 +7,7 @@ const PublicRoute = ({ component: Component, auth, ...rest }) => (
     {...rest}
     render={(auth, props) =>
       localStorage.getItem("token") ? (
-        <Redirect to={{ pathname: "/login" }} />
+        <Redirect to={{ pathname: "/runs" }} />
       ) : (
         <Component {...props} />
       )
@@ -16,8 +16,6 @@ const PublicRoute = ({ component: Component, auth, ...rest }) => (
 );
 
 const mapStateToProps = (state) => {
-  console.log("map to props state test PRIVATE");
-  console.log(state.auth);
   return {
     auth: state.auth.isAuthenticated,
   };

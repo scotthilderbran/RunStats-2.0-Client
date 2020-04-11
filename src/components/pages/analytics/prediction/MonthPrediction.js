@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Line } from "react-chartjs-2";
+import { getPrediction } from "../../../helpers/prediction";
 import { connect } from "react-redux";
-import { Card } from "react-bootstrap/";
+import { Card, Form, ListGroup, ListGroupItem } from "react-bootstrap/";
 import {
   Container,
   Row,
@@ -11,25 +11,73 @@ import {
 } from "react-bootstrap/";
 
 class MonthAverage extends Component {
-  onComponentDidMount;
+  constructor(props) {
+    super(props);
+    this.state = { distance: 10 };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event) {
+    const name = event.target.name;
+
+    this.setState({
+      [name]: event.target.value,
+    });
+  }
   render() {
     const { toggle } = this.props;
+    const prediction = getPrediction(
+      this.props.runs,
+      30,
+      "days",
+      "MM-DD",
+      this.state.distance
+    );
     return (
       <Container fluid>
         <Row className="justify-content-md-center ">
           <Col md="6" className="text-center">
-            <DropdownButton
-              className="mt-2"
-              variant="outline-dark"
-              id="dropdown-basic-button"
-              title="Last Month"
-            >
-              <Dropdown.Item onClick={() => toggle(1)}>Last Week</Dropdown.Item>
-              <Dropdown.Item onClick={() => toggle(2)}>
-                Last Month
-              </Dropdown.Item>
-              <Dropdown.Item onClick={() => toggle(3)}>Last Year</Dropdown.Item>
-            </DropdownButton>
+            <Card className="mt-3">
+              <ListGroup variant="flush">
+                <ListGroup.Item>
+                  <b className="float-left">Distance to predict</b>
+                  <Form.Group>
+                    <Form.Control
+                      onChange={this.handleChange}
+                      type="text"
+                      name="distance"
+                    />
+                  </Form.Group>
+                  <b className="float-left">
+                    What interval of data to use? (recent is more accurate){" "}
+                  </b>
+                </ListGroup.Item>
+                <ListGroup.Item className="mt-2">
+                  <DropdownButton
+                    variant="outline-dark"
+                    id="dropdown-basic-button"
+                    title="Last Month"
+                  >
+                    <Dropdown.Item onClick={() => toggle(1)}>
+                      Last Week
+                    </Dropdown.Item>
+                    <Dropdown.Item onClick={() => toggle(2)}>
+                      Last Month
+                    </Dropdown.Item>
+                    <Dropdown.Item onClick={() => toggle(3)}>
+                      Last Year
+                    </Dropdown.Item>
+                  </DropdownButton>
+                </ListGroup.Item>
+              </ListGroup>
+            </Card>
+            <Card className="mt-3">
+              <Card.Body>
+                <Card.Title>
+                  Predicted total time is {prediction} minutes
+                </Card.Title>
+              </Card.Body>
+            </Card>
           </Col>
         </Row>
       </Container>

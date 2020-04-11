@@ -19,7 +19,6 @@ export const loadRuns = () => {
     axios
       .get("http://localhost:4000/run/getAllRuns", config)
       .then((res) => {
-        console.log(res.data);
         dispatch({
           type: LOAD_RUNS_SUCCESS,
           payload: res.data,

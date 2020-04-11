@@ -22,15 +22,15 @@ class DefaultProfile extends Component {
         <ListGroup variant="flush">
           <ListGroup.Item>
             <b className="float-left">First Name:</b>
-            <p className="float-right">{this.props.user.userFName}</p>
+            <p className="float-right">{this.state.fName}</p>
           </ListGroup.Item>
           <ListGroup.Item>
             <b className="float-left">Last Name:</b>
-            <p className="float-right">{this.props.user.userLName}</p>
+            <p className="float-right">{this.state.lName}</p>
           </ListGroup.Item>
           <ListGroup.Item>
             <b className="float-left">Email:</b>
-            <p className="float-right">{this.props.user.email}</p>
+            <p className="float-right">{this.state.email}</p>
           </ListGroup.Item>
           <ListGroup.Item>
             <b className="float-left">Sex:</b>
@@ -38,7 +38,7 @@ class DefaultProfile extends Component {
           </ListGroup.Item>
           <ListGroup.Item>
             <b className="float-left">Age:</b>
-            <p className="float-right">{this.props.user.age}</p>
+            <p className="float-right">{this.state.age}</p>
           </ListGroup.Item>
         </ListGroup>
       </Card>

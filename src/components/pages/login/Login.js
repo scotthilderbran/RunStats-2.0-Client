@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { login } from "../../../redux/actions/authActions";
 import { Container, Row, Col, Form, Button } from "react-bootstrap/";
-import { ErrAlert } from "./ErrAlert";
+import { ErrAlert } from "../../helpers/ErrAlert";
 
 class Login extends Component {
   constructor(props) {
     super(props);
-    this.state = { email: "", password: "" };
+    this.state = { email: null, password: null };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -29,10 +29,11 @@ class Login extends Component {
       <Container fluid>
         <Row className="justify-content-md-center mt-4">
           <Col md="6" className="">
-            <Form>
+            <Form onSubmit={this.handleSubmit}>
               <Form.Group controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
                 <Form.Control
+                  required
                   onChange={this.handleChange}
                   type="email"
                   name="email"
@@ -42,17 +43,14 @@ class Login extends Component {
               <Form.Group controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
                 <Form.Control
+                  required
                   onChange={this.handleChange}
                   type="password"
                   name="password"
                   placeholder="Password"
                 />
               </Form.Group>
-              <Button
-                variant="primary"
-                type="submit"
-                onClick={this.handleSubmit}
-              >
+              <Button variant="primary" type="submit">
                 Submit
               </Button>
               <Button variant="primary" href="/" className="float-right">

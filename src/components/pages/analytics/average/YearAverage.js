@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Line } from "react-chartjs-2";
-import { getGraphData } from "../../../helpers/analytics";
+import { getGraphData } from "../../../helpers/average";
 import { connect } from "react-redux";
 import { Card } from "react-bootstrap/";
 import {

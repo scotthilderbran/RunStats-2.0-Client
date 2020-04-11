@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import RunLineItem from "./RunLineItem";
 import BootstrapTable from "react-bootstrap-table-next";
-import cellEditFactory, { Type } from "react-bootstrap-table2-editor";
 import ActionsFormatter from "./ActionsFormatter";
 import RunAdd from "./RunAdd";
 import RunEdit from "./RunEdit";
 import { Button } from "react-bootstrap/";
+import paginationFactory from "react-bootstrap-table2-paginator";
 
 const actionsFormatter = (cell, row) => <ActionsFormatter id={row.id} />;
 
@@ -58,17 +57,32 @@ class RunContainer extends Component {
   render() {
     return this.props.isEdit ? (
       <div>
-        <BootstrapTable keyField="id" data={this.props.run} columns={columns} />
+        <BootstrapTable
+          keyField="id"
+          data={this.props.run}
+          columns={columns}
+          pagination={paginationFactory()}
+        />
         <RunEdit toggle={this.toggleEdit} id={12} />
       </div>
     ) : this.state.isAdding ? (
       <div>
-        <BootstrapTable keyField="id" data={this.props.run} columns={columns} />
+        <BootstrapTable
+          keyField="id"
+          data={this.props.run}
+          columns={columns}
+          pagination={paginationFactory()}
+        />
         <RunAdd toggle={this.toggleAdd} />
       </div>
     ) : (
       <div>
-        <BootstrapTable keyField="id" data={this.props.run} columns={columns} />
+        <BootstrapTable
+          keyField="id"
+          data={this.props.run}
+          columns={columns}
+          pagination={paginationFactory()}
+        />
         <Button className="mt-1" onClick={this.toggleAdd}>
           Add Run
         </Button>
