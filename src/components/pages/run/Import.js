@@ -5,12 +5,17 @@ import { ErrAlert } from "../../helpers/ErrAlert";
 
 class Import extends Component {
   render() {
+    const redirectUri =
+      process.env.NODE_ENV === "production"
+        ? "https://runstats2-0.herokuapp.com/stravaResponse"
+        : "http://localhost:3000/stravaResponse";
     const clientId = "40468";
     const authUri =
       "https://www.strava.com/oauth/authorize?client_id=" +
       clientId +
       "&response_type=code&redirect_uri=" +
-      "http://localhost:3000/stravaresponse&scope=activity:read_all" +
+      redirectUri +
+      "&scope=activity:read_all" +
       "&approval_prompt=force";
     return (
       <Container fluid>
