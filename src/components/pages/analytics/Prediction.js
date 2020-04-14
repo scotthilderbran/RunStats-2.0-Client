@@ -3,7 +3,7 @@ import WeekPrediction from "./prediction/WeekPrediction";
 import MonthPrediction from "./prediction/MonthPrediction";
 import YearPrediction from "./prediction/YearPrediction";
 import { connect } from "react-redux";
-import { Container, Row, Col } from "react-bootstrap/";
+import { Container, Row, Col, Spinner } from "react-bootstrap/";
 
 class Average extends Component {
   constructor(props) {
@@ -32,7 +32,7 @@ class Average extends Component {
       <Container fluid>
         <Row className="justify-content-md-center ">
           <Col md="6" className="text-center">
-            <h1>Loading</h1>
+            <Spinner animation="border" variant="dark" className="mt-3" />
           </Col>
         </Row>
       </Container>

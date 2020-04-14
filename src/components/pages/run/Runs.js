@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import RunContainer from "./RunContainer";
-import { Container, Row, Col } from "react-bootstrap/";
+import { Container, Row, Col, Spinner } from "react-bootstrap/";
 import { connect } from "react-redux";
 
 /* Root runs page, loads RunContainer if loaded otherwise shows loading indicator */
@@ -11,7 +11,7 @@ class Runs extends Component {
       <Container fluid>
         <Row className="justify-content-md-center">
           <Col md="6" className="text-center">
-            <h1 className="mt-3 mb-3">Loading</h1>
+            <Spinner animation="border" variant="dark" className="mt-3" />
           </Col>
         </Row>
       </Container>

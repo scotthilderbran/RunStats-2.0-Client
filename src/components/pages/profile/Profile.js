@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { Container, Row, Col, Button } from "react-bootstrap/";
+import { Container, Row, Col, Button, Spinner } from "react-bootstrap/";
 import { connect } from "react-redux";
 import DefaultProfile from "./DefaultProfile";
 import EditProfile from "./EditProfile";
-import { userEdit, userDoneEdit } from "../../../redux/actions/authActions";
+import { userEdit } from "../../../redux/actions/authActions";
 
-/* Profile container component, if state is editing renders edit component otherwise renders default */
+/* Profile container component, if state isEditing = false then render default component, if isEditing = true then render editing component*/
 
 class Profile extends Component {
   constructor(props) {
@@ -15,6 +15,7 @@ class Profile extends Component {
   }
 
   toggleEdit() {
+    //Toggle editing state, function is passed down to EditProfile component to toggle state in Profile component
     console.log("toggle edit:");
     this.setState({ isEditing: !this.state.isEditing });
   }
@@ -46,7 +47,7 @@ class Profile extends Component {
       <Container fluid>
         <Row className="justify-content-md-center">
           <Col md="6" className="text-center">
-            <h1 className="mt-3 mb-3">Loading</h1>
+            <Spinner animation="border" variant="dark" className="mt-3" />
           </Col>
         </Row>
       </Container>

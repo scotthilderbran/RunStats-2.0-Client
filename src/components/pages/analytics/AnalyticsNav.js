@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Navbar, Nav } from "react-bootstrap";
 
+/* Nav component for analytics page, includes links to all other analytics subroutes/pages */
+
 export default class Navigation extends Component {
   constructor(props) {
     super(props);

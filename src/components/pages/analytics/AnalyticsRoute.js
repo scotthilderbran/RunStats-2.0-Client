@@ -7,6 +7,8 @@ import PrivateRoute from "../../helpers/PrivateRoute";
 import { Container, Row, Col } from "react-bootstrap/";
 import { connect } from "react-redux";
 
+/* Subroute component that contains all subroutes of /analytics, all routes utilize private route */
+
 class AnalyticsRoute extends Component {
   render() {
     return this.props.run.length !== 0 ? (
