@@ -15,11 +15,12 @@ class Profile extends Component {
   }
 
   toggleEdit() {
+    console.log("toggle edit:");
     this.setState({ isEditing: !this.state.isEditing });
   }
   render() {
     return this.props.isLoaded ? (
-      !this.props.isEdit ? (
+      !this.state.isEditing ? (
         <Container fluid>
           <Row className="justify-content-md-center">
             <Col md="6" className="text-center">
@@ -65,7 +66,6 @@ const mapStateToProps = (state) => ({
   name: state.auth.user.userFName,
   isLoaded: state.auth.isLoaded,
   user: state.auth.user,
-  isEdit: state.auth.isEditing,
 });
 
 export default connect(mapStateToProps, mapActionsToProps)(Profile);
