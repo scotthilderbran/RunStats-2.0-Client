@@ -6,7 +6,7 @@ import {
   LOGOUT_SUCCESS,
   REGISTER_SUCCESS,
   USER_UPDATED,
-} from "../actions/constants";
+} from "../constants";
 
 const initialState = {
   isAuthenticated: false,

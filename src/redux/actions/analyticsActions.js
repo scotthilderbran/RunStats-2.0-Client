@@ -1,4 +1,4 @@
-import { CHANGE_AVG_VIEW } from "./constants";
+import { CHANGE_AVG_VIEW } from "../constants";
 import axios from "axios";
 
 export function changeAvgView(data) {

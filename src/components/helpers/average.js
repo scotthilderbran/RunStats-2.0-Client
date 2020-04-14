@@ -1,3 +1,5 @@
+/* Logic to average out running pace of certain timespans */
+
 let moment = require("moment");
 moment().format();
 
@@ -17,7 +19,7 @@ const getDates = (scale, interval, format) => {
 
 //Take in run array, time scale(length) of averages need, interval of averages, and format of averages
 export const getGraphData = (runs, scale, interval, format) => {
-  let out = []; //output array 0 index is data for graph, 1 index is average pace over selected interval
+  let out = []; //output array, 0 index is data for graph, 1 index is average pace over selected interval
   let overallMin = 0;
   let overallDist = 0;
   let runAverages = [];
@@ -25,8 +27,6 @@ export const getGraphData = (runs, scale, interval, format) => {
   for (let i = 0; i < scale + 1; i++) {
     let currRuns;
     if (scale === 11) {
-      console.log("curr scalearr");
-      console.log(scaleArr[i]);
       currRuns = runs.filter((run) => {
         return run.date.substring(0, 7) === scaleArr[i];
       });
@@ -42,7 +42,7 @@ export const getGraphData = (runs, scale, interval, format) => {
       minTotal += Number(currRuns[j].time);
       distTotal += Number(currRuns[j].distance);
     }
-    if (minTotal != 0) {
+    if (minTotal !== 0) {
       overallMin += minTotal;
       overallDist += distTotal;
       average = minTotal / distTotal;

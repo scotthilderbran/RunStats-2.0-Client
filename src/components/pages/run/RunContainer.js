@@ -83,9 +83,6 @@ class RunContainer extends Component {
           columns={columns}
           pagination={paginationFactory()}
         />
-        <Button className="mt-1" onClick={this.toggleAdd}>
-          Add Run
-        </Button>
       </div>
     );
   }

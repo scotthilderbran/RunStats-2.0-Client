@@ -1,9 +1,10 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Button } from "react-bootstrap/";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import { deleteRun, editRun } from "../../../redux/actions/runActions";
-import { connect } from "react-redux";
 
+//ActionFormatter binds react-bootstrap table column to icon buttons of edit and delete
 class ActionsFormatter extends Component {
   constructor(props) {
     super(props);

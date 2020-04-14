@@ -13,8 +13,6 @@ import {
 
 class WeekAverage extends Component {
   render() {
-    console.log("Analytics run length");
-    console.log(this.props.runs.length);
     const weekAVG = getGraphData(this.props.runs, 7, "days", "MM-DD");
     const { toggle } = this.props;
     return (

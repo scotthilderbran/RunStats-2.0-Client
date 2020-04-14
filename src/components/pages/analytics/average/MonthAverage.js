@@ -12,7 +12,6 @@ import {
 } from "react-bootstrap/";
 
 class MonthAverage extends Component {
-  onComponentDidMount;
   render() {
     const monthAVG = getGraphData(this.props.runs, 30, "days", "MM-DD");
     const { toggle } = this.props;

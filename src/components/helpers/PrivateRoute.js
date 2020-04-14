@@ -2,6 +2,8 @@ import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
+/* Private Route component used to restrict specific routes to logged in users */
+
 const PrivateRoute = ({ component: Component, auth, ...rest }) => (
   <Route
     {...rest}

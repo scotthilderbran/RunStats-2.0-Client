@@ -4,7 +4,7 @@ import {
   LOAD_RUNS_ERROR,
   EDIT_RUN,
   EDIT_RUN_COMPLETE,
-} from "./constants";
+} from "../constants";
 import axios from "axios";
 
 export const loadRuns = () => {

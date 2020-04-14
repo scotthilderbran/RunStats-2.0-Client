@@ -7,7 +7,7 @@ import {
   REGISTER_SUCCESS,
   USER_UPDATED,
   USER_EDIT,
-} from "./constants";
+} from "../constants";
 import axios from "axios";
 import history from "../../components/helpers/history";
 import { loadRuns } from "./runActions";
@@ -123,6 +123,27 @@ export const updateUser = ({ email, fName, lName, sex, age }) => {
   };
 };
 
+export const stravaTokenExchange = (code) => {
+  return (dispatch) => {
+    const token = localStorage.getItem("token");
+    const config = {
+      headers: { Authorization: `${token}` },
+    };
+    axios
+      .post(
+        "http://localhost:4000/strava/stravaTokenExchange",
+        {
+          code: code,
+        },
+        config
+      )
+      .then((res) => {
+        history.push("/runs/");
+      })
+      .catch((err) => {});
+  };
+};
+
 export function userLoading(data) {
   return {
     type: USER_LOADING,
@@ -147,4 +168,8 @@ export function userEdit() {
   return {
     type: USER_EDIT,
   };
+}
+
+export function authError(msg) {
+  return { type: AUTH_ERROR, payload: msg };
 }

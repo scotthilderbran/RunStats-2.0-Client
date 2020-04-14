@@ -18,43 +18,35 @@ class DefaultProfile extends Component {
   render() {
     const sex = this.props.user.sex ? "Male" : "Female";
     return (
-      <Card>
-        <ListGroup variant="flush">
-          <ListGroup.Item>
-            <b className="float-left">First Name:</b>
-            <p className="float-right">{this.state.fName}</p>
-          </ListGroup.Item>
-          <ListGroup.Item>
-            <b className="float-left">Last Name:</b>
-            <p className="float-right">{this.state.lName}</p>
-          </ListGroup.Item>
-          <ListGroup.Item>
-            <b className="float-left">Email:</b>
-            <p className="float-right">{this.state.email}</p>
-          </ListGroup.Item>
-          <ListGroup.Item>
-            <b className="float-left">Sex:</b>
-            <p className="float-right">{sex}</p>
-          </ListGroup.Item>
-          <ListGroup.Item>
-            <b className="float-left">Age:</b>
-            <p className="float-right">{this.state.age}</p>
-          </ListGroup.Item>
-        </ListGroup>
-      </Card>
+      <div>
+        <Card>
+          <ListGroup variant="flush">
+            <ListGroup.Item>
+              <b className="float-left">First Name:</b>
+              <p className="float-right">{this.state.fName}</p>
+            </ListGroup.Item>
+            <ListGroup.Item>
+              <b className="float-left">Last Name:</b>
+              <p className="float-right">{this.state.lName}</p>
+            </ListGroup.Item>
+            <ListGroup.Item>
+              <b className="float-left">Email:</b>
+              <p className="float-right">{this.state.email}</p>
+            </ListGroup.Item>
+            <ListGroup.Item>
+              <b className="float-left">Sex:</b>
+              <p className="float-right">{sex}</p>
+            </ListGroup.Item>
+            <ListGroup.Item>
+              <b className="float-left">Age:</b>
+              <p className="float-right">{this.state.age}</p>
+            </ListGroup.Item>
+          </ListGroup>
+        </Card>
+      </div>
     );
   }
 }
-/*
-const mapStateToProps = (state) => ({
-  fname: state.auth.user.userFName,
-  lname: state.auth.user.userLName,
-  email: state.auth.user.email,
-  sex: state.auth.user.sex,
-  age: state.auth.user.age,
-});
-mapStateToProps, 
-*/
 
 const mapActionsToProps = (dispatch) => {
   return {

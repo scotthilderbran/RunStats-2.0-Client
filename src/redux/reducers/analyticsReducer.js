@@ -1,4 +1,4 @@
-import { CHANGE_AVG_VIEW } from "../actions/constants";
+import { CHANGE_AVG_VIEW } from "../constants";
 
 const initialState = {
   averageSelection: 1,

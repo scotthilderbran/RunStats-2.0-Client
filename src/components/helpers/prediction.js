@@ -1,4 +1,6 @@
-let moment = require("moment");
+/* Logic to predict users run performance based on historic running performance*/
+
+let moment = require("moment"); //Used to get current date to group time periods of past runs
 moment().format();
 
 const getDates = (scale, interval, format) => {
@@ -48,5 +50,5 @@ export const getPrediction = (runs, scale, interval, format, goal) => {
   }
   out = out / overallCount;
   out = Math.round(out * 100) / 100;
-  return out;
+  return out; // returns time prediction
 };

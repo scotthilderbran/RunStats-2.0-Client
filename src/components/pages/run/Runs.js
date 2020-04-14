@@ -3,6 +3,8 @@ import RunContainer from "./RunContainer";
 import { Container, Row, Col } from "react-bootstrap/";
 import { connect } from "react-redux";
 
+/* Root runs page, loads RunContainer if loaded otherwise shows loading indicator */
+
 class Runs extends Component {
   render() {
     return this.props.isLoading || !this.props.isRunsLoaded ? (

@@ -5,6 +5,8 @@ import { ListGroup, Button } from "react-bootstrap/";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
+/* Component for editing individual runs, calls dispatches updateRun action on submit */
+
 class RunEdit extends Component {
   constructor(props) {
     super(props);

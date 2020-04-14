@@ -134,7 +134,7 @@ class Register extends Component {
                   </ListGroup.Item>
                   <ListGroup.Item>
                     <Button className="mt-3" type="submit">
-                      Submit Changes
+                      Create Account
                     </Button>
                   </ListGroup.Item>
                 </ListGroup>

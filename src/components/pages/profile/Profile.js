@@ -5,6 +5,8 @@ import DefaultProfile from "./DefaultProfile";
 import EditProfile from "./EditProfile";
 import { userEdit, userDoneEdit } from "../../../redux/actions/authActions";
 
+/* Profile container component, if state is editing renders edit component otherwise renders default */
+
 class Profile extends Component {
   constructor(props) {
     super(props);

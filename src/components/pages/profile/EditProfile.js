@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Card, Button, Form, ListGroup, Radio } from "react-bootstrap/";
-import { updateUser, loadUser } from "../../../redux/actions/authActions";
+import { Card, Button, Form, ListGroup } from "react-bootstrap/";
+import { updateUser } from "../../../redux/actions/authActions";
 import { ErrAlert } from "../../helpers/ErrAlert";
+
+/* Edit profile component, allows users to enter and dispatches updateUser action on submit */
 
 class EditProfile extends Component {
   constructor(props) {
