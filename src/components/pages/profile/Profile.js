@@ -25,7 +25,7 @@ class Profile extends Component {
             <Col md="6" className="text-center">
               <h1 className="mt-3 mb-3">{this.props.name}'s Profile</h1>
               <DefaultProfile user={this.props.user} />
-              <Button onClick={this.props.edit} className="mt-3">
+              <Button onClick={this.toggleEdit} className="mt-3">
                 Edit Profile
               </Button>
             </Col>
@@ -36,7 +36,7 @@ class Profile extends Component {
           <Row className="justify-content-md-center">
             <Col md="6" className="text-center">
               <h1 className="mt-3 mb-3">{this.props.name}'s Profile</h1>
-              <EditProfile user={this.props.user} />
+              <EditProfile user={this.props.user} toggle={this.toggleEdit} />
             </Col>
           </Row>
         </Container>

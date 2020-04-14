@@ -52,6 +52,7 @@ class EditProfile extends Component {
       this.state.sex,
       this.state.age
     );
+    this.props.toggle();
   };
   render() {
     const sex = this.props.sex ? "Male" : "Female";
