@@ -38,7 +38,6 @@ export const loadUser = () => {
 export const login = ({ email, password }) => {
   return (dispatch) => {
     dispatch(userLoading());
-    console.log("now here");
     axios
       .post(process.env.REACT_APP_SERVER_URL + "/user/login", {
         email: email,
