@@ -17,7 +17,7 @@ export const loadRuns = () => {
       headers: { Authorization: `${token}` },
     };
     axios
-      .get("http://localhost:4000/run/getAllRuns", config)
+      .get(process.env.REACT_APP_SERVER_URL + "/run/getAllRuns", config)
       .then((res) => {
         dispatch({
           type: LOAD_RUNS_SUCCESS,
@@ -41,7 +41,7 @@ export const deleteRun = (id) => {
     };
     axios
       .post(
-        "http://localhost:4000/run/deleteRun",
+        process.env.REACT_APP_SERVER_URL + "/run/deleteRun",
         {
           id: id,
         },
@@ -65,7 +65,7 @@ export const updateRun = ({ id, note, distance, time, date }) => {
     };
     axios
       .post(
-        "http://localhost:4000/run/updateRun",
+        process.env.REACT_APP_SERVER_URL + "/run/updateRun",
         {
           id: id,
           note: note,
@@ -92,7 +92,7 @@ export const addRun = ({ note, distance, time, date }) => {
     };
     axios
       .post(
-        "http://localhost:4000/run/addRun",
+        process.env.REACT_APP_SERVER_URL + "/run/addRun",
         {
           note: note,
           distance: distance,

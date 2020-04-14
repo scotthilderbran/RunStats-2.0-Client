@@ -21,7 +21,7 @@ export const loadUser = () => {
       headers: { Authorization: `${token}` },
     };
     axios
-      .get("http://localhost:4000/user/loadUser", config)
+      .get(process.env.REACT_APP_SERVER_URL + "/user/loadUser", config)
       .then((res) => {
         dispatch({
           type: USER_LOADED,
@@ -40,7 +40,7 @@ export const login = ({ email, password }) => {
     dispatch(userLoading());
     console.log("now here");
     axios
-      .post("http://localhost:4000/user/login", {
+      .post(process.env.REACT_APP_SERVER_URL + "/user/login", {
         email: email,
         password: password,
       })
@@ -64,7 +64,7 @@ export const register = ({ email, password, fName, lName, sex, age }) => {
     console.log("now here");
     console.log(email, password, fName, lName, sex, age);
     axios
-      .post("http://localhost:4000/user/register", {
+      .post(process.env.REACT_APP_SERVER_URL + "/user/register", {
         email: email,
         password: password,
         fName: fName,
@@ -94,7 +94,7 @@ export const updateUser = ({ email, fName, lName, sex, age }) => {
     };
     axios
       .post(
-        "http://localhost:4000/user/update",
+        process.env.REACT_APP_SERVER_URL + "/user/update",
         {
           email: email,
           fName: fName,
@@ -131,7 +131,7 @@ export const stravaTokenExchange = (code) => {
     };
     axios
       .post(
-        "http://localhost:4000/strava/stravaTokenExchange",
+        process.env.REACT_APP_SERVER_URL + "/strava/stravaTokenExchange",
         {
           code: code,
         },
