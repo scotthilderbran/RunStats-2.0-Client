@@ -10,7 +10,7 @@ import {
 } from "react-bootstrap/";
 import { register } from "../../../redux/actions/authActions";
 import { connect } from "react-redux";
-import { ErrAlert } from "../../helpers/ErrAlert";
+import { ErrAlert } from "../../helpercomponents/ErrAlert";
 
 class Register extends Component {
   constructor(props) {

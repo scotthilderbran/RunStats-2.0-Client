@@ -9,7 +9,7 @@ import {
   USER_EDIT,
 } from "../constants";
 import axios from "axios";
-import history from "../../components/helpers/history";
+import history from "../../helpers/history";
 import { loadRuns } from "./runActions";
 
 export const loadUser = () => {

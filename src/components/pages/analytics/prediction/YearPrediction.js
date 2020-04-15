@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getPrediction } from "../../../helpers/prediction";
+import { getPrediction } from "../../../../helpers/prediction";
 import { connect } from "react-redux";
 import { Card, Form, ListGroup } from "react-bootstrap/";
 import {

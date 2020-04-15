@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import Benchmarks from "./Benchmarks";
-import Average from "./Average";
-import Prediction from "./Prediction";
+import Benchmarks from "../Benchmarks";
+import Average from "../Average";
+import Prediction from "../Prediction";
 import AnalyticsNav from "./AnalyticsNav";
-import PrivateRoute from "../../helpers/PrivateRoute";
+import PrivateRoute from "../../../helpercomponents/PrivateRoute";
 import { Container, Row, Col } from "react-bootstrap/";
 import { connect } from "react-redux";
 

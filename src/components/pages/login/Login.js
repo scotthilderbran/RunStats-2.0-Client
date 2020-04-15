@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { login } from "../../../redux/actions/authActions";
 import { Container, Row, Col, Form, Button } from "react-bootstrap/";
-import { ErrAlert } from "../../helpers/ErrAlert";
+import { ErrAlert } from "../../helpercomponents/ErrAlert";
 
 class Login extends Component {
   constructor(props) {

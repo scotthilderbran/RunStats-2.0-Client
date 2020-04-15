@@ -8,7 +8,7 @@ export default class Benchmarks extends Component {
         <Row className="justify-content-md-center">
           <Col md="6" className="text-center">
             <h1 className="mt-3 mb-3">Benchmarks</h1>
-            <Spinner animation="border" variant="dark" />
+            <Spinner animation="border" variant="dark" className="mt-3" />
           </Col>
         </Row>
       </Container>

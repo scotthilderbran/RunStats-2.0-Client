@@ -5,7 +5,7 @@ import {
   authError,
   stravaTokenExchange,
 } from "../../redux/actions/authActions";
-import history from "./history";
+import history from "../../helpers/history";
 
 class StravaResponse extends Component {
   componentDidMount() {

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Container, Row, Col } from "react-bootstrap/";
 import { connect } from "react-redux";
-import { ErrAlert } from "../../helpers/ErrAlert";
+import { ErrAlert } from "../../helpercomponents/ErrAlert";
 
 class Import extends Component {
   render() {
