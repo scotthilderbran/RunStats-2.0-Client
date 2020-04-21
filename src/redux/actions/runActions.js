@@ -4,6 +4,8 @@ import {
   LOAD_RUNS_ERROR,
   EDIT_RUN,
   EDIT_RUN_COMPLETE,
+  LOAD_ANALYTICS,
+  LOAD_ANALYTICS_SUCCESS,
 } from "../constants";
 import axios from "axios";
 
@@ -22,19 +24,18 @@ export const loadRuns = () => {
         dispatch({
           type: LOAD_RUNS_SUCCESS,
           payload: res.data,
-        }); //dispatch user logged in
+        });
       })
       .catch((err) => {
         dispatch({
           type: LOAD_RUNS_ERROR,
-        }); //dispatch user not logged in
+        });
       });
   };
 };
 
 export const deleteRun = (id) => {
   return (dispatch) => {
-    console.log("deleting runs");
     const token = localStorage.getItem("token");
     const config = {
       headers: { Authorization: `${token}` },
@@ -123,3 +124,28 @@ export function editRunComplete(data) {
     payload: data,
   };
 }
+
+export const getBenchmarks = () => {
+  return (dispatch) => {
+    const token = localStorage.getItem("token");
+    const config = {
+      headers: { Authorization: `${token}` },
+    };
+    dispatch({
+      type: LOAD_ANALYTICS,
+    });
+    console.log("IN Get Benchmarks");
+    axios
+      .get(process.env.REACT_APP_SERVER_URL + "/run/getTotals", config)
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: LOAD_ANALYTICS_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Benchmarks from "../Benchmarks";
+import Benchmark from "../Benchmark";
 import Average from "../Average";
 import Prediction from "../Prediction";
 import AnalyticsNav from "./AnalyticsNav";
@@ -17,7 +17,7 @@ class AnalyticsRoute extends Component {
         <PrivateRoute exact path={this.props.match.path} component={Average} />
         <PrivateRoute
           path={`${this.props.match.path}/benchmarks`}
-          component={Benchmarks}
+          component={Benchmark}
         />
         <PrivateRoute
           path={`${this.props.match.path}/predictions`}

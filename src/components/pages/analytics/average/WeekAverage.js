@@ -15,6 +15,13 @@ class WeekAverage extends Component {
   render() {
     const weekAVG = getGraphData(this.props.runs, 7, "days", "MM-DD");
     const { toggle } = this.props;
+    let avgText;
+    if (Number.isNaN(weekAVG[1])) {
+      avgText = "Not enough data in selected timespan";
+    } else {
+      let avg = Math.round(weekAVG[1] * 100) / 100;
+      avgText = "Weekly Average pace is " + avg + "min/mile";
+    }
     return (
       <Container fluid>
         <Row className="justify-content-md-center ">
@@ -58,10 +65,7 @@ class WeekAverage extends Component {
             />
             <Card className="mt-3">
               <Card.Body>
-                <Card.Title>
-                  Weekly Average pace is {Math.round(weekAVG[1] * 100) / 100}{" "}
-                  min/mile
-                </Card.Title>
+                <Card.Title>{avgText}</Card.Title>
               </Card.Body>
             </Card>
           </Col>

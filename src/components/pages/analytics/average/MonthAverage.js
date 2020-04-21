@@ -15,6 +15,13 @@ class MonthAverage extends Component {
   render() {
     const monthAVG = getGraphData(this.props.runs, 30, "days", "MM-DD");
     const { toggle } = this.props;
+    let avgText;
+    if (Number.isNaN(monthAVG[1])) {
+      avgText = "Not enough data in selected timespan";
+    } else {
+      let avg = Math.round(monthAVG[1] * 100) / 100;
+      avgText = "Monthly Average pace is " + avg + "min/mile";
+    }
     return (
       <Container fluid>
         <Row className="justify-content-md-center ">
@@ -58,10 +65,7 @@ class MonthAverage extends Component {
             />
             <Card className="mt-3">
               <Card.Body>
-                <Card.Title>
-                  Monthly Average pace is {Math.round(monthAVG[1] * 100) / 100}{" "}
-                  min/mile
-                </Card.Title>
+                <Card.Title>{avgText}</Card.Title>
               </Card.Body>
             </Card>
           </Col>

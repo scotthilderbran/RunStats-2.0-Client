@@ -11,10 +11,8 @@ class Login extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
   handleChange(event) {
     const name = event.target.name;
-
     this.setState({
       [name]: event.target.value,
     });
@@ -23,7 +21,6 @@ class Login extends Component {
     event.preventDefault();
     this.props.login(this.state.email, this.state.password);
   };
-
   render() {
     return (
       <Container fluid>

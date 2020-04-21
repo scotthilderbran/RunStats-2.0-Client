@@ -73,6 +73,7 @@ export const register = ({ email, password, fName, lName, sex, age }) => {
       })
       .then((res) => {
         localStorage.setItem("token", res.data.token);
+        console.log(res.data);
         dispatch({
           type: REGISTER_SUCCESS,
           payload: res.data.user,
@@ -80,6 +81,7 @@ export const register = ({ email, password, fName, lName, sex, age }) => {
       })
       .catch((err) => {
         console.log("register err response:");
+        console.log(err);
         dispatch({ type: AUTH_ERROR, payload: err.response.data.message }); //dispatch user not logged in
       });
   };

@@ -13,8 +13,15 @@ import {
 
 class YearAverage extends Component {
   render() {
-    const weekAVG = getGraphData(this.props.runs, 11, "months", "YYYY-MM");
+    const yearAVG = getGraphData(this.props.runs, 11, "months", "YYYY-MM");
     const { toggle } = this.props;
+    let avgText;
+    if (Number.isNaN(yearAVG[1])) {
+      avgText = "Not enough data in selected timespan";
+    } else {
+      let avg = Math.round(yearAVG[1] * 100) / 100;
+      avgText = "Monthly Average pace is " + avg + "min/mile";
+    }
     return (
       <Container fluid>
         <Row className="justify-content-md-center ">
@@ -36,7 +43,7 @@ class YearAverage extends Component {
               </Dropdown.Item>
             </DropdownButton>
             <Line
-              data={weekAVG[0]}
+              data={yearAVG[0]}
               width={100}
               height={50}
               options={{
@@ -58,10 +65,7 @@ class YearAverage extends Component {
             />
             <Card className="mt-3">
               <Card.Body>
-                <Card.Title>
-                  Yearly Average pace is {Math.round(weekAVG[1] * 100) / 100}{" "}
-                  min/mile
-                </Card.Title>
+                <Card.Title>{avgText}</Card.Title>
               </Card.Body>
             </Card>
           </Col>

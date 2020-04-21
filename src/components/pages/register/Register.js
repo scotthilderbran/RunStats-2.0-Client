@@ -32,12 +32,9 @@ class Register extends Component {
     this.setState({
       [name]: event.target.value,
     });
-    console.log(this.state);
   }
   handleSexChange(event) {
-    this.setState({ sex: !this.state.sex }, () => {
-      console.log(this.state.sex);
-    });
+    this.setState({ sex: !this.state.sex }, () => {});
   }
   handleSubmit(event) {
     event.preventDefault();

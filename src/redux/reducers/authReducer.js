@@ -8,6 +8,8 @@ import {
   USER_UPDATED,
 } from "../constants";
 
+/* Auth reducer dictates starting auth state and handles any redux actions */
+
 const initialState = {
   isAuthenticated: false,
   isLoaded: false,

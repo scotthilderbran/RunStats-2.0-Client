@@ -83,6 +83,9 @@ class RunContainer extends Component {
           columns={columns}
           pagination={paginationFactory()}
         />
+        <Button variant="danger" className="mr-2" onClick={this.toggleAdd}>
+          Add Run
+        </Button>
       </div>
     );
   }

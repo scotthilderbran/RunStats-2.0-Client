@@ -6,6 +6,8 @@ import {
   EDIT_RUN_COMPLETE,
 } from "../constants";
 
+/* Run reducer dictates starting run state and handles any redux actions */
+
 const initialState = {
   isLoaded: false,
   runs: [],
