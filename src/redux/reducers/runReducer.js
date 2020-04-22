@@ -4,6 +4,7 @@ import {
   LOAD_RUNS_ERROR,
   EDIT_RUN,
   EDIT_RUN_COMPLETE,
+  RUN_ERROR,
 } from "../constants";
 
 /* Run reducer dictates starting run state and handles any redux actions */
@@ -14,6 +15,10 @@ const initialState = {
   edit: {
     isEdit: false,
     currID: null,
+  },
+  error: {
+    isError: false,
+    msg: null,
   },
 };
 
@@ -46,6 +51,14 @@ export default function (state = initialState, action) {
         edit: {
           isEdit: false,
           currID: null,
+        },
+      };
+    case RUN_ERROR:
+      return {
+        ...state,
+        error: {
+          isError: true,
+          msg: action.payload,
         },
       };
     default:

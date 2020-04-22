@@ -11,16 +11,17 @@ import {
   Dropdown,
 } from "react-bootstrap/";
 
-class YearAverage extends Component {
+class AllAverage extends Component {
   render() {
-    const yearAVG = getGraphData(this.props.runs, 11, "months", "YYYY-MM");
+    console.log("in all avg");
+    const allAVG = getGraphData(this.props.runs, 120, "months", "YYYY-MM");
     const { toggle } = this.props;
     let avgText;
-    if (Number.isNaN(yearAVG[1])) {
+    if (Number.isNaN(allAVG[1])) {
       avgText = "Not enough data in selected timespan";
     } else {
-      let avg = Math.round(yearAVG[1] * 100) / 100;
-      avgText = "Yearly average pace is " + avg + "min/mile";
+      let avg = Math.round(allAVG[1] * 100) / 100;
+      avgText = "All Time average pace is " + avg + "min/mile";
     }
     return (
       <Container fluid>
@@ -30,7 +31,7 @@ class YearAverage extends Component {
               className="mt-2"
               variant="outline-dark"
               id="dropdown-basic-button"
-              title="Yearly Average"
+              title="All Average"
             >
               <Dropdown.Item onClick={() => toggle(1)}>
                 Average of Past Week
@@ -46,7 +47,7 @@ class YearAverage extends Component {
               </Dropdown.Item>
             </DropdownButton>
             <Line
-              data={yearAVG[0]}
+              data={allAVG[0]}
               width={100}
               height={50}
               options={{
@@ -82,4 +83,4 @@ const mapStateToProps = (state) => ({
   runs: state.run.runs,
 });
 
-export default connect(mapStateToProps)(YearAverage);
+export default connect(mapStateToProps)(AllAverage);

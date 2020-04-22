@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Container, Row, Col, Spinner } from "react-bootstrap/";
 import Benchmarks from "./benchmark/Benchmarks";
-import { getBenchmarks } from "../../../redux/actions/runActions";
+import { getBenchmarks } from "../../../redux/actions/analyticsActions";
 
 class Benchmark extends Component {
   render() {

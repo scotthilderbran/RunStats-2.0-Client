@@ -36,18 +36,20 @@ class MonthAverage extends Component {
     return (
       <Container fluid>
         <Row className="justify-content-md-center ">
-          <Col md="6" className="text-center">
+          <Col md="6" className="text-center mt-2">
             <b>What interval of data to use? (recent is more accurate)</b>
             <DropdownButton
               variant="outline-dark"
               id="dropdown-basic-button"
               title="Last Year"
+              className="mt-2"
             >
               <Dropdown.Item onClick={() => toggle(1)}>Last Week</Dropdown.Item>
               <Dropdown.Item onClick={() => toggle(2)}>
                 Last Month
               </Dropdown.Item>
               <Dropdown.Item onClick={() => toggle(3)}>Last Year</Dropdown.Item>
+              <Dropdown.Item onClick={() => toggle(4)}>All Time</Dropdown.Item>
             </DropdownButton>
           </Col>
         </Row>
@@ -68,14 +70,8 @@ class MonthAverage extends Component {
                     />
                   </Form.Group>
                 </ListGroup.Item>
+                <ListGroup.Item>Predicted time: {prediction}</ListGroup.Item>
               </ListGroup>
-            </Card>
-            <Card className="mt-3">
-              <Card.Body>
-                <Card.Title>
-                  Predicted total time is {prediction} minutes
-                </Card.Title>
-              </Card.Body>
             </Card>
           </Col>
           <Col md="5">

@@ -6,6 +6,7 @@ import RunAdd from "./RunAdd";
 import RunEdit from "./RunEdit";
 import { Button } from "react-bootstrap/";
 import paginationFactory from "react-bootstrap-table2-paginator";
+import { ErrAlert } from "../../helpercomponents/ErrAlert";
 
 const actionsFormatter = (cell, row) => <ActionsFormatter id={row.id} />;
 
@@ -57,35 +58,36 @@ class RunContainer extends Component {
   render() {
     return this.props.isEdit ? (
       <div>
+        <RunEdit toggle={this.toggleEdit} id={12} />
         <BootstrapTable
           keyField="id"
           data={this.props.run}
           columns={columns}
           pagination={paginationFactory()}
         />
-        <RunEdit toggle={this.toggleEdit} id={12} />
       </div>
     ) : this.state.isAdding ? (
       <div>
+        <RunAdd toggle={this.toggleAdd} />
         <BootstrapTable
           keyField="id"
           data={this.props.run}
           columns={columns}
           pagination={paginationFactory()}
         />
-        <RunAdd toggle={this.toggleAdd} />
       </div>
     ) : (
       <div>
+        <ErrAlert isErr={this.props.isErr} msg={this.props.errMsg} />
+        <Button variant="dark" className="mr-2 mb-2" onClick={this.toggleAdd}>
+          Add Run
+        </Button>
         <BootstrapTable
           keyField="id"
           data={this.props.run}
           columns={columns}
           pagination={paginationFactory()}
         />
-        <Button variant="danger" className="mr-2" onClick={this.toggleAdd}>
-          Add Run
-        </Button>
       </div>
     );
   }
@@ -95,6 +97,8 @@ const mapStateToProps = (state) => ({
   run: state.run.runs,
   isEdit: state.run.edit.isEdit,
   isEditID: state.run.edit.currID,
+  isErr: state.run.error.isError,
+  errMsg: state.run.error.msg,
 });
 
 export default connect(mapStateToProps)(RunContainer);

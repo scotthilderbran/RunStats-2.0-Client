@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import WeekAverage from "./average/WeekAverage";
 import MonthAverage from "./average/MonthAverage";
 import YearAverage from "./average/YearAverage";
+import AllAverage from "./average/AllAverage";
 import { connect } from "react-redux";
 import { Container, Row, Col, Spinner } from "react-bootstrap/";
 
@@ -22,6 +23,8 @@ class Average extends Component {
       selection = <MonthAverage toggle={this.handleToggle} />;
     } else if (this.state.choice === 3) {
       selection = <YearAverage toggle={this.handleToggle} />;
+    } else if (this.state.choice === 4) {
+      selection = <AllAverage toggle={this.handleToggle} />;
     }
     return this.props.loaded ? (
       selection

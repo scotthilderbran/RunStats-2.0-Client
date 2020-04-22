@@ -41,6 +41,9 @@ class MonthAverage extends Component {
               <Dropdown.Item onClick={() => toggle(3)}>
                 Average of Past Year
               </Dropdown.Item>
+              <Dropdown.Item onClick={() => toggle(4)}>
+                Average of All Time
+              </Dropdown.Item>
             </DropdownButton>
             <Line
               data={monthAVG[0]}

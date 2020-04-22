@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import WeekPrediction from "./prediction/WeekPrediction";
 import MonthPrediction from "./prediction/MonthPrediction";
 import YearPrediction from "./prediction/YearPrediction";
+import AllPrediction from "./prediction/AllPrediction";
 import { connect } from "react-redux";
 import { Container, Row, Col, Spinner } from "react-bootstrap/";
 
@@ -13,10 +14,7 @@ class Average extends Component {
   }
 
   handleToggle(val) {
-    console.log("Toggle Val:");
     this.setState({ choice: val });
-    console.log("Toggle Val:");
-    console.log(val);
   }
 
   render() {
@@ -25,6 +23,8 @@ class Average extends Component {
       selection = <MonthPrediction toggle={this.handleToggle} />;
     } else if (this.state.choice === 3) {
       selection = <YearPrediction toggle={this.handleToggle} />;
+    } else if (this.state.choice === 4) {
+      selection = <AllPrediction toggle={this.handleToggle} />;
     }
     return this.props.loaded ? (
       selection

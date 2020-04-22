@@ -1,5 +1,5 @@
 /* Logic to predict users run performance based on historic running performance*/
-
+import { monthDiff } from "../helpers/monthDiff";
 let moment = require("moment"); //Used to get current date to group time periods of past runs
 moment().format();
 
@@ -22,14 +22,29 @@ export const getPrediction = (runs, scale, interval, format, goal) => {
   if (goal === 0 || goal === null) {
     return "";
   }
-  let scaleArr = getDates(scale, interval, format);
+  let monthdiff;
+  let scaleArr;
+  if (scale === 120) {
+    let sortedDate = runs.sort(function (a, b) {
+      var dateA = new Date(a.date),
+        dateB = new Date(b.date);
+      return dateA - dateB;
+    });
+    monthdiff = monthDiff(
+      sortedDate[0].date,
+      sortedDate[sortedDate.length - 1].date
+    );
+    scaleArr = getDates(monthdiff, interval, format);
+  } else {
+    scaleArr = getDates(scale, interval, format);
+  }
   let out = 0;
   let overallCount = 0;
   for (let i = 0; i < scale + 1; i++) {
     let currRuns;
     let timePrediction = 0;
     let counter = 0;
-    if (scale === 11) {
+    if (scale === 11 || scale === 120) {
       currRuns = runs.filter((run) => {
         return run.date.substring(0, 7) === scaleArr[i];
       });
@@ -53,16 +68,9 @@ export const getPrediction = (runs, scale, interval, format, goal) => {
   }
   out = out / overallCount;
   out = out.toFixed(2);
-  console.log(out);
   let hour = Math.floor(out / 60);
   let min = out % 60;
   let sec = (min % 1).toFixed(2) * 60;
-  console.log("hr");
-  console.log(hour);
-  console.log("min");
-  console.log();
-  console.log("sec");
-  console.log(sec);
 
   return hour + " hr " + Math.floor(min) + " min " + sec.toFixed(1) + " sec"; // returns time prediction
 };

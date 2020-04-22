@@ -10,7 +10,7 @@ import {
   Dropdown,
 } from "react-bootstrap/";
 
-class MonthAverage extends Component {
+class AllAverage extends Component {
   constructor(props) {
     super(props);
     this.state = { distance: null };
@@ -28,9 +28,9 @@ class MonthAverage extends Component {
     const { toggle } = this.props;
     const prediction = getPrediction(
       this.props.runs,
-      30,
-      "days",
-      "MM-DD",
+      120,
+      "months",
+      "YYYY-MM",
       this.state.distance
     );
     return (
@@ -41,7 +41,7 @@ class MonthAverage extends Component {
             <DropdownButton
               variant="outline-dark"
               id="dropdown-basic-button"
-              title="Last Month"
+              title="All Time"
               className="mt-2"
             >
               <Dropdown.Item onClick={() => toggle(1)}>Last Week</Dropdown.Item>
@@ -81,33 +81,63 @@ class MonthAverage extends Component {
                 <ListGroup variant="flush">
                   <ListGroup.Item>
                     Marathon (26.2 miles):{" "}
-                    {getPrediction(this.props.runs, 30, "days", "MM-DD", 26.2)}
+                    {getPrediction(
+                      this.props.runs,
+                      120,
+                      "months",
+                      "YYYY-MM",
+                      26.2
+                    )}
                   </ListGroup.Item>
                   <ListGroup.Item>
                     Half Marathon (13.1 miles):{" "}
-                    {getPrediction(this.props.runs, 30, "days", "MM-DD", 13.1)}
+                    {getPrediction(
+                      this.props.runs,
+                      120,
+                      "months",
+                      "YYYY-MM",
+                      13.1
+                    )}
                   </ListGroup.Item>
                   <ListGroup.Item>
                     20K (12.427 miles):{" "}
                     {getPrediction(
                       this.props.runs,
-                      30,
-                      "days",
-                      "MM-DD",
+                      120,
+                      "months",
+                      "YYYY-MM",
                       12.427
-                    )}{" "}
+                    )}
                   </ListGroup.Item>
                   <ListGroup.Item>
                     15K (9.321 miles):{" "}
-                    {getPrediction(this.props.runs, 30, "days", "MM-DD", 9.321)}
+                    {getPrediction(
+                      this.props.runs,
+                      120,
+                      "months",
+                      "YYYY-MM",
+                      9.321
+                    )}
                   </ListGroup.Item>
                   <ListGroup.Item>
                     10K (6.214 miles):{" "}
-                    {getPrediction(this.props.runs, 30, "days", "MM-DD", 6.214)}{" "}
+                    {getPrediction(
+                      this.props.runs,
+                      120,
+                      "months",
+                      "YYYY-MM",
+                      6.214
+                    )}{" "}
                   </ListGroup.Item>
                   <ListGroup.Item>
                     5K (3.107 miles):{" "}
-                    {getPrediction(this.props.runs, 30, "days", "MM-DD", 3.107)}{" "}
+                    {getPrediction(
+                      this.props.runs,
+                      120,
+                      "months",
+                      "YYYY-MM",
+                      3.107
+                    )}{" "}
                   </ListGroup.Item>
                 </ListGroup>
               </Card.Body>
@@ -123,4 +153,4 @@ const mapStateToProps = (state) => ({
   runs: state.run.runs,
 });
 
-export default connect(mapStateToProps)(MonthAverage);
+export default connect(mapStateToProps)(AllAverage);

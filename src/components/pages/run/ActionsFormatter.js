@@ -18,6 +18,7 @@ class ActionsFormatter extends Component {
   }
   handleEdit = (event) => {
     this.props.edit(true, this.props.id);
+    window.scrollTo(0, 0);
   };
 
   render() {

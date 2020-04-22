@@ -42,12 +42,14 @@ class MonthAverage extends Component {
               variant="outline-dark"
               id="dropdown-basic-button"
               title="Last Week"
+              className="mt-2"
             >
               <Dropdown.Item onClick={() => toggle(1)}>Last Week</Dropdown.Item>
               <Dropdown.Item onClick={() => toggle(2)}>
                 Last Month
               </Dropdown.Item>
               <Dropdown.Item onClick={() => toggle(3)}>Last Year</Dropdown.Item>
+              <Dropdown.Item onClick={() => toggle(4)}>All Time</Dropdown.Item>
             </DropdownButton>
           </Col>
         </Row>

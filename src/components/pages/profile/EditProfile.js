@@ -38,13 +38,6 @@ class EditProfile extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log(
-      this.state.email,
-      this.state.fName,
-      this.state.lName,
-      this.state.sex,
-      this.state.age
-    );
     this.props.update(
       this.state.email,
       this.state.fName,
@@ -63,6 +56,7 @@ class EditProfile extends Component {
               <b className="float-left">First Name:</b>
               <Form.Group>
                 <Form.Control
+                  required
                   onChange={this.handleChange}
                   type="text"
                   name="fName"
@@ -74,10 +68,11 @@ class EditProfile extends Component {
               <b className="float-left">Last Name:</b>
               <Form.Group>
                 <Form.Control
+                  required
                   onChange={this.handleChange}
                   type="text"
                   name="lName"
-                  defaultValue={this.state.fName}
+                  defaultValue={this.state.lName}
                 />
               </Form.Group>
             </ListGroup.Item>
@@ -85,6 +80,7 @@ class EditProfile extends Component {
               <b className="float-left">Email:</b>
               <Form.Group controlId="formBasicEmail">
                 <Form.Control
+                  required
                   onChange={this.handleChange}
                   type="email"
                   name="email"
@@ -117,8 +113,9 @@ class EditProfile extends Component {
               <b className="float-left">Age:</b>
               <Form.Group>
                 <Form.Control
+                  required
                   onChange={this.handleChange}
-                  type="text"
+                  type="number"
                   name="age"
                   defaultValue={this.state.age}
                 />

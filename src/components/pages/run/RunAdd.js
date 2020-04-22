@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { addRun } from "../../../redux/actions/runActions";
-import { ListGroup, Button } from "react-bootstrap/";
+import { ListGroup, Button, Form } from "react-bootstrap/";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -38,51 +38,62 @@ class RunAdd extends Component {
   };
   render() {
     return (
-      <ListGroup horizontal className="mt-2 mb-2 d-flex justify-content-center">
-        <ListGroup.Item className="w-100">
-          <label>Note: </label>
-          <input
-            onChange={this.handleChange}
-            type="text"
-            className="form-control"
-            name="note"
-            placeholder="Note"
-          />
-        </ListGroup.Item>
-        <ListGroup.Item className="w-100">
-          <label>Distance: </label>
-          <input
-            onChange={this.handleChange}
-            className="form-control"
-            name="dist"
-            placeholder="Distance"
-          />
-        </ListGroup.Item>
-        <ListGroup.Item className="w-100">
-          <label>Time: </label>
-          <input
-            onChange={this.handleChange}
-            className="form-control"
-            name="time"
-            placeholder="Time (in minutes)"
-          />
-        </ListGroup.Item>
-        <ListGroup.Item className="w-100">
-          <label>Date: </label>
-          <DatePicker
-            selected={this.state.date}
-            onChange={this.handleDateChange}
-            name="date"
-            placeholder="Time (in minutes)"
-          />
-        </ListGroup.Item>
-        <ListGroup.Item className="w-100">
-          <label></label>
-          <Button className="btn btn-primary mt-4" onClick={this.handleSubmit}>
-            Submit
-          </Button>
-        </ListGroup.Item>
-      </ListGroup>
+      <Form onSubmit={this.handleSubmit}>
+        <ListGroup
+          horizontal="sm"
+          className="mt-2 mb-2 d-flex justify-content-center"
+        >
+          <ListGroup.Item className="w-100">
+            <Form.Group>
+              <label>Note: </label>
+              <Form.Control
+                onChange={this.handleChange}
+                type="text"
+                name="note"
+                defaultValue={this.state.note}
+              />
+            </Form.Group>
+          </ListGroup.Item>
+          <ListGroup.Item className="w-100">
+            <Form.Group>
+              <label>Distance: </label>
+              <Form.Control
+                required
+                onChange={this.handleChange}
+                type="number"
+                name="dist"
+                defaultValue={this.state.dist}
+              />
+            </Form.Group>
+          </ListGroup.Item>
+          <ListGroup.Item className="w-100">
+            <Form.Group>
+              <label>Time: </label>
+              <Form.Control
+                required
+                onChange={this.handleChange}
+                type="number"
+                name="time"
+                defaultValue={this.state.time}
+              />
+            </Form.Group>
+          </ListGroup.Item>
+          <ListGroup.Item className="w-25">
+            <Form.Group>
+              <label>Date: </label>
+              <DatePicker
+                selected={this.state.date}
+                onChange={this.handleDateChange}
+                name="date"
+                placeholder="Time (in minutes)"
+              />
+            </Form.Group>
+          </ListGroup.Item>
+        </ListGroup>
+        <Button variant="primary" className="ml-2 mb-2" type="submit">
+          Submit
+        </Button>
+      </Form>
     );
   }
 }

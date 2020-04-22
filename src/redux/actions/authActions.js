@@ -113,6 +113,16 @@ export const updateUser = ({ email, fName, lName, sex, age }) => {
     const config = {
       headers: { Authorization: `${token}` },
     };
+    dispatch({
+      type: USER_UPDATED,
+      payload: {
+        email: email,
+        userFName: fName,
+        userLName: lName,
+        sex: sex,
+        age: age,
+      },
+    });
     axios
       .post(
         process.env.REACT_APP_SERVER_URL + "/user/update",
@@ -126,16 +136,7 @@ export const updateUser = ({ email, fName, lName, sex, age }) => {
         config
       )
       .then((res) => {
-        dispatch({
-          type: USER_UPDATED,
-          payload: {
-            email: email,
-            userFName: fName,
-            userLName: lName,
-            sex: sex,
-            age: age,
-          },
-        });
+        console.log(res);
       })
       .catch((err) => {
         console.log("update error caught");

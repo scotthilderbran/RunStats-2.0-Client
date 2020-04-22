@@ -1,5 +1,5 @@
 /* Logic to average out running pace of certain timespans */
-
+import { monthDiff } from "../helpers/monthDiff";
 let moment = require("moment");
 moment().format();
 
@@ -23,10 +23,27 @@ export const getGraphData = (runs, scale, interval, format) => {
   let overallMin = 0;
   let overallDist = 0;
   let runAverages = [];
-  let scaleArr = getDates(scale, interval, format);
+  let monthdiff;
+  console.log("scale");
+  console.log(scale);
+  let scaleArr;
+  if (scale === 120) {
+    let sortedDate = runs.sort(function (a, b) {
+      var dateA = new Date(a.date),
+        dateB = new Date(b.date);
+      return dateA - dateB;
+    });
+    monthdiff = monthDiff(
+      sortedDate[0].date,
+      sortedDate[sortedDate.length - 1].date
+    );
+    scaleArr = getDates(monthdiff, interval, format);
+  } else {
+    scaleArr = getDates(scale, interval, format);
+  }
   for (let i = 0; i < scale + 1; i++) {
     let currRuns;
-    if (scale === 11) {
+    if (scale === 11 || scale === 120) {
       currRuns = runs.filter((run) => {
         return run.date.substring(0, 7) === scaleArr[i];
       });
@@ -51,7 +68,7 @@ export const getGraphData = (runs, scale, interval, format) => {
   }
   out[1] = overallMin / overallDist;
   out[0] = {
-    labels: getDates(scale, interval, format),
+    labels: scaleArr,
     datasets: [
       {
         label: "Average Mile Pace",

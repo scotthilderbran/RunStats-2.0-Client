@@ -4,8 +4,7 @@ import {
   LOAD_RUNS_ERROR,
   EDIT_RUN,
   EDIT_RUN_COMPLETE,
-  LOAD_ANALYTICS,
-  LOAD_ANALYTICS_SUCCESS,
+  RUN_ERROR,
 } from "../constants";
 import axios from "axios";
 
@@ -81,6 +80,7 @@ export const updateRun = ({ id, note, distance, time, date }) => {
       })
       .catch((err) => {
         console.log(err); //dispatch user not logged in
+        dispatch({ type: RUN_ERROR, payload: err.response.data.message });
       });
   };
 };
@@ -107,7 +107,8 @@ export const addRun = ({ note, distance, time, date }) => {
         dispatch(loadRuns());
       })
       .catch((err) => {
-        console.log(err); //dispatch user not logged in
+        console.log(err);
+        dispatch({ type: RUN_ERROR, payload: err.response.data.message });
       });
   };
 };
@@ -124,28 +125,3 @@ export function editRunComplete(data) {
     payload: data,
   };
 }
-
-export const getBenchmarks = () => {
-  return (dispatch) => {
-    const token = localStorage.getItem("token");
-    const config = {
-      headers: { Authorization: `${token}` },
-    };
-    dispatch({
-      type: LOAD_ANALYTICS,
-    });
-    console.log("IN Get Benchmarks");
-    axios
-      .get(process.env.REACT_APP_SERVER_URL + "/run/getTotals", config)
-      .then((res) => {
-        console.log(res);
-        dispatch({
-          type: LOAD_ANALYTICS_SUCCESS,
-          payload: res.data,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-};

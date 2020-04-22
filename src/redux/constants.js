@@ -12,6 +12,7 @@ export const EDIT_RUN = "EDIT_RUN";
 export const EDIT_RUN_COMPLETE = "EDIT_RUN_COMPLETE";
 export const LOAD_ANALYTICS = "LOAD_ANALYTICS";
 export const LOAD_ANALYTICS_SUCCESS = "LOAD_ANALYTICS_SUCCESS";
+export const RUN_ERROR = "RUN_ERROR";
 
 //Auth and user constants
 export const USER_LOADING = "USER_LOADING";
