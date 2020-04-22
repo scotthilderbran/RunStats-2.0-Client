@@ -19,7 +19,7 @@ const PublicRoute = ({ component: Component, auth, ...rest }) => (
 
 const mapStateToProps = (state) => {
   return {
-    auth: state.auth.isAuthenticated,
+    authed: state.auth.isAuthenticated,
   };
 };
 

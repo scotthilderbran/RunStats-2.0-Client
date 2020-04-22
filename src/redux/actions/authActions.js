@@ -12,6 +12,27 @@ import axios from "axios";
 import history from "../../helpers/history";
 import { loadRuns } from "./runActions";
 
+export const authCheck = () => {
+  return (dispatch) => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      const config = {
+        headers: { Authorization: `${token}` },
+      };
+      axios
+        .get(process.env.REACT_APP_SERVER_URL + "/user/authCheck", config)
+        .then((res) => {
+          localStorage.setItem("token", res.data.token);
+        })
+        .catch((err) => {
+          dispatch(authError("Session timed out"));
+          localStorage.removeItem("token"); //dispatch user not logged in
+          history.push("/");
+        });
+    }
+  };
+};
+
 export const loadUser = () => {
   console.log("USER_LOADING");
   return (dispatch) => {
@@ -29,8 +50,7 @@ export const loadUser = () => {
         }); //dispatch user logged in
       })
       .catch((err) => {
-        console.log(err);
-        //dispatch(); //dispatch user not logged in
+        console.log(err); //dispatch user not logged in
       });
   };
 };

@@ -19,6 +19,9 @@ const getDates = (scale, interval, format) => {
 
 //Take in run array, time scale(length) of averages need, interval of averages, and format of averages
 export const getPrediction = (runs, scale, interval, format, goal) => {
+  if (goal === 0 || goal === null) {
+    return "";
+  }
   let scaleArr = getDates(scale, interval, format);
   let out = 0;
   let overallCount = 0;
@@ -49,6 +52,17 @@ export const getPrediction = (runs, scale, interval, format, goal) => {
     return "Not enough data in selected timespan";
   }
   out = out / overallCount;
-  out = Math.round(out * 100) / 100;
-  return out; // returns time prediction
+  out = out.toFixed(2);
+  console.log(out);
+  let hour = Math.floor(out / 60);
+  let min = out % 60;
+  let sec = (min % 1).toFixed(2) * 60;
+  console.log("hr");
+  console.log(hour);
+  console.log("min");
+  console.log();
+  console.log("sec");
+  console.log(sec);
+
+  return hour + " hr " + Math.floor(min) + " min " + sec.toFixed(1) + " sec"; // returns time prediction
 };

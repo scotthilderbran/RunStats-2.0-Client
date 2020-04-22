@@ -55,6 +55,7 @@ export default function (state = initialState, action) {
     case AUTH_ERROR:
       return {
         ...state,
+        isAuthenticated: false,
         error: {
           isError: true,
           msg: action.payload,

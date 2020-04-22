@@ -13,6 +13,7 @@ class Navigation extends Component {
     this.props.logoutme();
   };
   render() {
+    console.log(this.props.isAuth);
     return (
       <Navbar bg="dark" variant="dark">
         <Navbar.Brand href="/">

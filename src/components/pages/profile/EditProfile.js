@@ -55,7 +55,6 @@ class EditProfile extends Component {
     this.props.toggle();
   };
   render() {
-    const sex = this.props.sex ? "Male" : "Female";
     return (
       <Card>
         <Form onSubmit={this.handleSubmit}>

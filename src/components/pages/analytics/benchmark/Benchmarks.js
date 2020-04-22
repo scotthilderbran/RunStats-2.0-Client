@@ -38,9 +38,13 @@ class Benchmarks extends Component {
           <Col md="5">
             <Card className="mt-3">
               <Card.Body>
-                <Card.Title className="text-center">test</Card.Title>
+                <Card.Title className="text-center">Comparison</Card.Title>
                 <ListGroup variant="flush">
-                  <ListGroup.Item>Cras justo odio</ListGroup.Item>
+                  <ListGroup.Item>
+                    Your average pace is in the{" "}
+                    <b>{this.props.totals.pacePercentile}th</b> percentile of
+                    RunStats runners
+                  </ListGroup.Item>
                   <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
                   <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
                 </ListGroup>
@@ -56,6 +60,7 @@ class Benchmarks extends Component {
 const mapStateToProps = (state) => ({
   totals: state.analytics.totals,
   loaded: state.analytics.isLoaded,
+  sex: state.auth.user.sex,
 });
 
 export default connect(mapStateToProps, null)(Benchmarks);

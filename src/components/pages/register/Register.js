@@ -136,8 +136,8 @@ class Register extends Component {
                   </ListGroup.Item>
                 </ListGroup>
               </Form>
-              <ErrAlert isErr={this.props.isErr} msg={this.props.errMsg} />
             </Card>
+            <ErrAlert isErr={this.props.isErr} msg={this.props.errMsg} />
           </Col>
         </Row>
       </Container>
