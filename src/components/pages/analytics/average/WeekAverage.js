@@ -20,7 +20,7 @@ class WeekAverage extends Component {
       avgText = "Not enough data in selected timespan";
     } else {
       let avg = Math.round(weekAVG[1] * 100) / 100;
-      avgText = "Weekly Average pace is " + avg + "min/mile";
+      avgText = "Weekly average pace is " + avg + "min/mile";
     }
     return (
       <Container fluid>

@@ -20,7 +20,7 @@ class MonthAverage extends Component {
       avgText = "Not enough data in selected timespan";
     } else {
       let avg = Math.round(monthAVG[1] * 100) / 100;
-      avgText = "Monthly Average pace is " + avg + "min/mile";
+      avgText = "Monthly average pace is " + avg + "min/mile";
     }
     return (
       <Container fluid>
