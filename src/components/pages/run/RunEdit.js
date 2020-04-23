@@ -54,71 +54,69 @@ class RunEdit extends Component {
   };
   render() {
     return (
-      <div>
-        <Form onSubmit={this.handleSubmit}>
-          <ListGroup
-            horizontal="sm"
-            className="mt-2 mb-2 d-flex justify-content-center"
-          >
-            <ListGroup.Item className="w-100">
-              <Form.Group>
-                <label>Note: </label>
-                <Form.Control
-                  onChange={this.handleChange}
-                  type="text"
-                  name="note"
-                  defaultValue={this.state.note}
-                />
-              </Form.Group>
-            </ListGroup.Item>
-            <ListGroup.Item className="w-100">
-              <Form.Group>
-                <label>Distance: </label>
-                <Form.Control
-                  required
-                  onChange={this.handleChange}
-                  type="number"
-                  name="dist"
-                  defaultValue={this.state.dist}
-                />
-              </Form.Group>
-            </ListGroup.Item>
-            <ListGroup.Item className="w-100">
-              <Form.Group>
-                <label>Time: </label>
-                <Form.Control
-                  required
-                  onChange={this.handleChange}
-                  type="number"
-                  name="time"
-                  defaultValue={this.state.time}
-                />
-              </Form.Group>
-            </ListGroup.Item>
-            <ListGroup.Item className="w-25">
-              <Form.Group>
-                <label>Date: </label>
-                <DatePicker
-                  selected={this.state.date}
-                  onChange={this.handleDateChange}
-                  name="date"
-                  placeholder="Time (in minutes)"
-                />
-              </Form.Group>
-            </ListGroup.Item>
-          </ListGroup>
-          <Button
-            variant="danger"
-            className="mr-2 mb-2"
-            onClick={this.handleCancel}
-          >
-            Cancel
-          </Button>
-          <Button variant="primary" className="ml-2 mb-2" type="submit">
-            Save
-          </Button>
-        </Form>
-      </div>
+      <Form onSubmit={this.handleSubmit}>
+        <ListGroup
+          horizontal="sm"
+          className="mt-2 mb-2 d-flex justify-content-center"
+        >
+          <ListGroup.Item className="w-100">
+            <Form.Group>
+              <label>Note: </label>
+              <Form.Control
+                onChange={this.handleChange}
+                type="text"
+                name="note"
+                defaultValue={this.state.note}
+              />
+            </Form.Group>
+          </ListGroup.Item>
+          <ListGroup.Item className="w-100">
+            <Form.Group>
+              <label>Distance: </label>
+              <Form.Control
+                required
+                onChange={this.handleChange}
+                type="number"
+                name="dist"
+                defaultValue={this.state.dist}
+              />
+            </Form.Group>
+          </ListGroup.Item>
+          <ListGroup.Item className="w-100">
+            <Form.Group>
+              <label>Time: </label>
+              <Form.Control
+                required
+                onChange={this.handleChange}
+                type="number"
+                name="time"
+                defaultValue={this.state.time}
+              />
+            </Form.Group>
+          </ListGroup.Item>
+          <ListGroup.Item className="w-25">
+            <Form.Group>
+              <label>Date: </label>
+              <DatePicker
+                selected={this.state.date}
+                onChange={this.handleDateChange}
+                name="date"
+                placeholder="date"
+              />
+            </Form.Group>
+          </ListGroup.Item>
+        </ListGroup>
+        <Button
+          variant="danger"
+          className="mr-2 mb-2"
+          onClick={this.handleCancel}
+        >
+          Cancel
+        </Button>
+        <Button variant="primary" className="ml-2 mb-2" type="submit">
+          Save
+        </Button>
+      </Form>
     );
   }
 }

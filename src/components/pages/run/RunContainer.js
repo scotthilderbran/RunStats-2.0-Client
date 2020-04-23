@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import BootstrapTable from "react-bootstrap-table-next";
 import ActionsFormatter from "./ActionsFormatter";
+import ImportTypeFormatter from "./ImportTypeFormatter";
 import RunAdd from "./RunAdd";
 import RunEdit from "./RunEdit";
 import { Button } from "react-bootstrap/";
@@ -9,6 +10,9 @@ import paginationFactory from "react-bootstrap-table2-paginator";
 import { ErrAlert } from "../../helpercomponents/ErrAlert";
 
 const actionsFormatter = (cell, row) => <ActionsFormatter id={row.id} />;
+const importTypeFormatter = (cell, row) => (
+  <ImportTypeFormatter strava={row.strava_run_id} />
+);
 
 const columns = [
   {
@@ -29,6 +33,13 @@ const columns = [
     dataField: "date",
     text: "Date",
     sort: true,
+  },
+  {
+    dataField: "strava_run_id",
+    text: "Source",
+    sort: true,
+    formatter: importTypeFormatter,
+    headerStyle: { width: "80px", textAlign: "center" },
   },
   {
     dataField: "actions",

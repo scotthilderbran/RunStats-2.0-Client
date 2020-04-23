@@ -26,6 +26,16 @@ class Benchmarks extends Component {
     let finalPercentileByAll = this.props.totals.finalPercentileByAll;
     let finalPercentileBySex = this.props.totals.finalPercentileBySex;
     let finalPercentileByAge = this.props.totals.finalPercentileByAge;
+    let finalPercentileByAgeAndSex = this.props.totals
+      .finalPercentileByAgeAndSex;
+    let finalPercentileByAllMarathon = this.props.totals
+      .finalPercentileByAllMarathon;
+    let finalPercentileBySexMarathon = this.props.totals
+      .finalPercentileBySexMarathon;
+    let finalPercentileByAgeMarathon = this.props.totals
+      .finalPercentileByAgeMarathon;
+    let finalPercentileByAgeAndSexMarathon = this.props.totals
+      .finalPercentileByAgeAndSexMarathon;
     return (
       <Container fluid>
         <Row className="justify-content-md-center">
@@ -83,6 +93,60 @@ class Benchmarks extends Component {
                     </b>{" "}
                     percentile of runners between {this.props.totals.ageLow} and{" "}
                     {this.props.totals.ageHigh} years old
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <b>
+                      {finalPercentileByAgeAndSex}
+                      {this.nth(finalPercentileByAgeAndSex)}
+                    </b>{" "}
+                    percentile of {sex} runners between{" "}
+                    {this.props.totals.ageLow} and {this.props.totals.ageHigh}{" "}
+                    years old
+                  </ListGroup.Item>
+                </ListGroup>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+        <Row className="justify-content-md-center">
+          <Col md="5">
+            <Card className="mt-3">
+              <Card.Body>
+                <Card.Title className="text-center">
+                  Boston Marathon 2015-2017 Comparison
+                </Card.Title>
+                <ListGroup variant="flush">
+                  <ListGroup.Item>
+                    <b>
+                      {finalPercentileByAllMarathon}
+                      {this.nth(finalPercentileByAllMarathon)}
+                    </b>{" "}
+                    percentile of all marathon runners
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <b>
+                      {finalPercentileBySexMarathon}
+                      {this.nth(finalPercentileBySexMarathon)}
+                    </b>{" "}
+                    percentile of {sex} marathon runners
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <b>
+                      {finalPercentileByAgeMarathon}
+                      {this.nth(finalPercentileByAgeMarathon)}
+                    </b>{" "}
+                    percentile of marathon runners between{" "}
+                    {this.props.totals.ageLow} and {this.props.totals.ageHigh}{" "}
+                    years old
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <b>
+                      {finalPercentileByAgeAndSexMarathon}
+                      {this.nth(finalPercentileByAgeAndSexMarathon)}
+                    </b>{" "}
+                    percentile of {sex} marathon runners between{" "}
+                    {this.props.totals.ageLow} and {this.props.totals.ageHigh}{" "}
+                    years old
                   </ListGroup.Item>
                 </ListGroup>
               </Card.Body>
