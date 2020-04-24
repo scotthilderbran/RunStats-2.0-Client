@@ -1,15 +1,22 @@
 import React, { Component } from "react";
 import { Navbar, Nav } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-/* Running page subnavigation bar, links to subroutes within /runs */
+/**
+ * Component renders running navigation bar and links to running subpages
+ */
 
 export default class Navigation extends Component {
   render() {
     return (
       <Navbar bg="dark" variant="dark">
         <Nav className="m-auto">
-          <Nav.Link href="/runs/">My Runs</Nav.Link>
-          <Nav.Link href="/runs/import">Import Runs</Nav.Link>
+          <Link to="/runs" className="nav-link">
+            My Runs
+          </Link>
+          <Link to="/runs/import" className="nav-link">
+            Import from Strava
+          </Link>
         </Nav>
       </Navbar>
     );

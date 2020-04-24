@@ -2,10 +2,6 @@ import React, { Component } from "react";
 
 //ActionFormatter binds react-bootstrap table column to icon buttons of edit and delete
 export default class ActionsFormatter extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return this.props.strava ? (
       <img src={require("./strava.png")} alt="strava" height="15%" />

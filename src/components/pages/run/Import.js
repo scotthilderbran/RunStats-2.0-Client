@@ -3,6 +3,10 @@ import { Container, Row, Col } from "react-bootstrap/";
 import { connect } from "react-redux";
 import { ErrAlert } from "../../helpercomponents/ErrAlert";
 
+/**
+ * Import component to render import page and link to Strava OAuth page
+ */
+
 class Import extends Component {
   render() {
     const redirectUri =

@@ -7,6 +7,10 @@ import {
 } from "../../redux/actions/authActions";
 import history from "../../helpers/history";
 
+/**
+ * Strava response component handles strava callback url
+ */
+
 class StravaResponse extends Component {
   componentDidMount() {
     const values = queryString.parse(this.props.location.search);

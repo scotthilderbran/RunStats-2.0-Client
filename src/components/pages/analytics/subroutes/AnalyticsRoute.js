@@ -6,11 +6,15 @@ import AnalyticsNav from "./AnalyticsNav";
 import PrivateRoute from "../../../helpercomponents/PrivateRoute";
 import { Container, Row, Col } from "react-bootstrap/";
 import { connect } from "react-redux";
+import { authCheck } from "../../../../redux/actions/authActions";
 
-/* Subroute component that contains all subroutes of /analytics, all routes utilize private route */
+/**
+ * AnalyticsRoute renders analytics navbar and establishes routes to analytics subpages
+ */
 
 class AnalyticsRoute extends Component {
   render() {
+    this.props.authCheck();
     return this.props.run.length !== 0 ? (
       <div>
         <AnalyticsNav />
@@ -40,4 +44,12 @@ const mapStateToProps = (state) => ({
   run: state.run.runs,
 });
 
-export default connect(mapStateToProps)(AnalyticsRoute);
+const mapActionsToProps = (dispatch) => {
+  return {
+    authCheck: () => {
+      dispatch(authCheck());
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapActionsToProps)(AnalyticsRoute);

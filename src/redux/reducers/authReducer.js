@@ -2,6 +2,7 @@ import {
   USER_LOADING,
   USER_LOADED,
   AUTH_ERROR,
+  AUTH_SUCCESS,
   LOGIN_SUCCESS,
   LOGOUT_SUCCESS,
   REGISTER_SUCCESS,
@@ -37,7 +38,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         user: action.payload,
-        isAuthenticated: true,
+        //isAuthenticated: true,
         isLoaded: true,
       };
     case LOGIN_SUCCESS:
@@ -51,6 +52,11 @@ export default function (state = initialState, action) {
           isError: null,
           msg: null,
         },
+      };
+    case AUTH_SUCCESS:
+      return {
+        ...state,
+        isAuthenticated: true,
       };
     case AUTH_ERROR:
       return {

@@ -2,7 +2,10 @@ import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
-/* Public route component used to restrict certain routes to logged out users */
+/**
+ * Public route component used to restrict certain routes to logged out users
+ *
+ */
 
 const PublicRoute = ({ component: Component, auth, ...rest }) => (
   <Route

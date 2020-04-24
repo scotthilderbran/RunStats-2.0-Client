@@ -10,10 +10,9 @@ import RunRoute from "./components/pages/run/subroutes/RunRoute";
 import Profile from "./components/pages/profile/Profile";
 import Home from "./components/pages/home/Home";
 import Login from "./components/pages/login/Login";
-import { loadRuns } from "./redux/actions/runActions";
 import PrivateRoute from "./components/helpercomponents/PrivateRoute";
 import StravaResponse from "./components/helpercomponents/StravaResponse";
-import { authCheck } from "./redux/actions/authActions";
+import { intialAuthCheck } from "./redux/actions/authActions";
 import "./App.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
@@ -24,8 +23,7 @@ import store from "./redux/store";
 
 class App extends Component {
   render() {
-    store.dispatch(authCheck());
-    store.dispatch(loadRuns());
+    store.dispatch(intialAuthCheck());
     return (
       <Router history={history}>
         <div className="App">

@@ -20,13 +20,13 @@ const columns = [
     text: "Notes",
   },
   {
-    dataField: "time",
-    text: "Time",
+    dataField: "distance",
+    text: "Distance",
     sort: true,
   },
   {
-    dataField: "distance",
-    text: "Distance",
+    dataField: "time",
+    text: "Time",
     sort: true,
   },
   {
@@ -54,12 +54,7 @@ class RunContainer extends Component {
   constructor(props) {
     super(props);
     this.state = { isAdding: false };
-    this.toggleEdit = this.toggleEdit.bind(this);
     this.toggleAdd = this.toggleAdd.bind(this);
-  }
-
-  toggleEdit() {
-    this.setState({ isEditing: !this.state.isEditing });
   }
 
   toggleAdd() {
@@ -69,7 +64,7 @@ class RunContainer extends Component {
   render() {
     return this.props.isEdit ? (
       <div>
-        <RunEdit toggle={this.toggleEdit} id={12} />
+        <RunEdit />
         <BootstrapTable
           keyField="id"
           data={this.props.run}

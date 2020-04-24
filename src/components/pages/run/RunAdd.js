@@ -5,6 +5,10 @@ import { ListGroup, Button, Form } from "react-bootstrap/";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
+/**
+ * RunAdd component renders add run field and dispatchs add run on submission
+ */
+
 class RunAdd extends Component {
   constructor(props) {
     super(props);

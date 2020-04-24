@@ -4,6 +4,10 @@ import { Container, Row, Col, Spinner } from "react-bootstrap/";
 import Benchmarks from "./benchmark/Benchmarks";
 import { getBenchmarks } from "../../../redux/actions/analyticsActions";
 
+/**
+ * Benchmark component benchmark page
+ */
+
 class Benchmark extends Component {
   render() {
     this.props.getBenchmarks();

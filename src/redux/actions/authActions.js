@@ -2,6 +2,7 @@ import {
   USER_LOADING,
   USER_LOADED,
   AUTH_ERROR,
+  AUTH_SUCCESS,
   LOGIN_SUCCESS,
   LOGOUT_SUCCESS,
   REGISTER_SUCCESS,
@@ -12,8 +13,34 @@ import axios from "axios";
 import history from "../../helpers/history";
 import { loadRuns } from "./runActions";
 
+export const intialAuthCheck = () => {
+  return (dispatch) => {
+    console.log("intial auth check");
+    const token = localStorage.getItem("token");
+    if (token) {
+      const config = {
+        headers: { Authorization: `${token}` },
+      };
+      axios
+        .get(process.env.REACT_APP_SERVER_URL + "/user/authCheck", config)
+        .then((res) => {
+          localStorage.setItem("token", res.data.token);
+          dispatch({ type: AUTH_SUCCESS });
+          dispatch(loadUser());
+          dispatch(loadRuns());
+        })
+        .catch((err) => {
+          dispatch(authError("Session timed out"));
+          localStorage.removeItem("token"); //dispatch user not logged in
+          history.push("/login");
+        });
+    }
+  };
+};
+
 export const authCheck = () => {
   return (dispatch) => {
+    console.log("auth check");
     const token = localStorage.getItem("token");
     if (token) {
       const config = {
@@ -27,7 +54,7 @@ export const authCheck = () => {
         .catch((err) => {
           dispatch(authError("Session timed out"));
           localStorage.removeItem("token"); //dispatch user not logged in
-          history.push("/");
+          history.push("/login");
         });
     }
   };
@@ -66,8 +93,6 @@ export const login = ({ email, password }) => {
       .then((res) => {
         localStorage.setItem("token", res.data.token);
         dispatch(loginSuccess(res.data.user)); //dispatch user logged in
-        console.log("res.data.user");
-        console.log(res);
         dispatch(loadRuns());
         history.push("/runs");
       })
@@ -93,7 +118,6 @@ export const register = ({ email, password, fName, lName, sex, age }) => {
       })
       .then((res) => {
         localStorage.setItem("token", res.data.token);
-        console.log(res.data);
         dispatch({
           type: REGISTER_SUCCESS,
           payload: res.data.user,
@@ -137,6 +161,7 @@ export const updateUser = ({ email, fName, lName, sex, age }) => {
       )
       .then((res) => {
         console.log(res);
+        dispatch(loadUser());
       })
       .catch((err) => {
         console.log("update error caught");
@@ -153,13 +178,14 @@ export const stravaTokenExchange = (code) => {
     };
     axios
       .post(
-        process.env.REACT_APP_SERVER_URL + "/strava/stravaTokenExchange",
+        process.env.REACT_APP_SERVER_URL + "/strava/stravaImport",
         {
           code: code,
         },
         config
       )
       .then((res) => {
+        dispatch(loadRuns());
         history.push("/runs/");
       })
       .catch((err) => {});

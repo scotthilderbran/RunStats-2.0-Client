@@ -3,9 +3,11 @@ import { Container, Row, Col, Button, Spinner } from "react-bootstrap/";
 import { connect } from "react-redux";
 import DefaultProfile from "./DefaultProfile";
 import EditProfile from "./EditProfile";
-import { userEdit } from "../../../redux/actions/authActions";
+import { userEdit, authCheck } from "../../../redux/actions/authActions";
 
-/* Profile container component, if state isEditing = false then render default component, if isEditing = true then render editing component*/
+/**
+ * Profile container component, if state isEditing = false then render default component, if isEditing = true then render editing component
+ */
 
 class Profile extends Component {
   constructor(props) {
@@ -20,6 +22,7 @@ class Profile extends Component {
     this.setState({ isEditing: !this.state.isEditing });
   }
   render() {
+    this.props.authCheck();
     return this.props.isLoaded ? (
       !this.state.isEditing ? (
         <Container fluid>
@@ -59,6 +62,9 @@ const mapActionsToProps = (dispatch) => {
   return {
     edit: () => {
       dispatch(userEdit());
+    },
+    authCheck: () => {
+      dispatch(authCheck());
     },
   };
 };

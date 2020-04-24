@@ -12,6 +12,10 @@ import { register } from "../../../redux/actions/authActions";
 import { connect } from "react-redux";
 import { ErrAlert } from "../../helpercomponents/ErrAlert";
 
+/**
+ * Registration component renders registration field and dispatches register action on submission
+ */
+
 class Register extends Component {
   constructor(props) {
     super(props);

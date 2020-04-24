@@ -6,6 +6,10 @@ import AllAverage from "./average/AllAverage";
 import { connect } from "react-redux";
 import { Container, Row, Col, Spinner } from "react-bootstrap/";
 
+/**
+ * Average component renders averages pages based on range selection state
+ */
+
 class Average extends Component {
   constructor(props) {
     super(props);

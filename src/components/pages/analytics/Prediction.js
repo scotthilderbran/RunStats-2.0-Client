@@ -6,7 +6,11 @@ import AllPrediction from "./prediction/AllPrediction";
 import { connect } from "react-redux";
 import { Container, Row, Col, Spinner } from "react-bootstrap/";
 
-class Average extends Component {
+/**
+ * Prediction component renders averages pages based on range selection state
+ */
+
+class Prediction extends Component {
   constructor(props) {
     super(props);
     this.state = { choice: 1 };
@@ -44,4 +48,4 @@ const mapStateToProps = (state) => ({
   loaded: state.run.isLoaded,
 });
 
-export default connect(mapStateToProps)(Average);
+export default connect(mapStateToProps)(Prediction);

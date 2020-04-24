@@ -162,7 +162,6 @@ const mapStateToProps = (state) => ({
   sex: state.auth.user.sex,
   totals: state.analytics.totals,
   loaded: state.analytics.isLoaded,
-  sex: state.auth.user.sex,
 });
 
 export default connect(mapStateToProps, null)(Benchmarks);

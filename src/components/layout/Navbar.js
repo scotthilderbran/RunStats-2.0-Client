@@ -2,6 +2,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Button, Navbar, Nav } from "react-bootstrap";
 import { logout } from "../../redux/actions/authActions";
+import { Link } from "react-router-dom";
+
+/**
+ * Navbar Component renders default navbar based on auth state
+ */
 
 class Navigation extends Component {
   constructor(props) {
@@ -10,10 +15,9 @@ class Navigation extends Component {
   }
   handleLogout = (event) => {
     event.preventDefault();
-    this.props.logoutme();
+    this.props.logout();
   };
   render() {
-    console.log(this.props.isAuth);
     return (
       <Navbar bg="dark" variant="dark">
         <Navbar.Brand href="/">
@@ -28,9 +32,15 @@ class Navigation extends Component {
         </Navbar.Brand>
         {this.props.isAuth ? (
           <Nav className="ml-auto">
-            <Nav.Link href="/runs">Runs</Nav.Link>
-            <Nav.Link href="/analytics">Analytics</Nav.Link>
-            <Nav.Link href="/profile">Profile</Nav.Link>
+            <Link to="/runs" className="nav-link">
+              Runs
+            </Link>
+            <Link to="/analytics" className="nav-link">
+              Analytics
+            </Link>
+            <Link to="/profile" className="nav-link">
+              Profile
+            </Link>
             <Button variant="light" onClick={this.handleLogout}>
               Logout
             </Button>
@@ -56,7 +66,7 @@ const mapStateToProps = (state) => {
 
 const mapActionsToProps = (dispatch) => {
   return {
-    logoutme: () => {
+    logout: () => {
       dispatch(logout());
     },
   };

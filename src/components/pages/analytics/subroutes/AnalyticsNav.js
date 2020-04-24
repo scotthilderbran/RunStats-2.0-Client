@@ -1,16 +1,25 @@
 import React, { Component } from "react";
 import { Navbar, Nav } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-/* Nav component for analytics page, includes links to all other analytics subroutes/pages */
+/**
+ * AnalyticsNav component renders navigation for analytics pages
+ */
 
-export default class Navigation extends Component {
+export default class AnalyticsNav extends Component {
   render() {
     return (
       <Navbar bg="dark" variant="dark">
         <Nav className="m-auto">
-          <Nav.Link href="/analytics/">Averages</Nav.Link>
-          <Nav.Link href="/analytics/predictions">Time Predictions</Nav.Link>
-          <Nav.Link href="/analytics/benchmarks">Benchmarks</Nav.Link>
+          <Link to="/analytics" className="nav-link">
+            Averages
+          </Link>
+          <Link to="/analytics/predictions" className="nav-link">
+            Time Predictions
+          </Link>
+          <Link to="/analytics/benchmarks" className="nav-link">
+            Benchmarks
+          </Link>
         </Nav>
       </Navbar>
     );

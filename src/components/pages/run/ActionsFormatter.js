@@ -4,7 +4,10 @@ import { Button } from "react-bootstrap/";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import { deleteRun, editRun } from "../../../redux/actions/runActions";
 
-//ActionFormatter binds react-bootstrap table column to icon buttons of edit and delete
+/**
+ * ActionFormatter binds react-bootstrap table column to icon buttons of edit and delete
+ */
+
 class ActionsFormatter extends Component {
   constructor(props) {
     super(props);
@@ -18,7 +21,7 @@ class ActionsFormatter extends Component {
   }
   handleEdit = (event) => {
     this.props.edit(true, this.props.id);
-    window.scrollTo(0, 0);
+    window.scrollTo(0, document.body.scrollHeight);
   };
 
   render() {
