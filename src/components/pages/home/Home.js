@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import { Container, Row, Col } from "react-bootstrap/";
 import Register from "../register/Register";
 
+/**
+ * Home component renders default home page along with registration component
+ */
+
 export default class Home extends Component {
   render() {
     return (

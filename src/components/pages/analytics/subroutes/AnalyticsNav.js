@@ -18,7 +18,7 @@ export default class AnalyticsNav extends Component {
             Time Predictions
           </Link>
           <Link to="/analytics/benchmarks" className="nav-link">
-            Benchmarks
+            Benchmarks and Totals
           </Link>
         </Nav>
       </Navbar>

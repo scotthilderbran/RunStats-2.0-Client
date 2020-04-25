@@ -24,8 +24,6 @@ export const getGraphData = (runs, scale, interval, format) => {
   let overallDist = 0;
   let runAverages = [];
   let monthdiff;
-  console.log("scale");
-  console.log(scale);
   let scaleArr;
   if (scale === 120) {
     let sortedDate = runs.sort(function (a, b) {

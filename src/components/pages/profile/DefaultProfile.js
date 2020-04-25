@@ -3,6 +3,10 @@ import { connect } from "react-redux";
 import { Card, ListGroup } from "react-bootstrap/";
 import { loadUser } from "../../../redux/actions/authActions";
 
+/**
+ * Component to render default profile view (not Editing)
+ */
+
 class DefaultProfile extends Component {
   constructor(props) {
     super(props);

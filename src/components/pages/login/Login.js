@@ -4,6 +4,10 @@ import { login } from "../../../redux/actions/authActions";
 import { Container, Row, Col, Form, Button } from "react-bootstrap/";
 import { ErrAlert } from "../../helpercomponents/ErrAlert";
 
+/**
+ * Login component renders login page
+ */
+
 class Login extends Component {
   constructor(props) {
     super(props);

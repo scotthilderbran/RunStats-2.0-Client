@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import { Container, Row, Col, Spinner } from "react-bootstrap/";
 
 /**
- * Prediction component renders averages pages based on range selection state
+ * Prediction component renders prediction pages based on range selection state
  */
 
 class Prediction extends Component {

@@ -48,7 +48,6 @@ export const deleteRun = (id) => {
         config
       )
       .then((res) => {
-        console.log(res.data);
         dispatch(loadRuns());
       })
       .catch((err) => {
@@ -103,7 +102,6 @@ export const addRun = ({ note, distance, time, date }) => {
         config
       )
       .then((res) => {
-        console.log(res.data);
         dispatch(loadRuns());
       })
       .catch((err) => {

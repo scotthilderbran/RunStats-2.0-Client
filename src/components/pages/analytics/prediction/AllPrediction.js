@@ -10,7 +10,11 @@ import {
   Dropdown,
 } from "react-bootstrap/";
 
-class AllAverage extends Component {
+/**
+ * AllPrediction component renders predictions page
+ */
+
+class AllPrediction extends Component {
   constructor(props) {
     super(props);
     this.state = { distance: null };
@@ -153,4 +157,4 @@ const mapStateToProps = (state) => ({
   runs: state.run.runs,
 });
 
-export default connect(mapStateToProps)(AllAverage);
+export default connect(mapStateToProps)(AllPrediction);

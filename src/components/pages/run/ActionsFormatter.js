@@ -2,7 +2,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Button } from "react-bootstrap/";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
-import { deleteRun, editRun } from "../../../redux/actions/runActions";
+import {
+  deleteRun,
+  editRun,
+  editRunComplete,
+} from "../../../redux/actions/runActions";
 
 /**
  * ActionFormatter binds react-bootstrap table column to icon buttons of edit and delete
@@ -18,6 +22,7 @@ class ActionsFormatter extends Component {
   handleDelete(event) {
     event.preventDefault();
     this.props.delete(this.props.id);
+    this.props.editRunComplete();
   }
   handleEdit = (event) => {
     this.props.edit(true, this.props.id);
@@ -45,6 +50,9 @@ const mapActionsToProps = (dispatch) => {
     },
     edit: (isEdit, currID) => {
       dispatch(editRun({ isEdit, currID }));
+    },
+    editRunComplete: () => {
+      dispatch(editRunComplete());
     },
   };
 };

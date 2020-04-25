@@ -4,7 +4,9 @@ import { Card, Button, Form, ListGroup } from "react-bootstrap/";
 import { updateUser } from "../../../redux/actions/authActions";
 import { ErrAlert } from "../../helpercomponents/ErrAlert";
 
-/* Edit profile component, allows users to enter and dispatches updateUser action on submit */
+/**
+ * Edit profile component, allows users to enter and dispatches updateUser action on submit
+ */
 
 class EditProfile extends Component {
   constructor(props) {
@@ -21,11 +23,7 @@ class EditProfile extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleSexChange(event) {
-    console.log("Sex state ");
-    console.log(this.state.sex);
-    this.setState({ sex: !this.state.sex }, () => {
-      console.log(this.state.sex);
-    });
+    this.setState({ sex: !this.state.sex });
   }
 
   handleChange(event) {

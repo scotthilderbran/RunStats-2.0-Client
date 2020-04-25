@@ -18,7 +18,6 @@ class Profile extends Component {
 
   toggleEdit() {
     //Toggle editing state, function is passed down to EditProfile component to toggle state in Profile component
-    console.log("toggle edit:");
     this.setState({ isEditing: !this.state.isEditing });
   }
   render() {

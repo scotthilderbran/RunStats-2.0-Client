@@ -10,7 +10,11 @@ import {
   Dropdown,
 } from "react-bootstrap/";
 
-class MonthAverage extends Component {
+/**
+ * WeekPrediction component renders prediction page for week timespan
+ */
+
+class WeekPrediction extends Component {
   constructor(props) {
     super(props);
     this.state = { distance: null };
@@ -117,4 +121,4 @@ const mapStateToProps = (state) => ({
   runs: state.run.runs,
 });
 
-export default connect(mapStateToProps)(MonthAverage);
+export default connect(mapStateToProps)(WeekPrediction);

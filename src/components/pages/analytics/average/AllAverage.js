@@ -13,7 +13,6 @@ import {
 
 class AllAverage extends Component {
   render() {
-    console.log("in all avg");
     const allAVG = getGraphData(this.props.runs, 120, "months", "YYYY-MM");
     const { toggle } = this.props;
     let avgText;

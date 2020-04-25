@@ -23,13 +23,11 @@ class RunAdd extends Component {
     this.setState({
       [name]: event.target.value,
     });
-    console.log(this.state);
   }
   handleDateChange = (date) => {
     this.setState({
       date: date,
     });
-    console.log(this.state);
   };
   handleSubmit = (event) => {
     this.props.addRun(
@@ -105,7 +103,6 @@ class RunAdd extends Component {
 const mapActionsToProps = (dispatch) => {
   return {
     addRun: (note, distance, time, date) => {
-      console.log("Arone");
       dispatch(addRun({ note, distance, time, date }));
     },
   };

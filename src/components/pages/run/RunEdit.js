@@ -31,13 +31,11 @@ class RunEdit extends Component {
     this.setState({
       [name]: event.target.value,
     });
-    console.log(this.state);
   }
   handleDateChange = (date) => {
     this.setState({
       date: date,
     });
-    console.log(this.state);
   };
   handleSubmit = (event) => {
     this.props.editRun(

@@ -24,6 +24,7 @@ class AnalyticsRoute extends Component {
           component={Benchmark}
         />
         <PrivateRoute
+          exact
           path={`${this.props.match.path}/predictions`}
           component={Prediction}
         />

@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import { Container, Row, Col, Card, ListGroup } from "react-bootstrap/";
 import { connect } from "react-redux";
 
+/**
+ * Benchmarks component renders benchmarks page
+ */
+
 class Benchmarks extends Component {
   constructor(props) {
     super(props);
@@ -113,7 +117,7 @@ class Benchmarks extends Component {
             <Card className="mt-3">
               <Card.Body>
                 <Card.Title className="text-center">
-                  Boston Marathon 2015-2017 Comparison
+                  Boston Marathon 2015-2017 Pace Comparison
                 </Card.Title>
                 <ListGroup variant="flush">
                   <ListGroup.Item>

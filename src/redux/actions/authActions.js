@@ -15,7 +15,6 @@ import { loadRuns } from "./runActions";
 
 export const intialAuthCheck = () => {
   return (dispatch) => {
-    console.log("intial auth check");
     const token = localStorage.getItem("token");
     if (token) {
       const config = {
@@ -40,7 +39,6 @@ export const intialAuthCheck = () => {
 
 export const authCheck = () => {
   return (dispatch) => {
-    console.log("auth check");
     const token = localStorage.getItem("token");
     if (token) {
       const config = {
@@ -61,7 +59,6 @@ export const authCheck = () => {
 };
 
 export const loadUser = () => {
-  console.log("USER_LOADING");
   return (dispatch) => {
     dispatch(userLoading());
     const token = localStorage.getItem("token");
@@ -97,7 +94,7 @@ export const login = ({ email, password }) => {
         history.push("/runs");
       })
       .catch((err) => {
-        console.log("Login ERRR");
+        console.log(err);
         dispatch({ type: AUTH_ERROR, payload: err.response.data.message }); //dispatch user not logged in
       });
   };
@@ -105,8 +102,6 @@ export const login = ({ email, password }) => {
 
 export const register = ({ email, password, fName, lName, sex, age }) => {
   return (dispatch) => {
-    console.log("now here");
-    console.log(email, password, fName, lName, sex, age);
     axios
       .post(process.env.REACT_APP_SERVER_URL + "/user/register", {
         email: email,
@@ -124,7 +119,6 @@ export const register = ({ email, password, fName, lName, sex, age }) => {
         }); //dispatch user logged in
       })
       .catch((err) => {
-        console.log("register err response:");
         console.log(err);
         dispatch({ type: AUTH_ERROR, payload: err.response.data.message }); //dispatch user not logged in
       });
@@ -160,11 +154,10 @@ export const updateUser = ({ email, fName, lName, sex, age }) => {
         config
       )
       .then((res) => {
-        console.log(res);
         dispatch(loadUser());
       })
       .catch((err) => {
-        console.log("update error caught");
+        console.log(err);
         dispatch({ type: AUTH_ERROR, payload: err.response.data.message });
       });
   };
@@ -185,7 +178,6 @@ export const stravaTokenExchange = (code) => {
         config
       )
       .then((res) => {
-        dispatch(loadRuns());
         history.push("/runs/");
       })
       .catch((err) => {});

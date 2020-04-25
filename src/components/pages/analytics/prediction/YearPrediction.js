@@ -9,11 +9,12 @@ import {
   DropdownButton,
   Dropdown,
 } from "react-bootstrap/";
+
 /**
- * YearAverage component renders averages page for month averages
+ * YearAverage component renders prediction page for year timespan
  */
 
-class YearAverage extends Component {
+class YearPrediction extends Component {
   constructor(props) {
     super(props);
     this.state = { distance: null };
@@ -156,4 +157,4 @@ const mapStateToProps = (state) => ({
   runs: state.run.runs,
 });
 
-export default connect(mapStateToProps)(YearAverage);
+export default connect(mapStateToProps)(YearPrediction);

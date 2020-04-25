@@ -28,7 +28,7 @@ class Import extends Component {
             <h1 className="mt-3 mb-3">Import Runs</h1>
             <p>
               This action will import all runs from strava that are not
-              currently imported
+              currently imported, please refresh after import.
             </p>
             <a href={authUri}>
               <img
