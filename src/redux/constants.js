@@ -11,6 +11,8 @@ export const LOAD_RUNS_ERROR = "DELETE_RUN_ERROR";
 export const EDIT_RUN = "EDIT_RUN";
 export const EDIT_RUN_COMPLETE = "EDIT_RUN_COMPLETE";
 export const RUN_ERROR = "RUN_ERROR";
+export const IMPORT_SUCCESS = "IMPORT_SUCCESS";
+export const IMPORT_ALERT_COMPLETE = "IMPORT_ALERT_COMPLETE";
 
 //Auth and user constants
 export const USER_LOADING = "USER_LOADING";

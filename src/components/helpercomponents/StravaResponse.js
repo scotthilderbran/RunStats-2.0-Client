@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import queryString from "query-string";
-import {
-  authError,
-  stravaTokenExchange,
-} from "../../redux/actions/authActions";
+import { authError } from "../../redux/actions/authActions";
+import { stravaImport } from "../../redux/actions/runActions";
 import history from "../../helpers/history";
 
 /**
@@ -19,7 +17,7 @@ class StravaResponse extends Component {
       this.props.err("Strava Access Denied"); //Dispatch auth error with message.
       history.push("/runs/import");
     } else {
-      this.props.exchange(values.code); //Exchange strava access code
+      this.props.import(values.code); //Exchange strava access code
       history.push("/runs/import");
     }
   }
@@ -33,8 +31,8 @@ const mapActionsToProps = (dispatch) => {
     err: (msg) => {
       dispatch(authError(msg));
     },
-    exchange: (responseCode) => {
-      dispatch(stravaTokenExchange(responseCode));
+    import: (responseCode) => {
+      dispatch(stravaImport(responseCode));
     },
   };
 };

@@ -5,6 +5,8 @@ import {
   EDIT_RUN,
   EDIT_RUN_COMPLETE,
   RUN_ERROR,
+  IMPORT_SUCCESS,
+  IMPORT_ALERT_COMPLETE,
 } from "../constants";
 
 /**
@@ -14,6 +16,7 @@ import {
 //Declares initial state
 const initialState = {
   isLoaded: false,
+  isImported: null,
   runs: [],
   edit: {
     isEdit: false,
@@ -63,6 +66,21 @@ export default function (state = initialState, action) {
           isError: true,
           msg: action.payload,
         },
+      };
+    case IMPORT_SUCCESS: //Run error
+      return {
+        ...state,
+        isImported: true,
+      };
+    case IMPORT_SUCCESS:
+      return {
+        ...state,
+        isImported: true,
+      };
+    case IMPORT_ALERT_COMPLETE:
+      return {
+        ...state,
+        isImported: false,
       };
     default:
       return state;

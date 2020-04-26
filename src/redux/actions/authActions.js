@@ -174,28 +174,6 @@ export const updateUser = ({ email, fName, lName, sex, age }) => {
   };
 };
 
-//Strava token exchange and import
-export const stravaTokenExchange = (code) => {
-  return (dispatch) => {
-    const token = localStorage.getItem("token");
-    const config = {
-      headers: { Authorization: `${token}` },
-    };
-    axios
-      .post(
-        process.env.REACT_APP_SERVER_URL + "/strava/stravaImport",
-        {
-          code: code,
-        },
-        config
-      )
-      .then((res) => {
-        history.push("/runs/import"); //Return user to import page
-      })
-      .catch((err) => {});
-  };
-};
-
 //Loading function to indicate user loading in progress
 export function userLoading(data) {
   return {

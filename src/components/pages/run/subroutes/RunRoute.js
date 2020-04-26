@@ -5,7 +5,7 @@ import RunNav from "./RunNav";
 import PrivateRoute from "../../../helpercomponents/PrivateRoute";
 import { connect } from "react-redux";
 import { authCheck } from "../../../../redux/actions/authActions";
-
+import { loadRuns } from "../../../../redux/actions/runActions";
 /**
  * Run page subrouting, gets path of /runs from parent route and appends subroutes. Utilizes private route component
  */
@@ -34,6 +34,9 @@ const mapActionsToProps = (dispatch) => {
   return {
     authCheck: () => {
       dispatch(authCheck());
+    },
+    loadRuns: () => {
+      dispatch(loadRuns());
     },
   };
 };

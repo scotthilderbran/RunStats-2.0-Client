@@ -5,8 +5,11 @@ import {
   EDIT_RUN,
   EDIT_RUN_COMPLETE,
   RUN_ERROR,
+  IMPORT_SUCCESS,
+  IMPORT_ALERT_COMPLETE,
 } from "../constants";
 import axios from "axios";
+import history from "../../helpers/history";
 
 /**
  * All run related actions
@@ -116,6 +119,32 @@ export const addRun = ({ note, distance, time, date }) => {
         console.log(err); //Run add error
         dispatch({ type: RUN_ERROR, payload: err.response.data.message });
       });
+  };
+};
+
+//Strava token exchange and import
+export const stravaImport = (code) => {
+  return (dispatch) => {
+    const token = localStorage.getItem("token");
+    const config = {
+      headers: { Authorization: `${token}` },
+    };
+    axios
+      .post(
+        process.env.REACT_APP_SERVER_URL + "/strava/stravaImport",
+        {
+          code: code,
+        },
+        config
+      )
+      .then((res) => {
+        dispatch({ type: IMPORT_SUCCESS });
+        history.push("/runs/import"); //Return user to import page
+        setTimeout(function () {
+          dispatch({ type: IMPORT_ALERT_COMPLETE });
+        }, 3000);
+      })
+      .catch((err) => {});
   };
 };
 

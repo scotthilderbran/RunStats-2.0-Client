@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Container, Row, Col } from "react-bootstrap/";
 import { connect } from "react-redux";
 import { ErrAlert } from "../../helpercomponents/ErrAlert";
-
+import { ImportSuccess } from "../../helpercomponents/ImportSuccess";
 /**
  * Import component to render import page and link to Strava OAuth page
  */
@@ -38,6 +38,7 @@ class Import extends Component {
               />
             </a>
             <ErrAlert isErr={this.props.isErr} msg={this.props.errMsg} />
+            <ImportSuccess isImported={this.props.isImported} />
           </Col>
         </Row>
       </Container>
@@ -48,6 +49,7 @@ class Import extends Component {
 const mapStateToProps = (state) => ({
   isErr: state.auth.error.isError,
   errMsg: state.auth.error.msg,
+  isImported: state.run.isImported,
 });
 
 export default connect(mapStateToProps, null)(Import);
