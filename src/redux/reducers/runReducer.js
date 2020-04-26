@@ -40,6 +40,10 @@ export default function (state = initialState, action) {
         ...state,
         isLoaded: true,
         runs: action.payload,
+        error: {
+          isError: false,
+          msg: null,
+        },
       };
     case LOAD_RUNS_ERROR: //Loading runs error
       return {

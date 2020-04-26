@@ -66,7 +66,7 @@ class WeekPrediction extends Component {
               </Card.Title>
               <ListGroup variant="flush">
                 <ListGroup.Item>
-                  <b className="float-left">Distance to predict</b>
+                  <b className="float-left">Distance to predict (miles)</b>
                   <Form.Group>
                     <Form.Control
                       onChange={this.handleChange}

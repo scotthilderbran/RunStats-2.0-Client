@@ -64,6 +64,7 @@ class RunAdd extends Component {
                 onChange={this.handleChange}
                 type="number"
                 name="dist"
+                step="any"
                 defaultValue={this.state.dist}
               />
             </Form.Group>
@@ -76,6 +77,7 @@ class RunAdd extends Component {
                 onChange={this.handleChange}
                 type="number"
                 name="time"
+                step="any"
                 defaultValue={this.state.time}
               />
             </Form.Group>

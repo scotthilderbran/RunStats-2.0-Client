@@ -115,6 +115,7 @@ class EditProfile extends Component {
                   onChange={this.handleChange}
                   type="number"
                   name="age"
+                  step="1"
                   defaultValue={this.state.age}
                 />
               </Form.Group>

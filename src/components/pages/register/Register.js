@@ -131,6 +131,7 @@ class Register extends Component {
                         onChange={this.handleChange}
                         type="number"
                         name="age"
+                        step="any"
                       />
                     </Form.Group>
                   </ListGroup.Item>
