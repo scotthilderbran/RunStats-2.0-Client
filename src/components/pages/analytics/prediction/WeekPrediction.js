@@ -70,8 +70,9 @@ class WeekPrediction extends Component {
                   <Form.Group>
                     <Form.Control
                       onChange={this.handleChange}
-                      type="text"
+                      type="number"
                       name="distance"
+                      step="any"
                     />
                   </Form.Group>
                 </ListGroup.Item>

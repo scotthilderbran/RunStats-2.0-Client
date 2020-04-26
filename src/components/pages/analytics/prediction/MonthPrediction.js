@@ -71,7 +71,8 @@ class MonthPrediction extends Component {
                     <Form.Control
                       onChange={this.handleChange}
                       type="text"
-                      name="distance"
+                      name="number"
+                      step="any"
                     />
                   </Form.Group>
                 </ListGroup.Item>

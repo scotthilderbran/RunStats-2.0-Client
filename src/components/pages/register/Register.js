@@ -132,6 +132,8 @@ class Register extends Component {
                         type="number"
                         name="age"
                         step="any"
+                        max="120"
+                        min="1"
                       />
                     </Form.Group>
                   </ListGroup.Item>
