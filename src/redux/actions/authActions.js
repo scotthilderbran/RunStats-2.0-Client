@@ -81,6 +81,7 @@ export const loadUser = () => {
           type: USER_LOADED,
           payload: res.data,
         });
+        dispatch(loadRuns());
       })
       .catch((err) => {
         console.log(err);
@@ -129,6 +130,7 @@ export const register = ({ email, password, fName, lName, sex, age }) => {
           type: REGISTER_SUCCESS,
           payload: res.data.user,
         }); //dispatch user logged in
+        dispatch(loadRuns());
       })
       .catch((err) => {
         console.log(err);
