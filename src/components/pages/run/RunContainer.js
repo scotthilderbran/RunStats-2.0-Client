@@ -67,10 +67,9 @@ class RunContainer extends Component {
   }
 
   render() {
-    console.log(this.props.isEditID);
     return this.props.isEdit ? (
       <div>
-        <RunEdit runID={this.props.isEditID} />
+        <RunEdit />
         <BootstrapTable
           keyField="id"
           data={this.props.run}

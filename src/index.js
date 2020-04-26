@@ -5,8 +5,13 @@ import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import { intialAuthCheck } from "./redux/actions/authActions";
 
-/* Index wrapper component, provides all children components with redux store and loads user */
+/**
+ * Index wrapper component, provides all children components with redux store and loads user
+ */
+
+store.dispatch(intialAuthCheck()); //Dispatch initial auth check on first load
 
 ReactDOM.render(
   <Provider store={store}>

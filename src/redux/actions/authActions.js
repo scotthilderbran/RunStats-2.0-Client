@@ -19,6 +19,7 @@ import { loadRuns } from "./runActions";
 //Initial auth check, dispatched when user intially opens RunStats
 export const intialAuthCheck = () => {
   return (dispatch) => {
+    console.log("initial auth");
     const token = localStorage.getItem("token");
     if (token) {
       const config = {
@@ -44,6 +45,7 @@ export const intialAuthCheck = () => {
 //Reoccuring authcheck performed at every route change
 export const authCheck = () => {
   return (dispatch) => {
+    console.log("authcheck");
     const token = localStorage.getItem("token");
     if (token) {
       const config = {
@@ -142,16 +144,7 @@ export const updateUser = ({ email, fName, lName, sex, age }) => {
     const config = {
       headers: { Authorization: `${token}` },
     };
-    dispatch({
-      type: USER_UPDATED,
-      payload: {
-        email: email,
-        userFName: fName,
-        userLName: lName,
-        sex: sex,
-        age: age,
-      },
-    });
+
     axios
       .post(
         process.env.REACT_APP_SERVER_URL + "/user/update",
@@ -165,6 +158,16 @@ export const updateUser = ({ email, fName, lName, sex, age }) => {
         config
       )
       .then((res) => {
+        dispatch({
+          type: USER_UPDATED,
+          payload: {
+            email: email,
+            userFName: fName,
+            userLName: lName,
+            sex: sex,
+            age: age,
+          },
+        });
         dispatch(loadUser()); //Load user following update
       })
       .catch((err) => {

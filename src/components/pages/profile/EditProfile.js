@@ -116,6 +116,8 @@ class EditProfile extends Component {
                   type="number"
                   name="age"
                   step="1"
+                  min="1"
+                  max="120"
                   defaultValue={this.state.age}
                 />
               </Form.Group>
@@ -127,7 +129,6 @@ class EditProfile extends Component {
             </ListGroup.Item>
           </ListGroup>
         </Form>
-        <ErrAlert isErr={this.props.isErr} msg={this.props.errMsg} />
       </Card>
     );
   }

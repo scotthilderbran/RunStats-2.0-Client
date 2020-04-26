@@ -43,6 +43,10 @@ export default function (state = initialState, action) {
         user: action.payload,
         isAuthenticated: true,
         isLoaded: true,
+        error: {
+          isError: null,
+          msg: null,
+        },
       };
     case LOGIN_SUCCESS:
     case REGISTER_SUCCESS: //Either successful login or registration, updates user info

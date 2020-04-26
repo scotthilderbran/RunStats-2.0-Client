@@ -23,16 +23,12 @@ import Home from "./components/pages/home/Home";
 import Login from "./components/pages/login/Login";
 import StravaResponse from "./components/helpercomponents/StravaResponse";
 
-//Actions
-import { intialAuthCheck } from "./redux/actions/authActions";
-
 /**
  * Root app component
  */
 
 class App extends Component {
   render() {
-    store.dispatch(intialAuthCheck()); //Dispatch initial auth check on first load
     return (
       <Router history={history}>
         <div className="App">

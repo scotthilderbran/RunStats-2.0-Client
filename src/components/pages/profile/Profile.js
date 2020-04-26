@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import DefaultProfile from "./DefaultProfile";
 import EditProfile from "./EditProfile";
 import { authCheck } from "../../../redux/actions/authActions";
+import { ErrAlert } from "../../helpercomponents/ErrAlert";
 
 /**
  * Profile container component, if state isEditing = false then render default component, if isEditing = true then render editing component
@@ -32,6 +33,11 @@ class Profile extends Component {
               <Button onClick={this.toggleEdit} className="mt-3">
                 Edit Profile
               </Button>
+              <ErrAlert
+                className="mt-2"
+                isErr={this.props.isErr}
+                msg={this.props.errMsg}
+              />
             </Col>
           </Row>
         </Container>
@@ -69,6 +75,8 @@ const mapStateToProps = (state) => ({
   name: state.auth.user.userFName,
   isLoaded: state.auth.isLoaded,
   user: state.auth.user,
+  isErr: state.auth.error.isError,
+  errMsg: state.auth.error.msg,
 });
 
 export default connect(mapStateToProps, mapActionsToProps)(Profile);

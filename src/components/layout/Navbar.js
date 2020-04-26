@@ -30,7 +30,7 @@ class Navigation extends Component {
           />
           RunStats
         </Navbar.Brand>
-        {this.props.isAuth ? ( //If user is authenticated then render navbar with logout button otherwise render default navbar
+        {localStorage.getItem("token") ? ( //If user is authenticated then render navbar with logout button otherwise render default navbar
           <Nav className="ml-auto">
             <Link to="/runs" className="nav-link">
               Runs
