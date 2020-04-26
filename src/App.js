@@ -2,28 +2,37 @@ import React, { Component } from "react";
 import { Router, Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
 
-import Navigation from "./components/layout/Navbar";
-import history from "./helpers/history";
+//CSS
+import "./App.css";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 
+//Helpers
+import PrivateRoute from "./components/helpercomponents/PrivateRoute";
+import PublicRoute from "./components/helpercomponents/PublicRoute";
+
+import history from "./helpers/history";
+import store from "./redux/store";
+
+//Pages, Subroutes, and layout
+import Navigation from "./components/layout/Navbar";
 import AnalyticsRoute from "./components/pages/analytics/subroutes/AnalyticsRoute";
 import RunRoute from "./components/pages/run/subroutes/RunRoute";
 import Profile from "./components/pages/profile/Profile";
 import Home from "./components/pages/home/Home";
 import Login from "./components/pages/login/Login";
-import PrivateRoute from "./components/helpercomponents/PrivateRoute";
 import StravaResponse from "./components/helpercomponents/StravaResponse";
-import { intialAuthCheck } from "./redux/actions/authActions";
-import "./App.css";
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
-import PublicRoute from "./components/helpercomponents/PublicRoute";
-import store from "./redux/store";
 
-/* Application component that provides root routing and loads navigation bar */
+//Actions
+import { intialAuthCheck } from "./redux/actions/authActions";
+
+/**
+ * Root app component
+ */
 
 class App extends Component {
   render() {
-    store.dispatch(intialAuthCheck());
+    store.dispatch(intialAuthCheck()); //Dispatch initial auth check on first load
     return (
       <Router history={history}>
         <div className="App">
@@ -44,7 +53,7 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    auth: state.auth.isAuthenticated,
+    auth: state.auth.isAuthenticated, //Not currently used to manage auth, will likely be updated in future
   };
 }
 

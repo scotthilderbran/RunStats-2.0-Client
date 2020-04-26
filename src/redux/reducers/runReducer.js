@@ -7,8 +7,11 @@ import {
   RUN_ERROR,
 } from "../constants";
 
-/* Run reducer dictates starting run state and handles any redux actions */
+/**
+ * Run reducer dictates starting run state and handles any redux actions
+ */
 
+//Declares initial state
 const initialState = {
   isLoaded: false,
   runs: [],
@@ -24,28 +27,28 @@ const initialState = {
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case LOAD_RUNS:
+    case LOAD_RUNS: //Loading runs in progress
       return {
         ...state,
         isLoaded: false,
       };
-    case LOAD_RUNS_SUCCESS:
+    case LOAD_RUNS_SUCCESS: //Loading runs complete
       return {
         ...state,
         isLoaded: true,
         runs: action.payload,
       };
-    case LOAD_RUNS_ERROR:
+    case LOAD_RUNS_ERROR: //Loading runs error
       return {
         ...state,
         isLoaded: false,
       };
-    case EDIT_RUN:
+    case EDIT_RUN: //Editing run, sets id of current edit run
       return {
         ...state,
         edit: action.payload,
       };
-    case EDIT_RUN_COMPLETE:
+    case EDIT_RUN_COMPLETE: //Edit run complete
       return {
         ...state,
         edit: {
@@ -53,7 +56,7 @@ export default function (state = initialState, action) {
           currID: null,
         },
       };
-    case RUN_ERROR:
+    case RUN_ERROR: //Run error
       return {
         ...state,
         error: {

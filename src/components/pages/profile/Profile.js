@@ -3,7 +3,7 @@ import { Container, Row, Col, Button, Spinner } from "react-bootstrap/";
 import { connect } from "react-redux";
 import DefaultProfile from "./DefaultProfile";
 import EditProfile from "./EditProfile";
-import { userEdit, authCheck } from "../../../redux/actions/authActions";
+import { authCheck } from "../../../redux/actions/authActions";
 
 /**
  * Profile container component, if state isEditing = false then render default component, if isEditing = true then render editing component
@@ -59,9 +59,6 @@ class Profile extends Component {
 
 const mapActionsToProps = (dispatch) => {
   return {
-    edit: () => {
-      dispatch(userEdit());
-    },
     authCheck: () => {
       dispatch(authCheck());
     },

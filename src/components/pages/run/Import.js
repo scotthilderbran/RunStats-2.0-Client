@@ -9,8 +9,9 @@ import { ErrAlert } from "../../helpercomponents/ErrAlert";
 
 class Import extends Component {
   render() {
+    //Establish redirect uri for Strava OAuth page
     const redirectUri =
-      process.env.NODE_ENV === "production"
+      process.env.NODE_ENV === "production" //If production enviroment use heroku url, otherwise use localhost for dev enviroment
         ? "https://runstats2-0.herokuapp.com/stravaResponse"
         : "http://localhost:3000/stravaResponse";
     const clientId = "40468";

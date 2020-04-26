@@ -20,13 +20,15 @@ class ActionsFormatter extends Component {
   }
 
   handleDelete(event) {
+    //Handle run deletion
     event.preventDefault();
     this.props.delete(this.props.id);
-    this.props.editRunComplete();
+    this.props.editRunComplete(); //Prevents glitch of deleting run currently being edited
   }
   handleEdit = (event) => {
+    //Handle run editing
     this.props.edit(true, this.props.id);
-    window.scrollTo(0, document.body.scrollHeight);
+    window.scrollTo(0, document.body.scrollHeight); //Scroll to top of page
   };
 
   render() {

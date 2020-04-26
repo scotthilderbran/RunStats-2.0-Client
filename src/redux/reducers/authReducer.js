@@ -9,8 +9,11 @@ import {
   USER_UPDATED,
 } from "../constants";
 
-/* Auth reducer dictates starting auth state and handles any redux actions */
+/**
+ * Auth reducer dictates starting auth state and handles any redux actions
+ */
 
+//Declares initial state
 const initialState = {
   isAuthenticated: false,
   isLoaded: false,
@@ -29,20 +32,20 @@ const initialState = {
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case USER_LOADING:
+    case USER_LOADING: //User loading in progress
       return {
         ...state,
         isLoaded: false,
       };
-    case USER_LOADED:
+    case USER_LOADED: //User loading complete
       return {
         ...state,
         user: action.payload,
-        //isAuthenticated: true,
+        isAuthenticated: true,
         isLoaded: true,
       };
     case LOGIN_SUCCESS:
-    case REGISTER_SUCCESS:
+    case REGISTER_SUCCESS: //Either successful login or registration, updates user info
       return {
         ...state,
         user: action.payload,
@@ -53,12 +56,12 @@ export default function (state = initialState, action) {
           msg: null,
         },
       };
-    case AUTH_SUCCESS:
+    case AUTH_SUCCESS: //Auth success
       return {
         ...state,
         isAuthenticated: true,
       };
-    case AUTH_ERROR:
+    case AUTH_ERROR: //Auth Error
       return {
         ...state,
         isAuthenticated: false,
@@ -67,7 +70,7 @@ export default function (state = initialState, action) {
           msg: action.payload,
         },
       };
-    case LOGOUT_SUCCESS:
+    case LOGOUT_SUCCESS: //Logout success, clears state
       return {
         isAuthenticated: false,
         isLoaded: false,
@@ -83,7 +86,7 @@ export default function (state = initialState, action) {
           msg: null,
         },
       };
-    case USER_UPDATED:
+    case USER_UPDATED: //Updates user information
       return {
         ...state,
         user: action.payload,

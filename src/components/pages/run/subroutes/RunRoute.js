@@ -12,7 +12,7 @@ import { authCheck } from "../../../../redux/actions/authActions";
 
 class RunRoute extends Component {
   render() {
-    this.props.authCheck();
+    this.props.authCheck(); //Check auth on any route change
     return (
       <div>
         <RunNav />

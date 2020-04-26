@@ -13,7 +13,7 @@ import { Container, Row, Col, Spinner } from "react-bootstrap/";
 class Prediction extends Component {
   constructor(props) {
     super(props);
-    this.state = { choice: 1 };
+    this.state = { choice: 1 }; //Prediction selection state
     this.handleToggle = this.handleToggle.bind(this);
   }
 
@@ -22,7 +22,7 @@ class Prediction extends Component {
   }
 
   render() {
-    let selection = <WeekPrediction toggle={this.handleToggle} />;
+    let selection = <WeekPrediction toggle={this.handleToggle} />; //Render specific component based on selection state
     if (this.state.choice === 2) {
       selection = <MonthPrediction toggle={this.handleToggle} />;
     } else if (this.state.choice === 3) {
@@ -30,7 +30,7 @@ class Prediction extends Component {
     } else if (this.state.choice === 4) {
       selection = <AllPrediction toggle={this.handleToggle} />;
     }
-    return this.props.loaded ? (
+    return this.props.loaded ? ( //Render spinner if loading
       selection
     ) : (
       <Container fluid>

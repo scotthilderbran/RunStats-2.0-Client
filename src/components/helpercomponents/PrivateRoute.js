@@ -10,16 +10,17 @@ const PrivateRoute = ({ component: Component, auth, ...rest }) => (
   <Route
     {...rest}
     render={(auth, props) =>
-      localStorage.getItem("token") ? (
-        <Component {...props} />
+      localStorage.getItem("token") ? ( //Checks if token in localstorage
+        <Component {...props} /> //Load component
       ) : (
-        <Redirect to={{ pathname: "/" }} />
+        <Redirect to={{ pathname: "/login" }} /> //Redirect to login page
       )
     }
   />
 );
 
 const mapStateToProps = (state) => {
+  //Not currently used but will likely be implemented to read auth from state not from JWT status in localstorage
   return {
     auth: state.auth.isAuthenticated,
   };

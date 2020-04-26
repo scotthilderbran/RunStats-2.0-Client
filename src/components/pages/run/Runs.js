@@ -3,7 +3,9 @@ import RunContainer from "./RunContainer";
 import { Container, Row, Col, Spinner } from "react-bootstrap/";
 import { connect } from "react-redux";
 
-/* Root runs page, loads RunContainer if loaded otherwise shows loading indicator */
+/**
+ * Root runs page, loads RunContainer if loaded, otherwise shows spinner
+ */
 
 class Runs extends Component {
   render() {

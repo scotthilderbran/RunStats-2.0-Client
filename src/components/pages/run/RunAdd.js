@@ -36,7 +36,7 @@ class RunAdd extends Component {
       this.state.time,
       this.state.date
     );
-    this.props.toggle();
+    this.props.toggle(); //prop toggle function toggles runAdd boolean in parent component runContainer
   };
   render() {
     return (

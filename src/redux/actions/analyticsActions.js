@@ -1,18 +1,12 @@
-import {
-  CHANGE_AVG_VIEW,
-  LOAD_ANALYTICS,
-  LOAD_ANALYTICS_SUCCESS,
-} from "../constants";
+import { LOAD_ANALYTICS, LOAD_ANALYTICS_SUCCESS } from "../constants";
 import axios from "axios";
 
-export function changeAvgView(data) {
-  return {
-    type: CHANGE_AVG_VIEW,
-    payload: data,
-  };
-}
+/**
+ * All analytics actions to update redux store
+ */
 
 export const getBenchmarks = () => {
+  //Retrieve analytic totals and update store
   return (dispatch) => {
     const token = localStorage.getItem("token");
     const config = {

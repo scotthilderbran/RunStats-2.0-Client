@@ -7,12 +7,16 @@ import {
   LOGOUT_SUCCESS,
   REGISTER_SUCCESS,
   USER_UPDATED,
-  USER_EDIT,
 } from "../constants";
 import axios from "axios";
 import history from "../../helpers/history";
 import { loadRuns } from "./runActions";
 
+/**
+ * All authentication/user related actions
+ */
+
+//Initial auth check, dispatched when user intially opens RunStats
 export const intialAuthCheck = () => {
   return (dispatch) => {
     const token = localStorage.getItem("token");
@@ -25,18 +29,19 @@ export const intialAuthCheck = () => {
         .then((res) => {
           localStorage.setItem("token", res.data.token);
           dispatch({ type: AUTH_SUCCESS });
-          dispatch(loadUser());
-          dispatch(loadRuns());
+          dispatch(loadUser()); //Load user data
+          dispatch(loadRuns()); //Load user runs
         })
         .catch((err) => {
-          dispatch(authError("Session timed out"));
-          localStorage.removeItem("token"); //dispatch user not logged in
-          history.push("/login");
+          dispatch(authError("Session timed out")); //Session timed out
+          localStorage.removeItem("token"); //remove tken
+          history.push("/login"); //push to login
         });
     }
   };
 };
 
+//Reoccuring authcheck performed at every route change
 export const authCheck = () => {
   return (dispatch) => {
     const token = localStorage.getItem("token");
@@ -47,17 +52,18 @@ export const authCheck = () => {
       axios
         .get(process.env.REACT_APP_SERVER_URL + "/user/authCheck", config)
         .then((res) => {
-          localStorage.setItem("token", res.data.token);
+          localStorage.setItem("token", res.data.token); //Update with refreshed token
         })
         .catch((err) => {
           dispatch(authError("Session timed out"));
-          localStorage.removeItem("token"); //dispatch user not logged in
-          history.push("/login");
+          localStorage.removeItem("token"); //remove token
+          history.push("/login"); //push to login
         });
     }
   };
 };
 
+//Load user action to get current user data
 export const loadUser = () => {
   return (dispatch) => {
     dispatch(userLoading());
@@ -69,16 +75,18 @@ export const loadUser = () => {
       .get(process.env.REACT_APP_SERVER_URL + "/user/loadUser", config)
       .then((res) => {
         dispatch({
+          //Update user data
           type: USER_LOADED,
           payload: res.data,
-        }); //dispatch user logged in
+        });
       })
       .catch((err) => {
-        console.log(err); //dispatch user not logged in
+        console.log(err);
       });
   };
 };
 
+//Login action get user data and load runs
 export const login = ({ email, password }) => {
   return (dispatch) => {
     dispatch(userLoading());
@@ -88,18 +96,19 @@ export const login = ({ email, password }) => {
         password: password,
       })
       .then((res) => {
-        localStorage.setItem("token", res.data.token);
-        dispatch(loginSuccess(res.data.user)); //dispatch user logged in
+        localStorage.setItem("token", res.data.token); //Update token
+        dispatch(loginSuccess(res.data.user)); //dispatch user logged in, update user data in store
         dispatch(loadRuns());
         history.push("/runs");
       })
       .catch((err) => {
         console.log(err);
-        dispatch({ type: AUTH_ERROR, payload: err.response.data.message }); //dispatch user not logged in
+        dispatch({ type: AUTH_ERROR, payload: err.response.data.message }); //dispatch auth error
       });
   };
 };
 
+//Registration action
 export const register = ({ email, password, fName, lName, sex, age }) => {
   return (dispatch) => {
     axios
@@ -112,19 +121,21 @@ export const register = ({ email, password, fName, lName, sex, age }) => {
         age: age,
       })
       .then((res) => {
-        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("token", res.data.token); //Update token
         dispatch({
+          //Register success action, updates user infromation
           type: REGISTER_SUCCESS,
           payload: res.data.user,
         }); //dispatch user logged in
       })
       .catch((err) => {
         console.log(err);
-        dispatch({ type: AUTH_ERROR, payload: err.response.data.message }); //dispatch user not logged in
+        dispatch({ type: AUTH_ERROR, payload: err.response.data.message }); //dispatch auth error
       });
   };
 };
 
+//Update user action to change user information
 export const updateUser = ({ email, fName, lName, sex, age }) => {
   return (dispatch) => {
     const token = localStorage.getItem("token");
@@ -154,15 +165,16 @@ export const updateUser = ({ email, fName, lName, sex, age }) => {
         config
       )
       .then((res) => {
-        dispatch(loadUser());
+        dispatch(loadUser()); //Load user following update
       })
       .catch((err) => {
         console.log(err);
-        dispatch({ type: AUTH_ERROR, payload: err.response.data.message });
+        dispatch({ type: AUTH_ERROR, payload: err.response.data.message }); //Authentication error
       });
   };
 };
 
+//Strava token exchange and import
 export const stravaTokenExchange = (code) => {
   return (dispatch) => {
     const token = localStorage.getItem("token");
@@ -178,25 +190,28 @@ export const stravaTokenExchange = (code) => {
         config
       )
       .then((res) => {
-        history.push("/runs/");
+        history.push("/runs/import"); //Return user to import page
       })
       .catch((err) => {});
   };
 };
 
+//Loading function to indicate user loading in progress
 export function userLoading(data) {
   return {
     type: USER_LOADING,
   };
 }
 
+//Logout action
 export const logout = () => {
-  localStorage.removeItem("token");
+  localStorage.removeItem("token"); //remove token
   return {
     type: LOGOUT_SUCCESS,
   };
 };
 
+//Login success action, updates store with user information
 export function loginSuccess(data) {
   return {
     type: LOGIN_SUCCESS,
@@ -204,12 +219,7 @@ export function loginSuccess(data) {
   };
 }
 
-export function userEdit() {
-  return {
-    type: USER_EDIT,
-  };
-}
-
+//Auth error action
 export function authError(msg) {
   return { type: AUTH_ERROR, payload: msg };
 }

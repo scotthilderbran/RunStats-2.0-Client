@@ -11,7 +11,7 @@ import {
 } from "react-bootstrap/";
 
 /**
- * AllPrediction component renders predictions page
+ * AllPrediction component renders predictions page for entire timespan
  */
 
 class AllPrediction extends Component {
@@ -29,13 +29,14 @@ class AllPrediction extends Component {
     });
   }
   render() {
-    const { toggle } = this.props;
+    const { toggle } = this.props; //Toggles prediction timespan selection
     const prediction = getPrediction(
+      //Gets prediction
       this.props.runs,
       120,
       "months",
       "YYYY-MM",
-      this.state.distance
+      this.state.distance //Reads distance input from state
     );
     return (
       <Container fluid>

@@ -5,7 +5,7 @@ import { updateUser } from "../../../redux/actions/authActions";
 import { ErrAlert } from "../../helpercomponents/ErrAlert";
 
 /**
- * Edit profile component, allows users to enter and dispatches updateUser action on submit
+ * Edit profile component, allows users to enter and dispatches updateUser action on submit. Uses react bootstrap form group to validate input
  */
 
 class EditProfile extends Component {

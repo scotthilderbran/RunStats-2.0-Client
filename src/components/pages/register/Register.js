@@ -13,7 +13,8 @@ import { connect } from "react-redux";
 import { ErrAlert } from "../../helpercomponents/ErrAlert";
 
 /**
- * Registration component renders registration field and dispatches register action on submission
+ * Registration component renders registration field and dispatches register action on submission.
+ * Uses react bootstrap formgroup to validate input
  */
 
 class Register extends Component {

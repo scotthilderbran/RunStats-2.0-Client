@@ -11,10 +11,14 @@ import {
   Dropdown,
 } from "react-bootstrap/";
 
+/**
+ * Year Average component renders averages for runs in past year
+ */
+
 class YearAverage extends Component {
   render() {
-    const yearAVG = getGraphData(this.props.runs, 11, "months", "YYYY-MM");
-    const { toggle } = this.props;
+    const yearAVG = getGraphData(this.props.runs, 11, "months", "YYYY-MM"); //Retrieve averages and graph data. allAVG[0] is graph data, allAVG[1] is avg
+    const { toggle } = this.props; //Toggles average view between timespans
     let avgText;
     if (Number.isNaN(yearAVG[1])) {
       avgText = "Not enough data in selected timespan";

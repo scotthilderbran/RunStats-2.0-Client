@@ -1,13 +1,11 @@
-import {
-  CHANGE_AVG_VIEW,
-  LOAD_ANALYTICS,
-  LOAD_ANALYTICS_SUCCESS,
-} from "../constants";
+import { LOAD_ANALYTICS, LOAD_ANALYTICS_SUCCESS } from "../constants";
 
-/* Run reducer dictates starting analytics state and handles any redux actions */
+/**
+ * Run reducer dictates starting analytics state and handles any redux actions
+ */
 
+//Declares initial state
 const initialState = {
-  averageSelection: 1,
   totals: {
     distanceSum: 0,
     timeSum: 0,
@@ -17,15 +15,11 @@ const initialState = {
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case CHANGE_AVG_VIEW:
-      return {
-        averageSelection: action.payload,
-      };
-    case LOAD_ANALYTICS:
+    case LOAD_ANALYTICS: //Load inital analytics
       return {
         ...state,
       };
-    case LOAD_ANALYTICS_SUCCESS:
+    case LOAD_ANALYTICS_SUCCESS: //Load analytics success
       return {
         ...state,
         totals: action.payload,

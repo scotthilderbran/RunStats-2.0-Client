@@ -29,13 +29,14 @@ class WeekPrediction extends Component {
     });
   }
   render() {
-    const { toggle } = this.props;
+    const { toggle } = this.props; //Toggles prediction timespan selection
     const prediction = getPrediction(
+      //Gets prediction
       this.props.runs,
       7,
       "days",
       "MM-DD",
-      this.state.distance
+      this.state.distance //Reads distance input from state
     );
     return (
       <Container fluid>

@@ -5,7 +5,7 @@ import { Container, Row, Col, Form, Button } from "react-bootstrap/";
 import { ErrAlert } from "../../helpercomponents/ErrAlert";
 
 /**
- * Login component renders login page
+ * Login component renders login page, uses react bootstrap formgroups to validate user input.
  */
 
 class Login extends Component {
@@ -23,7 +23,7 @@ class Login extends Component {
   }
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.login(this.state.email, this.state.password);
+    this.props.login(this.state.email, this.state.password); //Calls login action
   };
   render() {
     return (

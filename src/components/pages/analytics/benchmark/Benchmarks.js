@@ -1,9 +1,16 @@
 import React, { Component } from "react";
-import { Container, Row, Col, Card, ListGroup } from "react-bootstrap/";
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  ListGroup,
+  ProgressBar,
+} from "react-bootstrap/";
 import { connect } from "react-redux";
 
 /**
- * Benchmarks component renders benchmarks page
+ * Benchmarks component renders benchmarks page with percentiles and totals
  */
 
 class Benchmarks extends Component {
@@ -13,6 +20,7 @@ class Benchmarks extends Component {
     this.nth = this.nth.bind(this);
   }
   nth(num) {
+    //Function determines what string to append after percentile number
     if (num > 3 && num < 21) return "th";
     switch (num % 10) {
       case 1:
@@ -26,6 +34,7 @@ class Benchmarks extends Component {
     }
   }
   render() {
+    //Get all percentiles from props
     let sex = this.props.sex ? "male" : "female";
     let finalPercentileByAll = this.props.totals.finalPercentileByAll;
     let finalPercentileBySex = this.props.totals.finalPercentileBySex;
@@ -82,6 +91,20 @@ class Benchmarks extends Component {
                       {this.nth(finalPercentileByAll)}
                     </b>{" "}
                     percentile of all RunStats runners
+                    <ProgressBar className="mt-1">
+                      <ProgressBar
+                        variant="success"
+                        label={`${finalPercentileByAll}% slower`}
+                        now={finalPercentileByAll}
+                        key={1}
+                      />
+                      <ProgressBar
+                        variant="warning"
+                        label={`${100 - finalPercentileByAll}% faster`}
+                        now={100 - finalPercentileByAll}
+                        key={2}
+                      />
+                    </ProgressBar>
                   </ListGroup.Item>
                   <ListGroup.Item>
                     <b>
@@ -89,6 +112,20 @@ class Benchmarks extends Component {
                       {this.nth(finalPercentileBySex)}
                     </b>{" "}
                     percentile of {sex} runners
+                    <ProgressBar className="mt-1">
+                      <ProgressBar
+                        variant="success"
+                        label={`${finalPercentileBySex}% slower`}
+                        now={finalPercentileBySex}
+                        key={1}
+                      />
+                      <ProgressBar
+                        variant="warning"
+                        label={`${100 - finalPercentileBySex}% faster`}
+                        now={100 - finalPercentileBySex}
+                        key={2}
+                      />
+                    </ProgressBar>
                   </ListGroup.Item>
                   <ListGroup.Item>
                     <b>
@@ -97,6 +134,20 @@ class Benchmarks extends Component {
                     </b>{" "}
                     percentile of runners between {this.props.totals.ageLow} and{" "}
                     {this.props.totals.ageHigh} years old
+                    <ProgressBar className="mt-1">
+                      <ProgressBar
+                        variant="success"
+                        label={`${finalPercentileByAge}% slower`}
+                        now={finalPercentileByAge}
+                        key={1}
+                      />
+                      <ProgressBar
+                        variant="warning"
+                        label={`${100 - finalPercentileByAge}% faster`}
+                        now={100 - finalPercentileByAge}
+                        key={2}
+                      />
+                    </ProgressBar>
                   </ListGroup.Item>
                   <ListGroup.Item>
                     <b>
@@ -106,6 +157,20 @@ class Benchmarks extends Component {
                     percentile of {sex} runners between{" "}
                     {this.props.totals.ageLow} and {this.props.totals.ageHigh}{" "}
                     years old
+                    <ProgressBar className="mt-1">
+                      <ProgressBar
+                        variant="success"
+                        label={`${finalPercentileByAgeAndSex}% slower`}
+                        now={finalPercentileByAgeAndSex}
+                        key={1}
+                      />
+                      <ProgressBar
+                        variant="warning"
+                        label={`${100 - finalPercentileByAgeAndSex}% faster`}
+                        now={100 - finalPercentileByAgeAndSex}
+                        key={2}
+                      />
+                    </ProgressBar>
                   </ListGroup.Item>
                 </ListGroup>
               </Card.Body>
@@ -126,6 +191,20 @@ class Benchmarks extends Component {
                       {this.nth(finalPercentileByAllMarathon)}
                     </b>{" "}
                     percentile of all marathon runners
+                    <ProgressBar className="mt-1">
+                      <ProgressBar
+                        variant="success"
+                        label={`${finalPercentileByAllMarathon}% slower`}
+                        now={finalPercentileByAllMarathon}
+                        key={1}
+                      />
+                      <ProgressBar
+                        variant="warning"
+                        label={`${100 - finalPercentileByAllMarathon}% faster`}
+                        now={100 - finalPercentileByAllMarathon}
+                        key={2}
+                      />
+                    </ProgressBar>
                   </ListGroup.Item>
                   <ListGroup.Item>
                     <b>
@@ -133,6 +212,20 @@ class Benchmarks extends Component {
                       {this.nth(finalPercentileBySexMarathon)}
                     </b>{" "}
                     percentile of {sex} marathon runners
+                    <ProgressBar className="mt-1">
+                      <ProgressBar
+                        variant="success"
+                        label={`${finalPercentileBySexMarathon}% slower`}
+                        now={finalPercentileBySexMarathon}
+                        key={1}
+                      />
+                      <ProgressBar
+                        variant="warning"
+                        label={`${100 - finalPercentileBySexMarathon}% faster`}
+                        now={100 - finalPercentileBySexMarathon}
+                        key={2}
+                      />
+                    </ProgressBar>
                   </ListGroup.Item>
                   <ListGroup.Item>
                     <b>
@@ -142,6 +235,20 @@ class Benchmarks extends Component {
                     percentile of marathon runners between{" "}
                     {this.props.totals.ageLow} and {this.props.totals.ageHigh}{" "}
                     years old
+                    <ProgressBar className="mt-1">
+                      <ProgressBar
+                        variant="success"
+                        label={`${finalPercentileByAgeMarathon}% slower`}
+                        now={finalPercentileByAgeMarathon}
+                        key={1}
+                      />
+                      <ProgressBar
+                        variant="warning"
+                        label={`${100 - finalPercentileByAgeMarathon}% faster`}
+                        now={100 - finalPercentileByAgeMarathon}
+                        key={2}
+                      />
+                    </ProgressBar>
                   </ListGroup.Item>
                   <ListGroup.Item>
                     <b>
@@ -151,6 +258,22 @@ class Benchmarks extends Component {
                     percentile of {sex} marathon runners between{" "}
                     {this.props.totals.ageLow} and {this.props.totals.ageHigh}{" "}
                     years old
+                    <ProgressBar className="mt-1">
+                      <ProgressBar
+                        variant="success"
+                        label={`${finalPercentileByAgeAndSexMarathon}% slower`}
+                        now={finalPercentileByAgeAndSexMarathon}
+                        key={1}
+                      />
+                      <ProgressBar
+                        variant="warning"
+                        label={`${
+                          100 - finalPercentileByAgeAndSexMarathon
+                        }% faster`}
+                        now={100 - finalPercentileByAgeAndSexMarathon}
+                        key={2}
+                      />
+                    </ProgressBar>
                   </ListGroup.Item>
                 </ListGroup>
               </Card.Body>

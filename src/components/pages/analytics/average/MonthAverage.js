@@ -11,10 +11,14 @@ import {
   Dropdown,
 } from "react-bootstrap/";
 
+/**
+ * Month Average component renders averages for runs in past month
+ */
+
 class MonthAverage extends Component {
   render() {
-    const monthAVG = getGraphData(this.props.runs, 30, "days", "MM-DD");
-    const { toggle } = this.props;
+    const monthAVG = getGraphData(this.props.runs, 30, "days", "MM-DD"); //Retrieve averages and graph data. allAVG[0] is graph data, allAVG[1] is avg
+    const { toggle } = this.props; //Toggles average view between timespans
     let avgText;
     if (Number.isNaN(monthAVG[1])) {
       avgText = "Not enough data in selected timespan";

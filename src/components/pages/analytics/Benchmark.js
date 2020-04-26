@@ -5,13 +5,13 @@ import Benchmarks from "./benchmark/Benchmarks";
 import { getBenchmarks } from "../../../redux/actions/analyticsActions";
 
 /**
- * Benchmark component benchmark page
+ * Benchmark component container to load benchmarks and handle loading state
  */
 
 class Benchmark extends Component {
   render() {
-    this.props.getBenchmarks();
-    return this.props.loaded ? (
+    this.props.getBenchmarks(); //Load benchmarks
+    return this.props.loaded ? ( //If loading display spinner
       <Benchmarks />
     ) : (
       <Container fluid>

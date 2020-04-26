@@ -14,8 +14,8 @@ import { authCheck } from "../../../../redux/actions/authActions";
 
 class AnalyticsRoute extends Component {
   render() {
-    this.props.authCheck();
-    return this.props.run.length !== 0 ? (
+    this.props.authCheck(); //Dispatch authcheck on page change
+    return this.props.run.length !== 0 ? ( //If user has no runs then render "No runs to analyze".
       <div>
         <AnalyticsNav />
         <PrivateRoute exact path={this.props.match.path} component={Average} />

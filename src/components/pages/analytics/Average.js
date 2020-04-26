@@ -13,7 +13,7 @@ import { Container, Row, Col, Spinner } from "react-bootstrap/";
 class Average extends Component {
   constructor(props) {
     super(props);
-    this.state = { choice: 1 };
+    this.state = { choice: 1 }; //State to toggle timespan selection
     this.handleToggle = this.handleToggle.bind(this);
   }
 
@@ -22,6 +22,7 @@ class Average extends Component {
   }
 
   render() {
+    //Renders different component based on selection state
     let selection = <WeekAverage toggle={this.handleToggle} />;
     if (this.state.choice === 2) {
       selection = <MonthAverage toggle={this.handleToggle} />;
@@ -30,7 +31,7 @@ class Average extends Component {
     } else if (this.state.choice === 4) {
       selection = <AllAverage toggle={this.handleToggle} />;
     }
-    return this.props.loaded ? (
+    return this.props.loaded ? ( //Render spinner if not loaded
       selection
     ) : (
       <Container fluid>

@@ -1,13 +1,11 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import { Card, ListGroup } from "react-bootstrap/";
-import { loadUser } from "../../../redux/actions/authActions";
 
 /**
  * Component to render default profile view (not Editing)
  */
 
-class DefaultProfile extends Component {
+export default class DefaultProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -20,7 +18,7 @@ class DefaultProfile extends Component {
   }
 
   render() {
-    const sex = this.props.user.sex ? "Male" : "Female";
+    const sex = this.props.user.sex ? "Male" : "Female"; //Establish sex string based of sex state boolean
     return (
       <div>
         <Card>
@@ -51,13 +49,3 @@ class DefaultProfile extends Component {
     );
   }
 }
-
-const mapActionsToProps = (dispatch) => {
-  return {
-    loadUser: () => {
-      dispatch(loadUser());
-    },
-  };
-};
-
-export default connect(mapActionsToProps)(DefaultProfile);

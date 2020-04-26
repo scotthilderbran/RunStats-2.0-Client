@@ -16,13 +16,13 @@ class StravaResponse extends Component {
     const values = queryString.parse(this.props.location.search);
     if (values.error) {
       //If user denied strava acccess
-      this.props.err("Strava Access Denied");
+      this.props.err("Strava Access Denied"); //Dispatch auth error with message.
       history.push("/runs/import");
     } else {
       this.props.exchange(values.code); //Exchange strava access code
+      history.push("/runs/import");
     }
   }
-
   render() {
     return <div></div>;
   }

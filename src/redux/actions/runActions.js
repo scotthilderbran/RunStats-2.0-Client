@@ -8,6 +8,11 @@ import {
 } from "../constants";
 import axios from "axios";
 
+/**
+ * All run related actions
+ */
+
+//Load all user runs from server
 export const loadRuns = () => {
   return (dispatch) => {
     dispatch({
@@ -33,6 +38,7 @@ export const loadRuns = () => {
   };
 };
 
+//Delete run action to remove run from database
 export const deleteRun = (id) => {
   return (dispatch) => {
     const token = localStorage.getItem("token");
@@ -48,14 +54,15 @@ export const deleteRun = (id) => {
         config
       )
       .then((res) => {
-        dispatch(loadRuns());
+        dispatch(loadRuns()); //Reload runs once deleted
       })
       .catch((err) => {
-        console.log(err); //dispatch user not logged in
+        console.log(err);
       });
   };
 };
 
+//Update run action to update specific run infromation
 export const updateRun = ({ id, note, distance, time, date }) => {
   return (dispatch) => {
     const token = localStorage.getItem("token");
@@ -75,15 +82,16 @@ export const updateRun = ({ id, note, distance, time, date }) => {
         config
       )
       .then((res) => {
-        dispatch(loadRuns()); //dispatch user logged in
+        dispatch(loadRuns()); //load updated runs once complete
       })
       .catch((err) => {
-        console.log(err); //dispatch user not logged in
+        console.log(err); //Run update error
         dispatch({ type: RUN_ERROR, payload: err.response.data.message });
       });
   };
 };
 
+//Action for user to add run to database
 export const addRun = ({ note, distance, time, date }) => {
   return (dispatch) => {
     const token = localStorage.getItem("token");
@@ -102,21 +110,24 @@ export const addRun = ({ note, distance, time, date }) => {
         config
       )
       .then((res) => {
-        dispatch(loadRuns());
+        dispatch(loadRuns()); //Load updated runs once added
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err); //Run add error
         dispatch({ type: RUN_ERROR, payload: err.response.data.message });
       });
   };
 };
 
+//Edit run action to indicate user editing runs
 export function editRun(data) {
   return {
     type: EDIT_RUN,
-    payload: data,
+    payload: data, //Passes id of run to be edited to store
   };
 }
+
+//Complete edit action
 export function editRunComplete(data) {
   return {
     type: EDIT_RUN_COMPLETE,

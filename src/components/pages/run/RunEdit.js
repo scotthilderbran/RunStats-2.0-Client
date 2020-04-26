@@ -5,7 +5,11 @@ import { ListGroup, Button, Form } from "react-bootstrap/";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-/* Component for editing individual runs, calls dispatches updateRun action on submit */
+/**
+ * Component for editing individual runs, dispatches updateRun action on submit.
+ * Reads editing state and ID from redux store instead of parent component due to the use of Action formatters.
+ * Action formatter must be out of class in RunContainer and thus cant access RunContainer state.
+ */
 
 class RunEdit extends Component {
   constructor(props) {
@@ -39,16 +43,17 @@ class RunEdit extends Component {
   };
   handleSubmit = (event) => {
     this.props.editRun(
+      //Dispatch edit run
       this.props.id,
       this.state.note,
       this.state.dist,
       this.state.time,
       this.state.date
     );
-    this.props.editRunComplete();
+    this.props.editRunComplete(); //Edit run complete
   };
   handleCancel = (event) => {
-    this.props.editRunComplete();
+    this.props.editRunComplete(); //Cancel edit run
   };
   render() {
     return (
