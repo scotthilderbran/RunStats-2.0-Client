@@ -18,28 +18,32 @@ const columns = [
   {
     dataField: "note",
     text: "Notes",
+    sort: true,
   },
   {
     dataField: "distance",
-    text: "Distance",
+    text: "Distance (miles)",
     sort: true,
+    headerStyle: { width: "180px", textAlign: "center" },
   },
   {
     dataField: "time",
-    text: "Time",
+    text: "Time (min)",
     sort: true,
+    headerStyle: { width: "140px", textAlign: "center" },
   },
   {
     dataField: "date",
     text: "Date",
     sort: true,
+    headerStyle: { width: "120px", textAlign: "center" },
   },
   {
     dataField: "strava_run_id",
     text: "Source",
     sort: true,
     formatter: importTypeFormatter,
-    headerStyle: { width: "80px", textAlign: "center" },
+    headerStyle: { width: "120px", textAlign: "center" },
   },
   {
     dataField: "actions",
@@ -47,6 +51,7 @@ const columns = [
     isDummyField: true,
     csvExport: false,
     formatter: actionsFormatter,
+    headerStyle: { width: "120px", textAlign: "center" },
   },
 ];
 
@@ -62,9 +67,10 @@ class RunContainer extends Component {
   }
 
   render() {
+    console.log(this.props.isEditID);
     return this.props.isEdit ? (
       <div>
-        <RunEdit />
+        <RunEdit runID={this.props.isEditID} />
         <BootstrapTable
           keyField="id"
           data={this.props.run}

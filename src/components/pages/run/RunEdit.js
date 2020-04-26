@@ -14,14 +14,19 @@ import "react-datepicker/dist/react-datepicker.css";
 class RunEdit extends Component {
   constructor(props) {
     super(props);
+    let run = this.props.runs.filter((run) => {
+      return run.id === this.props.id;
+    });
+    console.log("Curr run");
+    console.log(run);
     this.state = {
-      note: this.props.run[0].note,
-      dist: this.props.run[0].distance,
-      time: this.props.run[0].time,
+      note: run[0].note,
+      dist: run[0].distance,
+      time: run[0].time,
       date: new Date(
-        this.props.run[0].date.substring(0, 4),
-        this.props.run[0].date.substring(5, 7) - 1,
-        this.props.run[0].date.substring(8, 10)
+        run[0].date.substring(0, 4),
+        run[0].date.substring(5, 7) - 1,
+        run[0].date.substring(8, 10)
       ),
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -138,9 +143,7 @@ const mapActionsToProps = (dispatch) => {
 };
 
 const mapStateToProps = (state) => ({
-  run: state.run.runs.filter((run) => {
-    return run.id === state.run.edit.currID;
-  }),
+  runs: state.run.runs,
   id: state.run.edit.currID,
 });
 

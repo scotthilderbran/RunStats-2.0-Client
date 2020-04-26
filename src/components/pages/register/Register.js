@@ -39,7 +39,7 @@ class Register extends Component {
     });
   }
   handleSexChange(event) {
-    this.setState({ sex: !this.state.sex }, () => {});
+    this.setState({ sex: !this.state.sex });
   }
   handleSubmit(event) {
     event.preventDefault();
