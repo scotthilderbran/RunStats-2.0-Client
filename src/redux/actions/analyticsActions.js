@@ -18,7 +18,6 @@ export const getBenchmarks = () => {
     axios
       .get(process.env.REACT_APP_SERVER_URL + "/analytic/getTotals", config)
       .then((res) => {
-        console.log("In loaded");
         dispatch({
           type: LOAD_ANALYTICS_SUCCESS,
           payload: res.data,

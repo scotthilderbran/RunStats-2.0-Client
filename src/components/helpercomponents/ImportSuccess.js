@@ -2,9 +2,8 @@ import React from "react";
 import { Alert } from "react-bootstrap/";
 
 /**
- * Error alert function: isErr is read from store and passed as prop to ErrAlert.
- * If isErr is true, function will return error component with message from props.
- * If isErr is false/null, nothing will render.
+ * Import Success alert component, generates alert after successful strava import
+ * Alert disappears after 3 seconds
  */
 
 export const ImportSuccess = (props) => {

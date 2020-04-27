@@ -70,8 +70,8 @@ class MonthPrediction extends Component {
                   <Form.Group>
                     <Form.Control
                       onChange={this.handleChange}
-                      type="text"
-                      name="number"
+                      type="number"
+                      name="distance"
                       step="any"
                     />
                   </Form.Group>

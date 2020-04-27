@@ -19,7 +19,6 @@ import { loadRuns } from "./runActions";
 //Initial auth check, dispatched when user intially opens RunStats
 export const intialAuthCheck = () => {
   return (dispatch) => {
-    console.log("initial auth");
     const token = localStorage.getItem("token");
     if (token) {
       const config = {
@@ -45,7 +44,6 @@ export const intialAuthCheck = () => {
 //Reoccuring authcheck performed at every route change
 export const authCheck = () => {
   return (dispatch) => {
-    console.log("authcheck");
     const token = localStorage.getItem("token");
     if (token) {
       const config = {

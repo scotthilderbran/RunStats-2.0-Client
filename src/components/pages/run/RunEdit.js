@@ -17,8 +17,6 @@ class RunEdit extends Component {
     let run = this.props.runs.filter((run) => {
       return run.id === this.props.id;
     });
-    console.log("Curr run");
-    console.log(run);
     this.state = {
       note: run[0].note,
       dist: run[0].distance,
