@@ -2,4 +2,4 @@
 
 Author: Scott Hilderbran
 
-React + Redux client for RunStats application
+Web application built to interact with runstats back end. Developed using react + redux for state management. UI is derived from React-Bootstrap 4.
